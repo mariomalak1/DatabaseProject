@@ -15,6 +15,10 @@ create table Booking(
 	foreign key(UserID) references [User](UserID), 
 	foreign key(SeatID) references Seat(SeatID),
 );
+create table Train (
+	TrainId int identity(1,1) primary key,
+	capacity int not null,
+);
 CREATE TABLE Seat (
   SeatID INT identity(1,1) PRIMARY KEY,
   Booked BIT NOT NULL,
@@ -33,5 +37,9 @@ CREATE TABLE Seat (
   */
   --updated when the train created
 );
+alter table Seat 
+add TrainID int 
+constraint seat_train_fk foreign key(TrainId)
+references Train
 
 
