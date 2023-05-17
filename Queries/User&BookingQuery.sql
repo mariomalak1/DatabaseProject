@@ -13,9 +13,25 @@ create table Booking(
 	seatID int,
 	userID int,
 	foreign key(UserID) references [User](UserID), 
-/*
-	update the table with this when seat is created
 	foreign key(SeatID) references Seat(SeatID),
-*/
 );
+CREATE TABLE Seat (
+  SeatID INT identity(1,1) PRIMARY KEY,
+  Booked BIT NOT NULL,
+  Class VARCHAR(20) NOT NULL,
+  Price AS (
+    CASE Class
+      WHEN 'Coach' THEN 100.00
+      WHEN 'Business' THEN 200.00
+      WHEN 'First' THEN 300.00
+      WHEN 'Rooms' THEN 400.00
+      ELSE 0.00
+    END
+  ),
+  /*TrainId INT,
+  FOREIGN KEY (TrainId) REFERENCES Train(TrainID)
+  */
+  --updated when the train created
+);
+
 
