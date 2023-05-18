@@ -22,7 +22,7 @@ BookingRepository {
                 "VALUES (?, ?, ?)";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, booking.getSeat().getID());
+//            statement.setInt(1, booking.getNumberOfSeats().getID());
             statement.setInt(2, booking.getUser().getID());
             statement.setInt(3, booking.getTrip().getID());
 
