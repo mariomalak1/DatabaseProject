@@ -5,9 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c33b583-46ed-4a7a-b925-e93248f25d05" name="Changes" comment="">
+<<<<<<< HEAD
+=======
+
+      <change beforePath="$PROJECT_DIR$/../ERD - Train Booking.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../ERD - Train Booking.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mssql_jdbc_12_2_0_jre11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mssql_jdbc_12_2_0_jre8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mssql_jdbc_12_2_0_jre8__2_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DBconnection/connection.java" afterDir="false" />
+>>>>>>> 6476dd55a1425a1c3fdfd1ac737e7fc74894d36e
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Models/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Booking.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Models/Train.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Train.java" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repositories/MainRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/MainRepository.java" afterDir="false" />
+>>>>>>> e918d14378d19b98b5805d7e337da023202a8eb5
+>>>>>>> 6476dd55a1425a1c3fdfd1ac737e7fc74894d36e
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +53,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/FCAI-CU/Second Year/Second Semester/Database/Project/DatabaseProject/TrainBookingProject",
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
+=======
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
@@ -42,6 +71,7 @@
     &quot;last_opened_file_path&quot;: &quot;D:/FCAI-CU/Second Year/Second Semester/Database/Project/DatabaseProject/TrainBookingProject&quot;
   }
 }</component>
+>>>>>>> e918d14378d19b98b5805d7e337da023202a8eb5
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\GitHub\DatabaseProject\TrainBookingProject" />
