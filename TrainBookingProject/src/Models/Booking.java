@@ -1,13 +1,13 @@
 package Models;
 
 public class Booking {
-    private int BookingID;
+    private int ID;
     private User user;
     private Trip trip;
     private Seat seat;
 
     public Booking(int id, User user, Trip trip, Seat seat){
-        this.BookingID = id;
+        this.ID = id;
         this.seat = seat;
         this.user = user;
         this.trip = trip;
@@ -38,10 +38,10 @@ public class Booking {
     }
 
     public int getBookingID() {
-        return BookingID;
+        return ID;
     }
 
     public void setBookingID(int bookingID) {
-        BookingID = bookingID;
+        ID = bookingID;
     }
 }
