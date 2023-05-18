@@ -4,15 +4,16 @@ public class Booking {
     private int ID;
     private User user;
     private Trip trip;
-    private Seat seat;
+    private Train train;
+    private int NumberOfSeats;
 
-    public Booking(User user, Trip trip, Seat seat){
-        this(0, user, trip, seat);
+    public Booking(User user, Trip trip, int seats){
+        this(0, user, trip, seats);
     }
 
-    public Booking(int id, User user, Trip trip, Seat seat){
+    public Booking(int id, User user, Trip trip, int seats){
         this.ID = id;
-        this.seat = seat;
+        this.NumberOfSeats = seats;
         this.user = user;
         this.trip = trip;
     }
@@ -33,12 +34,12 @@ public class Booking {
         this.trip = trip;
     }
 
-    public Seat getSeat() {
-        return seat;
+    public int getNumberOfSeats() {
+        return NumberOfSeats;
     }
 
-    public void setSeat(Seat seat) {
-        this.seat = seat;
+    public void setNumberOfSeats(int numberOfSeats) {
+        this.NumberOfSeats = numberOfSeats;
     }
 
     public int getID() {
@@ -47,5 +48,17 @@ public class Booking {
 
     public void setID(int bookingID) {
         ID = bookingID;
+    }
+
+    public double costOfBooking(){
+        return NumberOfSeats * train.getCapacity();
+    }
+
+    public Train getTrain() {
+        return train;
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
     }
 }
