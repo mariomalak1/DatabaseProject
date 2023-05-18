@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c33b583-46ed-4a7a-b925-e93248f25d05" name="Changes" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/.idea/libraries/mssql_jdbc_12_2_0_jre11.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/mssql_jdbc_12_2_0_jre8.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/mssql_jdbc_12_2_0_jre8__2_.xml" afterDir="false" />
@@ -13,6 +14,15 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainBookingProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TrainBookingProject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/../ERD - Train Booking.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../ERD - Train Booking.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Booking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/City.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Seat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Seat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" afterDir="false" />
+>>>>>>> 22416f9ab309b44cb08808adf37033f0a934d663
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,11 +39,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2PvlBX2uwemZzKskZX95FR0Ax9v" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -62,6 +79,15 @@
       <recent name="E:\GitHub\DatabaseProject\TrainBookingProject" />
     </key>
   </component>
+=======
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/FCAI-CU/Second Year/Second Semester/Database/Project/DatabaseProject/TrainBookingProject&quot;
+  }
+}</component>
+>>>>>>> 22416f9ab309b44cb08808adf37033f0a934d663
   <component name="RunManager">
     <configuration name="TrainBooking" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
