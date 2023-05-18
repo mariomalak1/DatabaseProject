@@ -5,25 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c33b583-46ed-4a7a-b925-e93248f25d05" name="Changes" comment="">
-
-=======
-
-=======
->>>>>>> f88a6d6d6c4cb69d396d9a26cadc80417eed8405
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mssql_jdbc_12_2_0_jre11.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mssql_jdbc_12_2_0_jre8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/mssql_jdbc_12_2_0_jre8__2_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DBconnection/connection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainBookingProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TrainBookingProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-=======
       <change beforePath="$PROJECT_DIR$/../ERD - Train Booking.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../ERD - Train Booking.pdf" afterDir="false" />
->>>>>>> f2eed01d2758d03324c2df83d52dac07c8b3a2cd
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" afterDir="false" />
->>>>>>> 22416f9ab309b44cb08808adf37033f0a934d663
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,23 +38,9 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "E:/GitHub/DatabaseProject/TrainBookingProject",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlserver"
-    ]
+    "last_opened_file_path": "D:/FCAI-CU/Second Year/Second Semester/Database/Project/DatabaseProject/TrainBookingProject",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -79,15 +48,6 @@
       <recent name="E:\GitHub\DatabaseProject\TrainBookingProject" />
     </key>
   </component>
-=======
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/FCAI-CU/Second Year/Second Semester/Database/Project/DatabaseProject/TrainBookingProject&quot;
-  }
-}</component>
->>>>>>> 22416f9ab309b44cb08808adf37033f0a934d663
   <component name="RunManager">
     <configuration name="TrainBooking" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
