@@ -4,7 +4,8 @@ public class Train {
     private int TrainID;
     private int Capacity;
     private Trip tripID;
-    private Seat seat;
+    private int Price;
+
     public void setTrainId(int TrainID) {
         this.TrainID = TrainID;
     }
@@ -27,7 +28,11 @@ public class Train {
         return tripID;
     }
 
-    public double getSeatPrice(){
-        return seat.getPrice();
+    public int getPrice() {
+        return Price;
+    }
+
+    public void setPrice(int price) {
+        Price = price;
     }
 }
