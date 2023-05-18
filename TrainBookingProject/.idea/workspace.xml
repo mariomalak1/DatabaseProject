@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c33b583-46ed-4a7a-b925-e93248f25d05" name="Changes" comment="">
-<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/.idea/libraries/mssql_jdbc_12_2_0_jre11.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/mssql_jdbc_12_2_0_jre8.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/mssql_jdbc_12_2_0_jre8__2_.xml" afterDir="false" />
@@ -50,7 +49,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
