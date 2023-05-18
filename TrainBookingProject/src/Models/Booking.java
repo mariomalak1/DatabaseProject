@@ -51,7 +51,7 @@ public class Booking {
     }
 
     public double costOfBooking(){
-        return NumberOfSeats * train.getCapacity();
+        return NumberOfSeats * train.getPrice();
     }
 
     public Train getTrain() {
