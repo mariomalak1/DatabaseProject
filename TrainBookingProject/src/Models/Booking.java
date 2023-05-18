@@ -6,6 +6,10 @@ public class Booking {
     private Trip trip;
     private Seat seat;
 
+    public Booking(User user, Trip trip, Seat seat){
+        this(0, user, trip, seat);
+    }
+
     public Booking(int id, User user, Trip trip, Seat seat){
         this.ID = id;
         this.seat = seat;
@@ -37,11 +41,11 @@ public class Booking {
         this.seat = seat;
     }
 
-    public int getBookingID() {
+    public int getID() {
         return ID;
     }
 
-    public void setBookingID(int bookingID) {
+    public void setID(int bookingID) {
         ID = bookingID;
     }
 }

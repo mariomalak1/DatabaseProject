@@ -9,7 +9,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Models/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Booking.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Models/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/City.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Trip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Seat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Seat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
