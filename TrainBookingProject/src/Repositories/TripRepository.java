@@ -90,6 +90,7 @@ public class TripRepository {
         return trip;
     }
 
+    // return list of trips that satisfied specific criteria
     public List<Trip> getAllTripsInSpecificCriteria(Time stratTime, java.util.Date date, String destinationCityName, String sourceCityName, int capacityOfTrain) throws SQLException {
         String sql = "select * from Trip Where 1 = 1";
 

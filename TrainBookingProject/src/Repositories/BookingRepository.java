@@ -1,6 +1,7 @@
 package Repositories;
 import Models.Booking;
 import Models.Train;
+import Models.Trip;
 import Models.User;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class BookingRepository {
                 "VALUES (?, ?)";
 
         try (PreparedStatement statement = connection.prepareStatement(sqlquery, PreparedStatement.RETURN_GENERATED_KEYS)) {
-            statement.setInt(1, booking.getTrain().getTrainId());
+            statement.setInt(1, booking.getTrain().getID());
             statement.setInt(2, booking.getUser().getID());
 
             int rowsAffected = statement.executeUpdate();
@@ -41,7 +42,6 @@ public class BookingRepository {
         return booking;
     }
 
-
     public void deleteBooking(int bookID) throws SQLException {
         String sqlquery = "DELETE From Booking WHERE BookingID = ?";
         try (PreparedStatement statement = connection.prepareStatement(sqlquery)) {
@@ -49,7 +49,8 @@ public class BookingRepository {
             statement.executeUpdate();
         }
     }
-    public Booking getBooking(int bookID) throws SQLException {
+
+    public Booking getBookingByID(int bookID) throws SQLException {
         String sqlquery = "SELECT * FROM Booking WHERE BookingID = ?";
         Booking booking = null;
         try (PreparedStatement statement = connection.prepareStatement(sqlquery)) {
@@ -62,6 +63,7 @@ public class BookingRepository {
         }
         return booking;
     }
+
     public List<Booking> getBookingsForUser(int userId) throws SQLException {
         List<Booking> bookings = new ArrayList<>();
 
@@ -74,7 +76,6 @@ public class BookingRepository {
             Booking booking = extractBookingFromResultSet(resultSet);
             bookings.add(booking);
         }
-
         return bookings;
     }
 
@@ -82,19 +83,12 @@ public class BookingRepository {
         int bookingId = resultSet.getInt("BookingID");
         int trainId = resultSet.getInt("trainID");
         int userId = resultSet.getInt("userID");
+        int numberOfSeats = resultSet.getInt("NumberOfSeats");
 
-        User user = new User();
-        user.setID(userId);
+        User user = new UserRepository().getUserById(userId);
+        Train train = new TrainRepository().getTrainById(trainId);
 
-        Train train = new Train();
-        train.setTrainId(trainId);
-
-        Booking booking = new Booking();
-        booking.setID(bookingId);
-        booking.setTrain(train);
-        booking.setUser(user);
-
-        return booking;
+        return new Booking(bookingId, user, train, numberOfSeats);
     }
 
 }

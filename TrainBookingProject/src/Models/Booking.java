@@ -3,19 +3,14 @@ package Models;
 public class Booking {
     private int ID;
     private User user;
-    private Trip trip;
     private Train train;
     private int NumberOfSeats;
 
-    public Booking(User user, Trip trip, int seats){
-        this(0, user, trip, seats);
-    }
-
-    public Booking(int id, User user, Trip trip, int seats){
+    public Booking(int id, User user, Train train, int seats){
         this.ID = id;
         this.NumberOfSeats = seats;
         this.user = user;
-        this.trip = trip;
+        this.train = train;
     }
 
     public User getUser() {
@@ -27,11 +22,11 @@ public class Booking {
     }
 
     public Trip getTrip() {
-        return trip;
+        return train.getTrip();
     }
 
     public void setTrip(Trip trip) {
-        this.trip = trip;
+        this.train.setTrip(trip);
     }
 
     public int getNumberOfSeats() {
