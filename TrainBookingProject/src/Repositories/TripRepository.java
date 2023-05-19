@@ -148,6 +148,28 @@ public class TripRepository {
         }
     }
 
+    public List<Trip> getAllTripsGoToCityByCityName(String cityName){
+        String sql = "Select * From Trip where TripID In " +
+                "(Select tripID from Visit where cityID in (Select CityID from City where city_name LIKE ?))";
+
+        List<Trip> trips = new ArrayList<>();
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)){
+            // to get all cities like this name
+            statement.setString(1, "%" + cityName + "%");
+
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()){
+                Trip trip = mapTrip(resultSet);
+                trips.add(trip);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return trips;
+    }
+
     // send it result of database set and extract from it Trip and return it
     private Trip mapTrip(ResultSet resultSet) throws SQLException {
         Trip trip = null;

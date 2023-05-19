@@ -57,4 +57,7 @@ public class TripController {
         return trip;
     }
 
+    public static List<Trip> getAllTripsGoToCityByCityName(String cityName){
+        return new TripRepository().getAllTripsGoToCityByCityName(cityName);
+    }
 }
