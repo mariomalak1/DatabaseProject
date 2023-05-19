@@ -4,7 +4,7 @@ public class City {
     private int ID;
     private String Name;
 
-    City(int Id, String name){
+    public City(int Id, String name){
         this.Name = name;
         this.ID = Id;
     }
