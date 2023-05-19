@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
-        User user = new User("Joe","Refaat","joe12324","Admin","joe22@gmail.com");
+        User user = new User("Youssef","Refaat","12324","User","joe22@gmail.com");
         UserRepository u = new UserRepository();
         try {
             user = u.insertUser(user);

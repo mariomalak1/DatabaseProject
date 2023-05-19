@@ -6,14 +6,14 @@ import java.util.List;
 
 public class Trip {
     private int ID;
-    private City Destination;
-    private City Source;
+    private Visit Destination;
+    private Visit Source;
     private LocalDateTime StartDateTime;
     private List<Train> Trains;
     private List<City> Cities;
 
-    public Duration EndTime(){
-        return Duration.between(StartDateTime, Destination.getArrivingDateTime());
+    public String EndTime(){
+        return String.valueOf(Duration.between(StartDateTime, Destination.getArrivingDateTime()));
     }
 
     public int getID() {
@@ -24,19 +24,19 @@ public class Trip {
         this.ID = ID;
     }
 
-    public City getDestination() {
+    public Visit getDestination() {
         return Destination;
     }
 
-    public void setDestination(City destination) {
+    public void setDestination(Visit destination) {
         Destination = destination;
     }
 
-    public City getSource() {
+    public Visit getSource() {
         return Source;
     }
 
-    public void setSource(City source) {
+    public void setSource(Visit source) {
         Source = source;
     }
 

@@ -7,9 +7,10 @@
     <list default="true" id="0c33b583-46ed-4a7a-b925-e93248f25d05" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/MainRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/MainRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/City.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Trip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Visit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Visit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repositories/TripRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TripRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +42,8 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "D:/FCAI-CU/Second Year/Second Semester/Database/Project/DatabaseProject/TrainBookingProject",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "git-widget-placeholder": "Merging main",
+    "last_opened_file_path": "D:/FCAI-CU/Second Year/Second Semester/Database/Project/DatabaseProject/TrainBookingProject"
   }
 }]]></component>
   <component name="RecentsManager">
