@@ -9,6 +9,7 @@ public class User {
     private String Role;
     private String Email;
     private static int lastID = 0;
+
     public User(String fname,String lname,String pass,String role,String email)
     {
         lastID++;
