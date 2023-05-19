@@ -1,38 +1,47 @@
 package Models;
 
 public class Train {
-    private int TrainID;
+    private int ID;
     private int Capacity;
-    private Trip tripID;
-    private int Price;
+    private Trip trip;
+    private double Price;
 
-    public void setTrainId(int TrainID) {
-        this.TrainID = TrainID;
+    public Train(int id, int capacity, Trip trip, double price){
+        this.ID = id;
+        this.Capacity = capacity;
+        this.trip = trip;
+        this.Price = price;
+    }
+
+    public void setID(int TrainID) {
+        this.ID = TrainID;
+    }
+
+    public int getID() {
+        return ID;
     }
 
     public void setCapacity(int capacity) {
         this.Capacity = capacity;
     }
 
-    public void setTripId(Trip TripID) {
-        this.tripID = TripID;
-    }
-
-    public int getTrainId() {
-        return TrainID;
-    }
     public int getCapacity() {
         return Capacity;
     }
-    public Trip getTripId(){
-        return tripID;
+
+    public void setTrip(Trip Trip) {
+        this.trip = Trip;
     }
 
-    public int getPrice() {
+    public Trip getTrip(){
+        return trip;
+    }
+
+    public double getPrice() {
         return Price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         Price = price;
     }
 }

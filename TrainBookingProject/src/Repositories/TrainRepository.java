@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import Models.Train;
+import Models.Trip;
 
 public class TrainRepository {
     private final Connection connection;
@@ -11,14 +13,15 @@ public class TrainRepository {
     public TrainRepository() {
         this.connection = MainRepository.getConnection();
     }
+
     public Train createTrain(Train train) throws SQLException {
-        String sql = "INSERT INTO Train (TrainID, Capacity, tripID) " +
+        String sql = "INSERT INTO Train (Capacity, tripID, PricePerSeat) " +
                 "VALUES (?, ?, ?)";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, train.getTrainId());
-            statement.setInt(2, train.getCapacity());
-            statement.setInt(3, train.getTripId());
+            statement.setInt(1, train.getCapacity());
+            statement.setInt(2, train.getTrip().getID());
+            statement.setDouble(3, train.getPrice());
 
             int rowsAffected = statement.executeUpdate();
 
@@ -29,33 +32,36 @@ public class TrainRepository {
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     int generatedID = generatedKeys.getInt(1);
-                    train.setTrainId(generatedID);
+                    train.setID(generatedID);
+                    return train;
                 } else {
                     throw new SQLException("Adding train failed, no ID obtained.");
                 }
             }
         }
-        return train;
     }
+
     public void UpdateTrain(Train train) throws SQLException {
-        String sql = "UPDATE Train SET TrainID = ?, Capacity = ?, TripID = ? ";
+        String sql = "UPDATE Train SET capacity = ?, tripID = ? , PricePerSeat = ? where TrainID = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, train.getTrainId());
-            statement.setInt(2, train.getCapacity());
-            statement.setInt(3, train.getTripId());
+            statement.setInt(1, train.getCapacity());
+            statement.setInt(2, train.getTrip().getID());
+            statement.setDouble(3, train.getPrice());
+            statement.setInt(4, train.getID());
             statement.executeUpdate();
-
         }
     }
+
     private Train mapTrain(ResultSet resultSet) throws SQLException {
-        int ID = resultSet.getInt("TrainId");
-        int capacity = resultSet.getInt("Capacity");
+        Train train = null;
+        int ID = resultSet.getInt("TrainID");
+        int capacity = resultSet.getInt("capacity");
         int tripId = resultSet.getInt("tripID");
-        Train train = new Train();
-        train.setTrainId(ID);
-        train.setCapacity(capacity);
-        train.setTripId(tripId);
+        double pricePerSeat = resultSet.getDouble("PricePerSeat");
+
+        Trip trip = new TripRepository().getTripById(tripId);
+        train = new Train(ID, capacity, trip, pricePerSeat);
         return train;
     }
 
