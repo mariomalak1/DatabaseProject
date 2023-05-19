@@ -3,8 +3,11 @@ package Repositories;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import Models.City;
+import Models.Train;
 import Models.Trip;
 import Models.Visit;
 
@@ -31,6 +34,22 @@ public class VisitRepository {
             return null;
         }
         return visit;
+    }
+
+    public List<Visit> getAllVisitsByTrip(int tripId) throws SQLException {
+        String sql = "SELECT * FROM Visit WHERE tripID = ?";
+        List<Visit> visits = new ArrayList<>();
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, tripId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    visits.add(mapVisit(resultSet));
+                }
+            }
+        }
+
+        return visits;
     }
 
     private Visit mapVisit(ResultSet resultSet) throws SQLException {

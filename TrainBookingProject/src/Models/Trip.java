@@ -10,7 +10,7 @@ public class Trip {
     private Visit Source;
     private LocalDateTime StartDateTime;
     private List<Train> Trains;
-    private List<City> Cities;
+    private List<Visit> Visits;
 
     public Trip(int id, Visit destination, Visit source){
         this.ID = id;
@@ -62,11 +62,11 @@ public class Trip {
         Trains = trains;
     }
 
-    public List<City> getCities() {
-        return Cities;
+    public List<Visit> getCities() {
+        return Visits;
     }
 
-    public void setCities(List<City> cities) {
-        Cities = cities;
+    public void setVisits(List<Visit> visits) {
+        Visits = visits;
     }
 }

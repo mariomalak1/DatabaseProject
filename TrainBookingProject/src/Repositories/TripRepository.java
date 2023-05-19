@@ -1,5 +1,6 @@
 package Repositories;
 
+import Models.Train;
 import Models.Trip;
 import Models.City;
 import Models.Visit;
@@ -16,7 +17,6 @@ public class TripRepository {
         connection = MainRepository.getConnection();
     }
 
-    // create new trip in database based on data in trip model
     public Trip createTrip(Trip trip) throws SQLException {
         String sql = "INSERT INTO Trip (SourceID, DestenationID, DateOftrip, StartTime) " +
                 "VALUES (?, ?, ?, ?)";
@@ -45,7 +45,6 @@ public class TripRepository {
         return trip;
     }
 
-    // update data in trip that in trip model
     public Trip updateTrip(Trip trip) throws SQLException{
         String sql = "update Trip set SourceID = ?, DestenationID = ?, DateOftrip = ?, StartTime = ?, EndTime = ?" +
                 "where TripID = ?";
@@ -61,7 +60,6 @@ public class TripRepository {
         return trip;
     }
 
-    // select all trips
     public List<Trip> getAllTrips() throws SQLException{
         String sql = "Select * From Trip";
         List<Trip> trips = new ArrayList<>();
@@ -92,6 +90,7 @@ public class TripRepository {
         return trip;
     }
 
+    // send it result of database set and extract from it Trip and return it
     private Trip mapTrip(ResultSet resultSet) throws SQLException {
         Trip trip = null;
 
@@ -120,8 +119,16 @@ public class TripRepository {
             LocalDateTime arrivingTime = LocalDateTime.of(dateOftrip.toLocalDate(), startTime.toLocalTime());
             sourceVisit.setArrivingTime(arrivingTime);
 
+            List<Train> trainsInTrip = new TrainRepository().getAllTrainsInTrip(trip.getID());
+            trip.setTrains(trainsInTrip);
+
+            List<Visit> VisitsInTrain = new VisitRepository().getAllVisitsByTrip(trip.getID());
+            trip.setVisits(VisitsInTrain);
+
             return trip;
         }
+
+
         return null;
     }
 }
