@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="aa5d929b-179b-46ef-9fd6-4811ea8c4553" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/City.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Trip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Visit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Visit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repositories/CityRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/CityRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repositories/TrainRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repositories/TripRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TripRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repositories/VisitRepository.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -2,7 +2,10 @@ package Repositories;
 
 import Models.Trip;
 import Models.City;
+import Models.Visit;
+
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,7 +75,26 @@ public class TripRepository {
         return trips;
     }
 
+    public Trip getTripById(int id) throws SQLException {
+        String sql = "SELECT * FROM Trip WHERE TripID = ?";
+        Trip trip = null;
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    trip = mapTrip(resultSet);
+                }
+            }
+        }
+
+        return trip;
+    }
+
     private Trip mapTrip(ResultSet resultSet) throws SQLException {
+        Trip trip = null;
+
         int id = resultSet.getInt("ID");
         int sourceID = resultSet.getInt("SourceID");
         int destenationID = resultSet.getInt("DestenationID");
@@ -80,17 +102,26 @@ public class TripRepository {
         Time startTime = resultSet.getTime("StartTime");
         Time endTime = resultSet.getTime("EndTime");
 
+        // to get the city object
+        City sourceCity = new CityRepository().getCityByID(sourceID);
+        City destenationCity = new CityRepository().getCityByID(destenationID);
 
+        Visit SourceVisit = new Visit(sourceCity);
+        Visit DestinationVisit = new Visit(destenationCity);
 
-//        City sourceCity =
+        if (sourceCity != null && destenationCity != null) {
+            Visit sourceVisit = new Visit(sourceCity);
+            Visit destinationVisit = new Visit(destenationCity);
 
-        // get destination city
-        // get source city
-        // LocalDateTime
-        // all Trains that With This Trip'
-        // all cities that this trip will visit it
-//        return trip;
+            trip = new Trip(id, destinationVisit, sourceVisit);
+            destinationVisit.setTrip(trip);
+            sourceVisit.setTrip(trip);
+
+            LocalDateTime arrivingTime = LocalDateTime.of(dateOftrip.toLocalDate(), startTime.toLocalTime());
+            sourceVisit.setArrivingTime(arrivingTime);
+
+            return trip;
+        }
         return null;
     }
-
 }

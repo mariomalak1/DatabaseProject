@@ -12,6 +12,12 @@ public class Trip {
     private List<Train> Trains;
     private List<City> Cities;
 
+    public Trip(int id, Visit destination, Visit source){
+        this.ID = id;
+        this.Destination = destination;
+        this.Source = source;
+    }
+
     public String EndTime(){
         return String.valueOf(Duration.between(StartDateTime, Destination.getArrivingDateTime()));
     }

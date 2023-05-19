@@ -7,6 +7,21 @@ public class Visit {
     private Trip trip;
     private City city;
 
+    public Visit(City city){
+        this.city = city;
+    }
+
+    public Visit(Trip trip, City city, LocalDateTime arrivingTime){
+        ArrivingTime = arrivingTime;
+        this.trip = trip;
+        this.city = city;
+    }
+
+    public Visit(Trip trip, City city){
+        this.city = city;
+        this.trip = trip;
+    }
+
     public Trip getTrip() {
         return trip;
     }

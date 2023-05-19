@@ -34,6 +34,4 @@ public class CityRepository {
         String name = resultSet.getString("Name");
         return new City(id, name);
     }
-
-
 }
