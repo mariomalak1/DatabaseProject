@@ -89,7 +89,6 @@ public class TrainRepository {
         return trains;
     }
 
-
     private Train mapTrain(ResultSet resultSet) throws SQLException {
         Train train = null;
         int ID = resultSet.getInt("TrainID");
@@ -101,6 +100,5 @@ public class TrainRepository {
         train = new Train(ID, capacity, trip, pricePerSeat);
         return train;
     }
-
 
 }

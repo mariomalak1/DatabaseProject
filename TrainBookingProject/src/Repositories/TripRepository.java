@@ -90,6 +90,63 @@ public class TripRepository {
         return trip;
     }
 
+    public List<Trip> getAllTripsInSpecificCriteria(Time stratTime, java.util.Date date, String destinationCityName, String sourceCityName, int capacityOfTrain) throws SQLException {
+        String sql = "select * from Trip Where 1 = 1";
+
+        if (stratTime != null) {
+            sql += "And StartTime = ?";
+        }
+
+        if (date != null) {
+            sql += "And DateOftrip = ?";
+        }
+
+        if (capacityOfTrain != 0) {
+            sql += "And TripID In (select tripID from Train where capacity = ?)";
+        }
+
+        if (sourceCityName != null) {
+            sql += "And TripID In (select tripID from Visit where cityID In(select CityID from City where city_name = ?))";
+        }
+
+        if (destinationCityName != null) {
+            sql += "And TripID In (select tripID from Visit where cityID In(select CityID from City where city_name = ?))";
+        }
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            // Set parameter values based on the provided parameters
+            int parameterIndex = 1;
+            if (stratTime != null) {
+                statement.setTime(parameterIndex++, stratTime);
+            }
+
+            if (date != null) {
+                statement.setDate(parameterIndex++, (Date) date);
+            }
+            if (sourceCityName != null) {
+                statement.setString(parameterIndex++, "%" + sourceCityName + "%");
+            }
+            if (destinationCityName != null) {
+                statement.setString(parameterIndex++, "%" + destinationCityName + "%");
+            }
+            if (capacityOfTrain != 0) {
+                statement.setInt(parameterIndex, capacityOfTrain);
+            }
+
+            // Execute the query and retrieve the result set
+            ResultSet resultSet = statement.executeQuery();
+            List<Trip> trips = new ArrayList<>();
+
+            while (resultSet.next()) {
+                Trip trip = mapTrip(resultSet);
+                trips.add(trip);
+            }
+
+            return trips;
+        }
+    }
+
     // send it result of database set and extract from it Trip and return it
     private Trip mapTrip(ResultSet resultSet) throws SQLException {
         Trip trip = null;
