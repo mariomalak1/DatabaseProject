@@ -1,35 +1,32 @@
 package Repositories;
-
 import Models.Booking;
+import Models.Train;
+import Models.User;
+import java.util.List;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-public class
-BookingRepository {
+import java.util.ArrayList;
+public class BookingRepository {
     private final Connection connection;
 
-    public BookingRepository() {
-        this.connection = MainRepository.getConnection();
+    BookingRepository() {
+        connection = MainRepository.getConnection();
     }
 
-    // this function will receive booking model and get data from it
-
     public Booking createBooking(Booking booking) throws SQLException {
-        String sql = "INSERT INTO Booking (seatID, userID, tripID) " +
-                "VALUES (?, ?, ?)";
+        String sqlquery = "INSERT INTO Booking (trainID, userID) " +
+                "VALUES (?, ?)";
 
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-//            statement.setInt(1, booking.getNumberOfSeats().getID());
+        try (PreparedStatement statement = connection.prepareStatement(sqlquery, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            statement.setInt(1, booking.getTrain().getTrainId());
             statement.setInt(2, booking.getUser().getID());
-            statement.setInt(3, booking.getTrip().getID());
 
             int rowsAffected = statement.executeUpdate();
-
             if (rowsAffected == 0) {
-                throw new SQLException("Adding Booking failed, no rows affected.");
+                throw new SQLException("Adding Booking failed");
             }
 
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
@@ -44,18 +41,62 @@ BookingRepository {
         return booking;
     }
 
-    private Booking mapBooking(ResultSet resultSet) throws SQLException {
-        int id = resultSet.getInt("BookingID");
-        int seatId = resultSet.getInt("seatID");
-        int userId = resultSet.getInt("userID");
-        int tripId = resultSet.getInt("tripID");
 
-        //        user = UserRepo.getUserByID(userId);
-        //        trip = tripRepo.getTripByID(userId);
-        //        seat = tripRepo.getSeatByID(seatId);
-        //        Booking booking = new Booking(id,user, tripId, seatId);
-        //        return booking;
-
-        return null;
+    public void deleteBooking(int bookID) throws SQLException {
+        String sqlquery = "DELETE From Booking WHERE BookingID = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sqlquery)) {
+            statement.setInt(1, bookID);
+            statement.executeUpdate();
+        }
     }
+    public Booking getBooking(int bookID) throws SQLException {
+        String sqlquery = "SELECT * FROM Booking WHERE BookingID = ?";
+        Booking booking = null;
+        try (PreparedStatement statement = connection.prepareStatement(sqlquery)) {
+            statement.setInt(1, bookID);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    booking = extractBookingFromResultSet(resultSet);
+                }
+            }
+        }
+        return booking;
+    }
+    public List<Booking> getBookingsForUser(int userId) throws SQLException {
+        List<Booking> bookings = new ArrayList<>();
+
+        String query = "SELECT * FROM Booking WHERE userID = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1, userId);
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            Booking booking = extractBookingFromResultSet(resultSet);
+            bookings.add(booking);
+        }
+
+        return bookings;
+    }
+
+    private Booking extractBookingFromResultSet(ResultSet resultSet) throws SQLException {
+        int bookingId = resultSet.getInt("BookingID");
+        int trainId = resultSet.getInt("trainID");
+        int userId = resultSet.getInt("userID");
+
+        User user = new User();
+        user.setID(userId);
+
+        Train train = new Train();
+        train.setTrainId(trainId);
+
+        Booking booking = new Booking();
+        booking.setID(bookingId);
+        booking.setTrain(train);
+        booking.setUser(user);
+
+        return booking;
+    }
+
 }
+
+
