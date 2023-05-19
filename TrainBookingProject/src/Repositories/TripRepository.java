@@ -13,7 +13,7 @@ import java.util.List;
 public class TripRepository {
     private final Connection connection;
 
-    TripRepository(){
+    public TripRepository(){
         connection = MainRepository.getConnection();
     }
 
