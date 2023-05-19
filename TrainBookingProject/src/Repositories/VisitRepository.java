@@ -1,8 +1,9 @@
 package Repositories;
 
-
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import Models.City;
 import Models.Trip;
@@ -31,6 +32,40 @@ public class VisitRepository {
             return null;
         }
         return visit;
+    }
+
+    public List<Visit> getAllVisitsByTrip(int tripId) throws SQLException {
+        String sql = "SELECT * FROM Visit WHERE tripID = ?";
+        List<Visit> visits = new ArrayList<>();
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, tripId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    visits.add(mapVisit(resultSet));
+                }
+            }
+        }
+
+        return visits;
+    }
+
+    public List<Visit> getAllVisitsByCityName(String cityName) throws SQLException{
+        String sql = "SELECT * From Visit Where cityID in" +
+                " (select CityID from City where city_name Like ?)";
+
+        List<Visit> visits = new ArrayList<>();
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, "%" + cityName + "%");
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    visits.add(mapVisit(resultSet));
+                }
+            }
+        }
+
+        return visits;
     }
 
     private Visit mapVisit(ResultSet resultSet) throws SQLException {

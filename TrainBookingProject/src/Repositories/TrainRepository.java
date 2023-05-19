@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import Models.Train;
 import Models.Trip;
 
@@ -53,6 +56,39 @@ public class TrainRepository {
         }
     }
 
+    public Train getTrainById(int id) throws SQLException {
+        String sql = "SELECT * FROM Train WHERE TrainID = ?";
+        Train train = null;
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    train = mapTrain(resultSet);
+                }
+            }
+        }
+
+        return train;
+    }
+
+    public List<Train> getAllTrainsInTrip(int tripId) throws SQLException {
+        String sql = "SELECT * FROM Train WHERE tripID = ?";
+        List<Train> trains = new ArrayList<>();
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, tripId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    trains.add(mapTrain(resultSet));
+                }
+            }
+        }
+
+        return trains;
+    }
+
     private Train mapTrain(ResultSet resultSet) throws SQLException {
         Train train = null;
         int ID = resultSet.getInt("TrainID");
@@ -64,6 +100,5 @@ public class TrainRepository {
         train = new Train(ID, capacity, trip, pricePerSeat);
         return train;
     }
-
 
 }
