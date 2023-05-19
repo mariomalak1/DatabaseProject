@@ -15,49 +15,73 @@ import java.util.Date;
 import java.util.List;
 
 public class TripController {
-    public static List<Trip> getAllTrips() throws SQLException {
-        List<Trip>trips = new ArrayList<>();
-        TripRepository tripRepository = new TripRepository();
-        trips = tripRepository.getAllTrips();
-        return trips;
+    public static List<Trip> getAllTrips(){
+        try {
+            List<Trip> trips = new ArrayList<>();
+            TripRepository tripRepository = new TripRepository();
+            trips = tripRepository.getAllTrips();
+            return trips;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public static List<Trip> getAllTripsForSpecificCriteria(Time stratTime, java.util.Date date, String destinationCityName, String sourceCityName, int capacityOfTrain) throws SQLException {
-        List<Trip> trips = new ArrayList<>();
-        TripRepository tripRepository = new TripRepository();
-        trips = tripRepository.getAllTripsInSpecificCriteria(
-                stratTime, date, destinationCityName, sourceCityName, capacityOfTrain);
-        return trips;
+    public static List<Trip> getAllTripsForSpecificCriteria(Time stratTime, java.util.Date date, String destinationCityName, String sourceCityName, int capacityOfTrain) {
+        try {
+            List<Trip> trips = new ArrayList<>();
+            TripRepository tripRepository = new TripRepository();
+            trips = tripRepository.getAllTripsInSpecificCriteria(
+                    stratTime, date, destinationCityName, sourceCityName, capacityOfTrain);
+            return trips;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static Trip createTrip(String Source, String Destination, Time StartTime, Date StartDate) throws SQLException {
-        Trip trip = null;
-        CityRepository cityRepository = new CityRepository();
+        try {
+            Trip trip = null;
+            CityRepository cityRepository = new CityRepository();
 
-        City sourceCity = cityRepository.GetAllCitiesLikeName(Source).get(0);
-        if (sourceCity == null){
-            cityRepository.addCity(Source);
+            City sourceCity = cityRepository.GetAllCitiesLikeName(Source).get(0);
+            if (sourceCity == null) {
+                cityRepository.addCity(Source);
+            }
+
+            City destinationCity = cityRepository.GetAllCitiesLikeName(Destination).get(0);
+            if (destinationCity == null) {
+                cityRepository.addCity(Destination);
+            }
+
+            Visit visitDestination = new Visit(destinationCity);
+            Visit visitSource = new Visit(sourceCity);
+
+            trip = new Trip(0, visitDestination, visitSource);
+            trip.setStartDateTime(LocalDateTime.of(LocalDate.parse(StartDate.toString()), StartTime.toLocalTime()));
+
+            TripRepository tripRepository = new TripRepository();
+
+            trip = tripRepository.createTrip(trip);
+
+            return trip;
         }
-
-        City destinationCity = cityRepository.GetAllCitiesLikeName(Destination).get(0);
-        if (destinationCity == null){
-            cityRepository.addCity(Destination);
+        catch (Exception e){
+            e.printStackTrace();
         }
-
-        Visit visitDestination = new Visit(destinationCity);
-        Visit visitSource = new Visit(sourceCity);
-
-        trip = new Trip(0, visitDestination, visitSource);
-        trip.setStartDateTime(LocalDateTime.of(LocalDate.parse(StartDate.toString()), StartTime.toLocalTime()));
-
-        TripRepository tripRepository = new TripRepository();
-
-        trip = tripRepository.createTrip(trip);
-
-        return trip;
+        return null;
     }
 
     public static List<Trip> getAllTripsGoToCityByCityName(String cityName){
-        return new TripRepository().getAllTripsGoToCityByCityName(cityName);
+        try {
+            return new TripRepository().getAllTripsGoToCityByCityName(cityName);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

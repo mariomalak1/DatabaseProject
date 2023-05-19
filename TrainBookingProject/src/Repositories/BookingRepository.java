@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class BookingRepository {
     private final Connection connection;
 
-    BookingRepository() {
+    public BookingRepository() {
         connection = MainRepository.getConnection();
     }
 
@@ -90,7 +90,6 @@ public class BookingRepository {
 
         return new Booking(bookingId, user, train, numberOfSeats);
     }
-
 }
 
 

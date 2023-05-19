@@ -7,17 +7,33 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class CityController {
-    public static City addCity(String cityName) throws SQLException {
-        CityRepository cityRepository = new CityRepository();
-        return cityRepository.addCity(cityName);
+    public static City addCity(String cityName){
+        try{
+            CityRepository cityRepository = new CityRepository();
+            return cityRepository.addCity(cityName);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public static List<City> getAllCitiesLikeName(String cityName) throws SQLException {
-        CityRepository cityRepository =new CityRepository();
-        return cityRepository.GetAllCitiesLikeName(cityName);
+    public static List<City> getAllCitiesLikeName(String cityName) {
+        try {
+            CityRepository cityRepository = new CityRepository();
+            return cityRepository.GetAllCitiesLikeName(cityName);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public static City getCityByID(int id) throws SQLException {
-        return new CityRepository().getCityByID(id);
+    public static City getCityByID(int id) {
+        try {
+            return new CityRepository().getCityByID(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -10,18 +10,36 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class VisitController {
-    public static Visit createVisit(LocalDateTime arriveDateTime, City city, Trip trip) throws SQLException {
-        VisitRepository visitRepository = new VisitRepository();
-        Visit visit = new Visit(trip, city, arriveDateTime);
-        visitRepository.AddCityToVisit(visit);
-        return visit;
+    public static Visit createVisit(LocalDateTime arriveDateTime, City city, Trip trip) {
+        try {
+            VisitRepository visitRepository = new VisitRepository();
+            Visit visit = new Visit(trip, city, arriveDateTime);
+            visitRepository.AddCityToVisit(visit);
+            return visit;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public static List<Visit> getAllVisitsInTrip(Trip trip) throws SQLException {
-        return new VisitRepository().getAllVisitsByTrip(trip.getID());
+    public static List<Visit> getAllVisitsInTrip(Trip trip) {
+        try {
+            return new VisitRepository().getAllVisitsByTrip(trip.getID());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public static List<Visit> getAllVisitsByCityName(String cityName) throws SQLException {
-        return new VisitRepository().getAllVisitsByCityName(cityName);
+    public static List<Visit> getAllVisitsByCityName(String cityName) {
+        try {
+            return new VisitRepository().getAllVisitsByCityName(cityName);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

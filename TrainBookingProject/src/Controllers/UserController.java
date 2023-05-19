@@ -6,12 +6,10 @@ import Repositories.UserRepository;
 import java.sql.SQLException;
 
 public class UserController {
-    private final UserRepository userRepo;
-    public UserController(){
-        this.userRepo = new UserRepository();
-    }
-    public User addUser(String fname,String lname,String pass,String Email,String role){
+
+    public static User addUser(String fname,String lname,String pass,String Email,String role){
         try {
+            UserRepository userRepo = new UserRepository();
             User user = new User(fname,lname,pass,role,Email);
             userRepo.insertUser(user);
             return user;
@@ -21,8 +19,10 @@ public class UserController {
         }
         return null;
     }
-    public Boolean deleteUser(int userId){
+
+    public static Boolean deleteUser(int userId){
         try {
+            UserRepository userRepo = new UserRepository();
             userRepo.deleteUser(userId);
             return true;
         } catch (SQLException e) {
@@ -30,8 +30,10 @@ public class UserController {
         }
         return false;
     }
-    public User updateUser(int userId,String fname,String lname,String pass,String Email,String role){
+
+    public static User updateUser(int userId,String fname,String lname,String pass,String Email,String role){
         try {
+            UserRepository userRepo = new UserRepository();
             User user = userRepo.getUserById(userId);
             if (user != null)
             {
@@ -50,8 +52,10 @@ public class UserController {
         }
         return null;
     }
-    public User getUserById(int userId) {
+
+    public static User getUserById(int userId) {
         try {
+            UserRepository userRepo = new UserRepository();
             return userRepo.getUserById(userId);
         } catch (SQLException e) {
             System.out.println("User Not Found");
