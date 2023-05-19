@@ -80,7 +80,7 @@ public class TripRepository {
         Time startTime = resultSet.getTime("StartTime");
         Time endTime = resultSet.getTime("EndTime");
 
-        
+
 
 //        City sourceCity =
 
