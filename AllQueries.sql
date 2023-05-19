@@ -50,7 +50,7 @@ create table Booking(
 */
 /*
 alter table Visit
-add visit_Time TIME not NULL
+add visit_Time TIME not NULL
 alter table Visit
 add visit_Date DATE not NULL
 */
