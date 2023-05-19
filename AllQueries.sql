@@ -43,7 +43,7 @@ create table Booking(
 	BookingID int identity(1,1),
 	trainID int,
 	userID int,
-
+    NumberOfSeats int,
 	foreign key(userID) references [User](UserID), 
 	foreign key(trainID) references Train(TrainID),
 );
