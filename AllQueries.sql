@@ -48,3 +48,9 @@ create table Booking(
 	foreign key(trainID) references Train(TrainID),
 );
 */
+/*
+alter table Visit
+add visit_Time TIME not NULL
+alter table Visit
+add visit_Date DATE not NULL
+*/
