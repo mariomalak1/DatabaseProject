@@ -1,6 +1,7 @@
 package Repositories;
 
 import Models.Trip;
+import Models.City;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,7 @@ public class TripRepository {
         return trip;
     }
 
+    // select all trips
     public List<Trip> getAllTrips() throws SQLException{
         String sql = "Select * From Trip";
         List<Trip> trips = new ArrayList<>();
@@ -70,10 +72,18 @@ public class TripRepository {
         return trips;
     }
 
-
-
     private Trip mapTrip(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("ID");
+        int sourceID = resultSet.getInt("SourceID");
+        int destenationID = resultSet.getInt("DestenationID");
+        Date dateOftrip = resultSet.getDate("DateOftrip");
+        Time startTime = resultSet.getTime("StartTime");
+        Time endTime = resultSet.getTime("EndTime");
+
+        
+
+//        City sourceCity =
+
         // get destination city
         // get source city
         // LocalDateTime
