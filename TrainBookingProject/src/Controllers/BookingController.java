@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class BookingController {
-    public static Booking creatBooking(User user, Train train, int NumberOfSeats) throws SQLException {
+    public static Booking creatBooking(User user, Train train, int NumberOfSeats) {
         try{
             Booking booking = new Booking(0, user, train, NumberOfSeats);
             return new BookingRepository().createBooking(booking);
@@ -19,12 +19,31 @@ public class BookingController {
         return null;
     }
 
-    public static List<Booking> getAllBookingForUser(User user) throws SQLException{
+    public static List<Booking> getAllBookingForUser(User user) {
         try {
             return new BookingRepository().getBookingsForUser(user.getID());
         }catch (Exception e){
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static Booking getBookingByID(int bookingId){
+        try{
+            return new BookingRepository().getBookingByID(bookingId);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Boolean deleteBooking(int bookingId){
+        try{
+            new BookingRepository().deleteBooking(bookingId);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }
