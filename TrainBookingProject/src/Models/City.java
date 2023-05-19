@@ -1,26 +1,12 @@
 package Models;
 
-import java.time.LocalDateTime;
-
 public class City {
-    private LocalDateTime ArrivingTime;
-    private Trip TripOn;
+    private int ID;
     private String Name;
 
-    public LocalDateTime getArrivingDateTime() {
-        return ArrivingTime;
-    }
-
-    public void setArrivingTime(LocalDateTime arrivingTime) {
-        ArrivingTime = arrivingTime;
-    }
-
-    public Trip getTripOn() {
-        return TripOn;
-    }
-
-    public void setTripOn(Trip tripOn) {
-        TripOn = tripOn;
+    City(int Id, String name){
+        this.Name = name;
+        this.ID = Id;
     }
 
     public String getName() {
@@ -29,5 +15,13 @@ public class City {
 
     public void setName(String name) {
         Name = name;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }
