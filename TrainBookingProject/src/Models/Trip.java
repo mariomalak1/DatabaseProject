@@ -12,8 +12,8 @@ public class Trip {
     private List<Train> Trains;
     private List<City> Cities;
 
-    public Duration EndTime(){
-        return Duration.between(StartDateTime, Destination.getArrivingDateTime());
+    public String EndTime(){
+        return String.valueOf(Duration.between(StartDateTime, Destination.getArrivingDateTime()));
     }
 
     public int getID() {
