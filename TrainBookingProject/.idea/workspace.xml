@@ -4,27 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
     <list default="true" id="4756c6d6-3656-44f9-87a6-fcea77f0ff4a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controllers/BookingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controllers/CityController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controllers/TrainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controllers/TripController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controllers/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controllers/VisitController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Views/HomePageView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Views/MainFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/train.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ERD - Train Booking.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../ERD - Train Booking.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-=======
-    <list default="true" id="aa5d929b-179b-46ef-9fd6-4811ea8c4553" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/CityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/CityController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controllers/TripController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/TripController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repositories/CityRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/CityRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repositories/TripRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TripRepository.java" afterDir="false" />
->>>>>>> ce776682c41657eceb9b99cac02ac343e747ca4e
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,24 +32,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging main",
-    "last_opened_file_path": "E:/GitHub/DatabaseProject/TrainBookingProject",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Merging main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/GitHub/DatabaseProject/TrainBookingProject&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\GitHub\DatabaseProject\TrainBookingProject\src" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="TrainBookingProject" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="TrainBookingProject" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

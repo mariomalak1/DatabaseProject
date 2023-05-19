@@ -34,12 +34,12 @@ public class TripController {
         Trip trip = null;
         CityRepository cityRepository = new CityRepository();
 
-        City sourceCity = cityRepository.getCityByName(Source);
+        City sourceCity = cityRepository.GetAllCitiesLikeName(Source).get(0);
         if (sourceCity == null){
             cityRepository.addCity(Source);
         }
 
-        City destinationCity = cityRepository.getCityByName(Destination);
+        City destinationCity = cityRepository.GetAllCitiesLikeName(Destination).get(0);
         if (destinationCity == null){
             cityRepository.addCity(Destination);
         }

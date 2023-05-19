@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CityRepository {
     private final Connection connection;
@@ -49,18 +51,18 @@ public class CityRepository {
         }
     }
 
-    public City getCityByName(String cityName) throws SQLException {
+    public List<City> GetAllCitiesLikeName(String cityName) throws SQLException {
+        List<City> cities = new ArrayList<>();
         String sql = "Select * from City where city_name LIKE ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, "%" + cityName + "%");
-
             try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    return mapCity(resultSet);
+                while (resultSet.next()) {
+                    cities.add(mapCity(resultSet));
                 }
+                return cities;
             }
         }
-        return null;
     }
 
     private City mapCity(ResultSet resultSet) throws SQLException {

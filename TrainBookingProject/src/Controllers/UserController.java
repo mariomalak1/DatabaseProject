@@ -50,15 +50,12 @@ public class UserController {
         }
         return null;
     }
-    public User getUserById(int userId)
-    {
+    public User getUserById(int userId) {
         try {
-            User user = userRepo.getUserById(userId);
-            return user;
+            return userRepo.getUserById(userId);
         } catch (SQLException e) {
             System.out.println("User Not Found");
         }
         return null;
     }
-
 }
