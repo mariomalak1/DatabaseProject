@@ -172,6 +172,7 @@ public class TripRepository {
 
     // send it result of database set and extract from it Trip and return it
     private Trip mapTrip(ResultSet resultSet) throws SQLException {
+
         Trip trip = null;
 
         int id = resultSet.getInt("TripID");
@@ -185,9 +186,6 @@ public class TripRepository {
         City sourceCity = new CityRepository().getCityByID(sourceID);
         City destenationCity = new CityRepository().getCityByID(destenationID);
 
-        Visit SourceVisit = new Visit(sourceCity);
-        Visit DestinationVisit = new Visit(destenationCity);
-
         if (sourceCity != null && destenationCity != null) {
             Visit sourceVisit = new Visit(sourceCity);
             Visit destinationVisit = new Visit(destenationCity);
@@ -198,20 +196,6 @@ public class TripRepository {
 
             LocalDateTime arrivingTime = LocalDateTime.of(dateOftrip.toLocalDate(), startTime.toLocalTime());
             sourceVisit.setArrivingTime(arrivingTime);
-
-            List<Train> trainsInTrip = new TrainRepository().getAllTrainsInTrip(trip.getID());
-            trip.setTrains(trainsInTrip);
-
-            List<Visit> VisitsInTrain = new VisitRepository().getAllVisitsByTrip(trip.getID());
-            trip.setVisits(VisitsInTrain);
-
-            for (Train train: trip.getTrains()) {
-                train.setTrip(trip);
-            }
-
-            for (Visit visit: trip.getCities()) {
-                visit.setTrip(trip);
-            }
 
             return trip;
         }

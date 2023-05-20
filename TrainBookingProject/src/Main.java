@@ -16,9 +16,12 @@ public class Main {
         List<Booking> bookings = BookingController.getAllBookingForUser(user);
         if (bookings != null) {
             for (Booking booking : bookings) {
+                System.out.println("-------------------------------------");
                 System.out.println(booking.getUser().getID());
+                System.out.println(booking.getTrip().getID());
                 System.out.println(booking.getTrain().getID());
                 System.out.println(booking.getNumberOfSeats());
+                System.out.println("-------------------------------------");
             }
         }else{
             System.out.println("no thing");

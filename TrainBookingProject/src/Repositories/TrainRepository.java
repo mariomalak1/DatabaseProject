@@ -97,6 +97,12 @@ public class TrainRepository {
         double pricePerSeat = resultSet.getDouble("PricePerSeat");
 
         train = new Train(ID, capacity, pricePerSeat);
+
+        Trip trip  = new TripRepository().getTripById(tripId);
+
+        train.setTrip(trip);
+
+
         return train;
     }
 
