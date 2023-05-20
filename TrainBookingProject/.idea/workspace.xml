@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4756c6d6-3656-44f9-87a6-fcea77f0ff4a" name="Changes" comment="">
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-=======
       <change afterPath="$PROJECT_DIR$/src/back-button.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/previous.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controllers/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/BookingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repositories/CityRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/CityRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repositories/TrainRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TrainRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repositories/TripRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TripRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Views/logInPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/logInPage.java" afterDir="false" />
->>>>>>> caada7ef4a8274d7930e56917df30f1773ccb55e
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

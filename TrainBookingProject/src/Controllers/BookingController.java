@@ -5,7 +5,6 @@ import Models.Train;
 import Models.User;
 import Repositories.BookingRepository;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class BookingController {

@@ -85,6 +85,7 @@ public class BookingRepository {
         int userId = resultSet.getInt("userID");
         int numberOfSeats = resultSet.getInt("NumberOfSeats");
 
+
         User user = new UserRepository().getUserById(userId);
         Train train = new TrainRepository().getTrainById(trainId);
 

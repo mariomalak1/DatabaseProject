@@ -66,8 +66,8 @@ public class CityRepository {
     }
 
     private City mapCity(ResultSet resultSet) throws SQLException {
-        int id = resultSet.getInt("ID");
-        String name = resultSet.getString("Name");
+        int id = resultSet.getInt("CityID");
+        String name = resultSet.getString("city_name");
         return new City(id, name);
     }
 }

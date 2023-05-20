@@ -90,7 +90,7 @@ public class TrainRepository {
     }
 
     private Train mapTrain(ResultSet resultSet) throws SQLException {
-        Train train = null;
+        Train train;
         int ID = resultSet.getInt("TrainID");
         int capacity = resultSet.getInt("capacity");
         int tripId = resultSet.getInt("tripID");
