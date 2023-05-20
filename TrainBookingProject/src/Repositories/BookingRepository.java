@@ -71,7 +71,6 @@ public class BookingRepository {
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, userId);
         ResultSet resultSet = statement.executeQuery();
-
         while (resultSet.next()) {
             Booking booking = extractBookingFromResultSet(resultSet);
             bookings.add(booking);
@@ -85,6 +84,7 @@ public class BookingRepository {
         int trainId = resultSet.getInt("trainID");
         int userId = resultSet.getInt("userID");
         int numberOfSeats = resultSet.getInt("NumberOfSeats");
+
 
         User user = new UserRepository().getUserById(userId);
         Train train = new TrainRepository().getTrainById(trainId);

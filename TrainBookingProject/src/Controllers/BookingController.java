@@ -4,11 +4,9 @@ import Models.Booking;
 import Models.Train;
 import Models.User;
 import Repositories.BookingRepository;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 public class BookingController {
     public static Booking creatBooking(User user, Train train, int NumberOfSeats) {
         try{
@@ -20,9 +18,9 @@ public class BookingController {
         return null;
     }
 
-    public static ArrayList<Booking> getAllBookingForUser(User user) {
+    public static ArrayList<Booking> getAllBookingForUser(int userId) {
         try {
-            return new BookingRepository().getBookingsForUser(user.getID());
+            return new BookingRepository().getBookingsForUser(userId);
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -20,7 +20,7 @@ public class UserBookedTripsView implements ActionListener {
     ArrayList<Booking> BookingList ;
     public UserBookedTripsView(User user){
         BookingList = new ArrayList<>();
-        BookingList = BookingController.getAllBookingForUser(user);
+        BookingList = BookingController.getAllBookingForUser(6);
         //System.out.println(BookingList.get(0).getID());
         newUser = user;
         backBTN.setText("Go Back");
