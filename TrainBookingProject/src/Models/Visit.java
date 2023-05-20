@@ -11,6 +11,11 @@ public class Visit {
         this.city = city;
     }
 
+    public Visit(City city, LocalDateTime arrivingTime){
+        this.city = city;
+        this.ArrivingTime = arrivingTime;
+    }
+
     public Visit(Trip trip, City city, LocalDateTime arrivingTime){
         ArrivingTime = arrivingTime;
         this.trip = trip;

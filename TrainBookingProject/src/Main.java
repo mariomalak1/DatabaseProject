@@ -17,7 +17,6 @@ public class Main {
         if (bookings != null) {
             for (Booking booking : bookings) {
                 System.out.println(booking.getUser().getID());
-                System.out.println(booking.getTrip().getID());
                 System.out.println(booking.getTrain().getID());
                 System.out.println(booking.getNumberOfSeats());
             }

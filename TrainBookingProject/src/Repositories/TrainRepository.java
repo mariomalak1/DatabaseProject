@@ -96,8 +96,7 @@ public class TrainRepository {
         int tripId = resultSet.getInt("tripID");
         double pricePerSeat = resultSet.getDouble("PricePerSeat");
 
-        Trip trip = new TripRepository().getTripById(tripId);
-        train = new Train(ID, capacity, trip, pricePerSeat);
+        train = new Train(ID, capacity, pricePerSeat);
         return train;
     }
 

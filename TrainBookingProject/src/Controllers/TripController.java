@@ -14,6 +14,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+//            LocalDateTime arrivingTime = LocalDateTime.of(dateOftrip.toLocalDate(), startTime.toLocalTime());
+//                    sourceVisit.setArrivingTime(arrivingTime);
+//
+//                    List<Train> trainsInTrip = new TrainRepository().getAllTrainsInTrip(trip.getID());
+//        trip.setTrains(trainsInTrip);
+//
+//        List<Visit> VisitsInTrain = new VisitRepository().getAllVisitsByTrip(trip.getID());
+//        trip.setVisits(VisitsInTrain);
+
+
 public class TripController {
     public static List<Trip> getAllTrips(){
         try {

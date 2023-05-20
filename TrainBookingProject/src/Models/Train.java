@@ -6,6 +6,12 @@ public class Train {
     private Trip trip;
     private double Price;
 
+    public Train(int id, int capacity, double price){
+        this.ID = id;
+        this.Capacity = capacity;
+        this.Price = price;
+    }
+
     public Train(int id, int capacity, Trip trip, double price){
         this.ID = id;
         this.Capacity = capacity;

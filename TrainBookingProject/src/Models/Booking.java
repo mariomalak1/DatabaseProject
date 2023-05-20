@@ -6,6 +6,11 @@ public class Booking {
     private Train train;
     private int NumberOfSeats;
 
+    public Booking(int id, int seats){
+        this.ID = id;
+        this.NumberOfSeats = seats;
+    }
+
     public Booking(int id, User user, Train train, int seats){
         this.ID = id;
         this.NumberOfSeats = seats;

@@ -205,10 +205,16 @@ public class TripRepository {
             List<Visit> VisitsInTrain = new VisitRepository().getAllVisitsByTrip(trip.getID());
             trip.setVisits(VisitsInTrain);
 
+            for (Train train: trip.getTrains()) {
+                train.setTrip(trip);
+            }
+
+            for (Visit visit: trip.getCities()) {
+                visit.setTrip(trip);
+            }
+
             return trip;
         }
-
-
         return null;
     }
 }
