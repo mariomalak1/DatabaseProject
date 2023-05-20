@@ -3,6 +3,7 @@ package Controllers;
 import Models.User;
 import Repositories.UserRepository;
 
+import javax.swing.*;
 import java.sql.SQLException;
 
 public class UserController {
@@ -15,7 +16,8 @@ public class UserController {
             return user;
         }catch ( SQLException e)
         {
-            System.out.println("Failed to Create New User");
+            JOptionPane.showMessageDialog(null,"Failed to Create User ","Sign Up Failed",JOptionPane.ERROR_MESSAGE);
+
         }
         return null;
     }
