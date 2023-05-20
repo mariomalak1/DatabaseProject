@@ -13,26 +13,15 @@ public class logInPage extends MainFrame implements ActionListener {
     JLabel userL = new JLabel();
     JLabel userP = new JLabel();
     JButton loginBTN;
-    JButton backBTN = new JButton();
-    JPanel upper = new JPanel();
+    backBtn backBTN = new backBtn();
+    upperPanel upper = new upperPanel();
     JTextField userIdIN;
     JTextField userPassIN;
     MainFrame LoginFrame = new MainFrame();
-    ImageIcon backIcon = new ImageIcon("src\\back.png");
+    //ImageIcon backIcon = new ImageIcon("src\\back.png");
     public logInPage(){
-        backBTN.setIcon(backIcon);
-        backBTN.setText("Go Back");
-        backBTN.setHorizontalTextPosition(JButton.CENTER);
-        backBTN.setFocusable(false);
         backBTN.addActionListener(this);
-        //backBTN.setBackground(Color.WHITE);
-        backBTN.setBounds(0,0,100,50);
-        upper.setLayout(null);
         upper.add(backBTN);
-        upper.setBackground(new Color(0x212A3E));
-        upper.setPreferredSize(new Dimension(80,50));
-        upper.setBounds(0,0,100*100,50);
-
         userL.setText("User ID");
         userL.setForeground(Color.BLACK);
         userL.setBounds(405,203,150,50);
@@ -76,7 +65,8 @@ public class logInPage extends MainFrame implements ActionListener {
 
             }
             else {
-                System.out.println("Login Done");
+                LoginFrame.dispose();
+                UserView u = new UserView(user);
             }
         }
         else if(e.getSource() == backBTN)

@@ -30,12 +30,12 @@ public class User {
     public void setFirstName(String fname)
     {
         this.firstName = fname;
-        this.fullName = firstName + lastName;
+        this.fullName = firstName +" "+ lastName;
     }
     public void setLastName(String lname)
     {
         this.lastName = lname;
-        this.fullName = firstName + lastName;
+        this.fullName = firstName +" "+ lastName;
     }
     public String getFullName() {
         return fullName;

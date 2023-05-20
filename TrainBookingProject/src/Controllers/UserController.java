@@ -44,6 +44,7 @@ public class UserController {
                 user.setPassword(pass);
                 user.setEmail(Email);
                 user.setRole(role);
+                userRepo.updateUser(user);
                 return user;
             }else
             {

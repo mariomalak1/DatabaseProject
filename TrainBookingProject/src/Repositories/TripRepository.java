@@ -174,7 +174,7 @@ public class TripRepository {
     private Trip mapTrip(ResultSet resultSet) throws SQLException {
         Trip trip = null;
 
-        int id = resultSet.getInt("ID");
+        int id = resultSet.getInt("TripID");
         int sourceID = resultSet.getInt("SourceID");
         int destenationID = resultSet.getInt("DestenationID");
         Date dateOftrip = resultSet.getDate("DateOftrip");

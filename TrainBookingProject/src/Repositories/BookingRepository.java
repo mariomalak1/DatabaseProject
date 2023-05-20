@@ -64,8 +64,8 @@ public class BookingRepository {
         return booking;
     }
 
-    public List<Booking> getBookingsForUser(int userId) throws SQLException {
-        List<Booking> bookings = new ArrayList<>();
+    public ArrayList<Booking> getBookingsForUser(int userId) throws SQLException {
+        ArrayList<Booking> bookings = new ArrayList<Booking>();
 
         String query = "SELECT * FROM Booking WHERE userID = ?";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -75,6 +75,7 @@ public class BookingRepository {
         while (resultSet.next()) {
             Booking booking = extractBookingFromResultSet(resultSet);
             bookings.add(booking);
+
         }
         return bookings;
     }

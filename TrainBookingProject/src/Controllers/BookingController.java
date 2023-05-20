@@ -6,6 +6,7 @@ import Models.User;
 import Repositories.BookingRepository;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookingController {
@@ -19,7 +20,7 @@ public class BookingController {
         return null;
     }
 
-    public static List<Booking> getAllBookingForUser(User user) {
+    public static ArrayList<Booking> getAllBookingForUser(User user) {
         try {
             return new BookingRepository().getBookingsForUser(user.getID());
         }catch (Exception e){
