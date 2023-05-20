@@ -77,12 +77,11 @@ public class VisitRepository {
 
         //        Date ArrivingTime = resultSet.getDate("ArrivingTime");
 
-        Trip trip = new TripRepository().getTripById(tripID);
         City city = new CityRepository().getCityByID(cityId);
 
-        if (city != null && trip != null){
+        if (city != null){
             LocalDateTime arrivingTime = LocalDateTime.of(date.toLocalDate(), time.toLocalTime());
-            visit = new Visit(trip, city, arrivingTime);
+            visit = new Visit(city, arrivingTime);
             return visit;
         }
         return null;

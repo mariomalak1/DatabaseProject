@@ -29,7 +29,7 @@ public class editProfile implements ActionListener {
         newUser = user;
         backBTN.setText("Log Out");
         backBTN.addActionListener(this);
-        welcome.setText("Welcome: "+user.getFullName());
+        welcome.setText("Welcome, "+user.getFullName());
         welcome.setForeground(Color.WHITE);
         welcome.setFont(new Font("Consolas",Font.PLAIN,30));
         welcome.setBounds(450,5,400,50);
