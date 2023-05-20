@@ -12,7 +12,7 @@ public class MainFrame extends JFrame {
         //this.setVisible(true);
         ImageIcon icon = new ImageIcon("src\\train.png");
         this.setIconImage(icon.getImage());
-        this.getContentPane().setBackground(new Color(236,219,186));
+        this.getContentPane().setBackground(new Color(155,164,151));
         this.setLayout(null);
 
     }
