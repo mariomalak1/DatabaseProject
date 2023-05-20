@@ -13,6 +13,8 @@ public class signUpPage extends MainFrame implements ActionListener {
     JLabel lnameL = new JLabel();
     JLabel emailL = new JLabel();
     JLabel passL = new JLabel();
+    JButton backBTN = new JButton();
+    JPanel upper = new JPanel();
     JLabel confirmpassL = new JLabel();
     JTextField fnameT = new JTextField();
     JTextField lnameT = new JTextField();
@@ -21,7 +23,20 @@ public class signUpPage extends MainFrame implements ActionListener {
     JTextField confirmpassT = new JTextField();
     JButton signUpBTN = new JButton();
     MainFrame f = new MainFrame();
+    ImageIcon backIcon = new ImageIcon("src\\back.png");
     signUpPage(){
+        backBTN.setIcon(backIcon);
+        backBTN.setText("Go Back");
+        backBTN.setHorizontalTextPosition(JButton.CENTER);
+        backBTN.setFocusable(false);
+        backBTN.addActionListener(this);
+        //backBTN.setBackground(Color.WHITE);
+        backBTN.setBounds(0,0,100,50);
+        upper.setLayout(null);
+        upper.add(backBTN);
+        upper.setBackground(new Color(0x212A3E));
+        upper.setPreferredSize(new Dimension(80,50));
+        upper.setBounds(0,0,100*100,50);
         fnameL.setText("First Name:");
         fnameL.setForeground(Color.BLACK);
         fnameL.setFont(new Font("Consolas",Font.PLAIN,30));
@@ -73,6 +88,7 @@ public class signUpPage extends MainFrame implements ActionListener {
         f.add(confirmpassL);
         f.add(confirmpassT);
         f.add(signUpBTN);
+        f.add(upper);
         f.setVisible(true);
     }
 
@@ -101,6 +117,11 @@ public class signUpPage extends MainFrame implements ActionListener {
                     HomePageView newHome = new HomePageView();
                 }
             }
+        }
+        else if(e.getSource() == backBTN)
+        {
+            f.dispose();
+            HomePageView h = new HomePageView();
         }
     }
 }
