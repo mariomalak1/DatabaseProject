@@ -96,7 +96,7 @@ public class signUpPage extends MainFrame implements ActionListener {
                 User user = null;
                 user = UserController.addUser(fname,lname,pass,email,"User");
                 if(user != null){
-                    JOptionPane.showMessageDialog(null,"User Created Successfully ","Sign Up",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"User Created Successfully, Your Id to login with is:"+user.getID(),"Sign Up",JOptionPane.INFORMATION_MESSAGE);
                     f.dispose();
                     HomePageView newHome = new HomePageView();
                 }
