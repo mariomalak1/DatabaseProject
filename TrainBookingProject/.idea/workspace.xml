@@ -4,47 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4756c6d6-3656-44f9-87a6-fcea77f0ff4a" name="Changes" comment="">
-
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/SearchForTripView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/SearchForTripView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/UserView.java" afterDir="false" />
-=======
-
-      <change beforePath="$PROJECT_DIR$/../AllQueries.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../AllQueries.sql" afterDir="false" />
-=======
-      <change afterPath="$PROJECT_DIR$/src/Views/SearchForTripView.java" afterDir="false" />
->>>>>>> 30cfc4802cf164b637d7012d69625d2a7d9e227d
+    <list default="true" id="21daba45-d0e0-4c85-a0c9-fdb46994fed7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TrainBookingProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TrainBookingProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/BookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/TrainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/TrainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/TripController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/TripController.java" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/src/Models/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Trip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/TripRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TripRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/VisitRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/VisitRepository.java" afterDir="false" />
-=======
-
-      <change beforePath="$PROJECT_DIR$/src/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Trip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/CityRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/CityRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/MainRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/MainRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/TrainRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TrainRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/TripRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TripRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/VisitRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/VisitRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/UserBookedTripsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/UserBookedTripsView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/UserView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/editProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/editProfile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/logInPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/logInPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/signUpPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/signUpPage.java" afterDir="false" />
-=======
->>>>>>> fcfb40c7d6361468f30325f29acd370f67703ee5
->>>>>>> 30cfc4802cf164b637d7012d69625d2a7d9e227d
->>>>>>> 55857fd56963cec4139a1147d90578aace9f8748
+      <change beforePath="$PROJECT_DIR$/src/Views/SearchForTripView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/SearchForTripView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +18,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -78,7 +42,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "E:/GitHub/DatabaseProject/TrainBookingProject/src/Time Chooser.jar",
+    "last_opened_file_path": "D:/FCAI-CU/Second Year/Second Semester/Database/Project/DatabaseProject/TrainBookingProject/jcalendar-1.4.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -110,7 +74,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4756c6d6-3656-44f9-87a6-fcea77f0ff4a" name="Changes" comment="" />
+      <changelist id="21daba45-d0e0-4c85-a0c9-fdb46994fed7" name="Changes" comment="" />
       <created>1684519347701</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
