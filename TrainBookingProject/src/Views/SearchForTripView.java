@@ -130,14 +130,14 @@ public class SearchForTripView implements ActionListener {
         }
         else if(e.getSource() == searchBTN)
         {
-            String sname = listOfTrips.getSelectedItem().toString();
-            String dname = listOfTrips.getSelectedItem().toString();
-            String hours = hoursC.getSelectedItem().toString();
-            String mins = minC.getSelectedItem().toString();
-            LocalDateTime time = LocalDateTime.parse(hours+mins);
-            LocalDate date = LocalDate.parse(cal.getDate().toString());
-            int capacity = Integer.parseInt(cap.getText());
-            l = TripController.getAllTripsForSpecificCriteria(time.toLocalTime(),date,dname,sname,capacity,connection);
+//            String sname = listOfTrips.getSelectedItem().toString();
+//            String dname = listOfTrips.getSelectedItem().toString();
+//            String hours = hoursC.getSelectedItem().toString();
+//            String mins = minC.getSelectedItem().toString();
+//            LocalDateTime time = LocalDateTime.parse(hours+mins);
+//            LocalDate date = LocalDate.parse(cal.getDate().toString());
+//            int capacity = Integer.parseInt(cap.getText());
+//            l = TripController.getAllTripsForSpecificCriteria(time.toLocalTime(),date,dname,sname,capacity,connection);
         }
 
     }

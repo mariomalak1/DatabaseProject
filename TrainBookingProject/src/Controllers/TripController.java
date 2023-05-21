@@ -97,6 +97,7 @@ public class TripController {
 
     public static Trip getTripByID(int tripID,Connection connection){
         try {
+
             Trip trip = new TripRepository().getTripById(tripID,connection);
             trip.setTrains(new TrainRepository().getAllTrainsInTrip(trip.getID(),connection));
             trip.setVisits(new VisitRepository().getAllVisitsByTrip(trip.getID()));
