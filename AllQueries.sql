@@ -27,6 +27,10 @@ create table Trip(
 create table Visit(
 	tripID int,
 	cityID int,
+
+	visit_Date date,
+    visit_Time time,
+
 	foreign key(tripID) references Trip(TripID),
 	foreign key(cityID) references City(CityID),
 );

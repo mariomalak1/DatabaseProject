@@ -56,7 +56,7 @@ public class SearchForTripView implements ActionListener {
         label.setBounds(500,50,300,80);
         List<String> nS = new ArrayList<>();
         CityRepository trepo = new CityRepository();
-        nS = trepo.getAllCities();
+        nS = trepo.getAllCities(connection);
         String[] loadedS = new String[nS.size()];
 
         for( int i = 0 ; i < nS.size() ; i++)
@@ -170,7 +170,7 @@ public class SearchForTripView implements ActionListener {
             }
             if(listOfTripsD.getSelectedItem().toString() != " "&& listOfTripsD.getSelectedItem().toString() != null)
             {
-                
+
                 dname = listOfTripsD.getSelectedItem().toString();
                 System.out.println(dname);
             }

@@ -12,8 +12,7 @@ public class MainRepository {
     public static Connection getConnection(){
         try {
 
-            Connection c = DriverManager.getConnection(conn);
-            return c;
+            return DriverManager.getConnection(conn);
 
         }
         catch(SQLException e){

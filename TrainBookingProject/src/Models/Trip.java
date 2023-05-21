@@ -12,6 +12,15 @@ public class Trip {
     private List<Train> Trains;
     private List<Visit> Visits;
 
+    public Trip(int id){
+        this.ID = id;
+    }
+
+    public Trip(int id, LocalDateTime localDateTime){
+        this.ID = id;
+        this.StartDateTime = localDateTime;
+    }
+
     public Trip(int id, Visit destination, Visit source){
         this.ID = id;
         this.Destination = destination;
@@ -67,6 +76,9 @@ public class Trip {
     }
 
     public void setVisits(List<Visit> visits) {
+        for (Visit visit: visits) {
+            visit.setTrip(this);
+        }
         Visits = visits;
     }
 }

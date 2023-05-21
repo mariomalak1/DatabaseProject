@@ -17,13 +17,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//        List<Train> trainsInTrip = new TrainRepository().getAllTrainsInTrip(trip.getID());
-//        trip.setTrains(trainsInTrip);
-//
-//        List<Visit> VisitsInTrain = new VisitRepository().getAllVisitsByTrip(trip.getID());
-//        trip.setVisits(VisitsInTrain);
-
-
 public class TripController {
     public static List<Trip> getAllTrips(Connection connection){
         try {
@@ -57,14 +50,14 @@ public class TripController {
             Trip trip = null;
             CityRepository cityRepository = new CityRepository();
 
-            City sourceCity = cityRepository.GetAllCitiesLikeName(Source).get(0);
+            City sourceCity = cityRepository.GetAllCitiesLikeName(Source, connection).get(0);
             if (sourceCity == null) {
-                cityRepository.addCity(Source);
+                cityRepository.addCity(Source, connection);
             }
 
-            City destinationCity = cityRepository.GetAllCitiesLikeName(Destination).get(0);
+            City destinationCity = cityRepository.GetAllCitiesLikeName(Destination, connection).get(0);
             if (destinationCity == null) {
-                cityRepository.addCity(Destination);
+                cityRepository.addCity(Destination, connection);
             }
 
             Visit visitDestination = new Visit(destinationCity);
@@ -97,10 +90,9 @@ public class TripController {
 
     public static Trip getTripByID(int tripID,Connection connection){
         try {
-
             Trip trip = new TripRepository().getTripById(tripID,connection);
             trip.setTrains(new TrainRepository().getAllTrainsInTrip(trip.getID(),connection));
-            trip.setVisits(new VisitRepository().getAllVisitsByTrip(trip.getID()));
+            trip.setVisits(new VisitRepository().getAllVisitsByTrip(trip.getID(), connection));
             return trip;
         } catch (Exception e) {
             throw new RuntimeException(e);
