@@ -1,38 +1,42 @@
 package Views;
 
 import Controllers.UserController;
+import Models.User;
 import Repositories.MainRepository;
-import com.sun.tools.javac.Main;
-import Models.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 
-public class signUpPage extends MainFrame implements ActionListener {
-    Connection connection = MainRepository.getConnection();
+public class editProfile implements ActionListener {
+    backBtn backBTN = new backBtn();
+    upperPanel upper = new upperPanel();
+    JLabel welcome = new JLabel();
     JLabel fnameL = new JLabel();
     JLabel lnameL = new JLabel();
     JLabel emailL = new JLabel();
     JLabel passL = new JLabel();
-    backBtn backBTN = new backBtn();
-    upperPanel upper = new upperPanel();
     JLabel confirmpassL = new JLabel();
     JTextField fnameT = new JTextField();
     JTextField lnameT = new JTextField();
     JTextField emailT = new JTextField();
     JTextField passT = new JTextField();
     JTextField confirmpassT = new JTextField();
-    JButton signUpBTN = new JButton();
+    JButton editBTN = new JButton();
     MainFrame f = new MainFrame();
-    //ImageIcon backIcon = new ImageIcon("src\\back.png");
-    signUpPage(){
+    User newUser = null;
+    Connection connection ;
+    public editProfile(User user,Connection conn){
+        connection = conn;
+        newUser = user;
+        backBTN.setText("Log Out");
         backBTN.addActionListener(this);
-        upper.add(backBTN);
-        upper.setBackground(new Color(0x212A3E));
-        upper.setPreferredSize(new Dimension(80,50));
-        upper.setBounds(0,0,100*100,50);
+        welcome.setText("Welcome, "+user.getFullName());
+        welcome.setForeground(Color.WHITE);
+        welcome.setFont(new Font("Consolas",Font.PLAIN,30));
+        welcome.setBounds(450,5,400,50);
         fnameL.setText("First Name:");
         fnameL.setForeground(Color.BLACK);
         fnameL.setFont(new Font("Consolas",Font.PLAIN,30));
@@ -70,9 +74,11 @@ public class signUpPage extends MainFrame implements ActionListener {
         confirmpassT.setFont(new Font("Consolas",Font.PLAIN,30));
         confirmpassT.setBackground(new Color(241,246,249));
         // ----------------------------
-        signUpBTN.setText("Sing Up");
-        signUpBTN.addActionListener(this);
-        signUpBTN.setBounds(590,400,100,50);
+        editBTN.setText("Edit");
+        editBTN.addActionListener(this);
+        editBTN.setBounds(590,400,100,50);
+        upper.add(welcome);
+        upper.add(backBTN);
         f.add(fnameL);
         f.add(fnameT);
         f.add(lnameL);
@@ -83,14 +89,19 @@ public class signUpPage extends MainFrame implements ActionListener {
         f.add(passT);
         f.add(confirmpassL);
         f.add(confirmpassT);
-        f.add(signUpBTN);
+        f.add(editBTN);
         f.add(upper);
         f.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == signUpBTN)
+        if (e.getSource() == backBTN)
+        {
+            f.dispose();
+            logInPage l = new logInPage();
+        }
+        else if(e.getSource()==editBTN)
         {
             String fname = fnameT.getText();
             String lname = lnameT.getText();
@@ -105,19 +116,15 @@ public class signUpPage extends MainFrame implements ActionListener {
             {
                 JOptionPane.showMessageDialog(null,"Password Don't Match ","Sign Up Failed",JOptionPane.ERROR_MESSAGE);
             }else {
-                User user = null;
-                user = UserController.addUser(fname,lname,pass,email,"User",connection);
-                if(user != null){
-                    JOptionPane.showMessageDialog(null,"User Created Successfully, Your Id to login with is:"+user.getID(),"Sign Up",JOptionPane.INFORMATION_MESSAGE);
+                User n = null;
+                n = UserController.updateUser(newUser.getID(), fname, lname, pass, email, "User",connection);
+                if (newUser != null) {
+                    JOptionPane.showMessageDialog(null, "User Edited Successfully", "Sign Up", JOptionPane.INFORMATION_MESSAGE);
                     f.dispose();
-                    HomePageView newHome = new HomePageView();
+                    UserView u = new UserView(newUser);
                 }
             }
         }
-        else if(e.getSource() == backBTN)
-        {
-            f.dispose();
-            HomePageView h = new HomePageView();
-        }
     }
 }
+

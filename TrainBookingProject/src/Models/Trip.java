@@ -27,11 +27,16 @@ public class Trip {
         this.Source = source;
     }
 
+<<<<<<< HEAD
     public String EndTime(){
         System.out.println("Start Time : " + StartDateTime);
         System.out.println("End Time : " + Destination.getArrivingDateTime());
         System.out.println(StartDateTime);
         return String.valueOf(Duration.between(StartDateTime, Destination.getArrivingDateTime()));
+=======
+    public LocalDateTime EndTime(){
+        return  Destination.getArrivingDateTime();
+>>>>>>> 30cfc4802cf164b637d7012d69625d2a7d9e227d
     }
 
     public int getID() {

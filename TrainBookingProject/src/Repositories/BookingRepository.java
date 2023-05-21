@@ -9,13 +9,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 public class BookingRepository {
-    private final Connection connection;
+    //private final Connection connection;
 
-    public BookingRepository() {
-        connection = MainRepository.getConnection();
-    }
+    //public BookingRepository(Connection conn) {
+//        connection = conn;
+//    }
 
-    public Booking createBooking(Booking booking) throws SQLException {
+    public Booking createBooking(Booking booking,Connection connection) throws SQLException {
         String sqlquery = "INSERT INTO Booking (trainID, userID) " +
                 "VALUES (?, ?)";
 
@@ -40,7 +40,7 @@ public class BookingRepository {
         return booking;
     }
 
-    public void deleteBooking(int bookID) throws SQLException {
+    public void deleteBooking(int bookID,Connection connection) throws SQLException {
         String sqlquery = "DELETE From Booking WHERE BookingID = ?";
         try (PreparedStatement statement = connection.prepareStatement(sqlquery)) {
             statement.setInt(1, bookID);
@@ -48,43 +48,43 @@ public class BookingRepository {
         }
     }
 
-    public Booking getBookingByID(int bookID) throws SQLException {
+    public Booking getBookingByID(int bookID,Connection connection) throws SQLException {
         String sqlquery = "SELECT * FROM Booking WHERE BookingID = ?";
         Booking booking = null;
         try (PreparedStatement statement = connection.prepareStatement(sqlquery)) {
             statement.setInt(1, bookID);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    booking = extractBookingFromResultSet(resultSet);
+                    booking = extractBookingFromResultSet(resultSet,connection);
                 }
             }
         }
         return booking;
     }
 
-    public List<Booking> getBookingsForUser(int userId) throws SQLException {
-        List<Booking> bookings = new ArrayList<>();
+    public ArrayList<Booking> getBookingsForUser(int userId,Connection connection) throws SQLException {
+        ArrayList<Booking> bookings = new ArrayList<Booking>();
 
         String query = "SELECT * FROM Booking WHERE userID = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1, userId);
         ResultSet resultSet = statement.executeQuery();
-
         while (resultSet.next()) {
-            Booking booking = extractBookingFromResultSet(resultSet);
+            Booking booking = extractBookingFromResultSet(resultSet,connection);
             bookings.add(booking);
+
         }
         return bookings;
     }
 
-    private Booking extractBookingFromResultSet(ResultSet resultSet) throws SQLException {
+    private Booking extractBookingFromResultSet(ResultSet resultSet,Connection connection) throws SQLException {
         int bookingId = resultSet.getInt("BookingID");
         int trainId = resultSet.getInt("trainID");
         int userId = resultSet.getInt("userID");
         int numberOfSeats = resultSet.getInt("NumberOfSeats");
 
-        User user = new UserRepository().getUserById(userId);
-        Train train = new TrainRepository().getTrainById(trainId);
+        User user = new UserRepository().getUserById(userId,connection);
+        Train train = new TrainRepository().getTrainById(trainId,connection);
 
         return new Booking(bookingId, user, train, numberOfSeats);
     }

@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TripRepository {
-    private final Connection connection;
+//    private final Connection connection;
+//
+//    public TripRepository(){
+//        connection = MainRepository.getConnection();
+//    }
 
-    public TripRepository(){
-        connection = MainRepository.getConnection();
-    }
-
-    public Trip createTrip(Trip trip) throws SQLException {
+    public Trip createTrip(Trip trip,Connection connection) throws SQLException {
         String sql = "INSERT INTO Trip (SourceID, DestenationID, DateOftrip, StartTime) " +
                 "VALUES (?, ?, ?, ?)";
 
@@ -44,7 +44,7 @@ public class TripRepository {
         return trip;
     }
 
-    public Trip updateTrip(Trip trip) throws SQLException{
+    public Trip updateTrip(Trip trip,Connection connection) throws SQLException{
         String sql = "update Trip set SourceID = ?, DestenationID = ?, DateOftrip = ?, StartTime = ?, EndTime = ?" +
                 "where TripID = ?";
         try(PreparedStatement statement = connection.prepareStatement(sql)){
@@ -52,27 +52,27 @@ public class TripRepository {
             statement.setInt(2, trip.getDestination().getCity().getID());
             statement.setDate(3, Date.valueOf(trip.getStartDateTime().toLocalDate()));
             statement.setTime(4, Time.valueOf(trip.getStartDateTime().toLocalTime()));
-            statement.setTime(5, Time.valueOf(trip.EndTime()));
+            statement.setTime(5, Time.valueOf(trip.EndTime().toLocalTime()));
             statement.setInt(6, trip.getID());
             statement.executeUpdate();
         }
         return trip;
     }
 
-    public List<Trip> getAllTrips() throws SQLException{
+    public List<Trip> getAllTrips(Connection connection) throws SQLException{
         String sql = "Select * From Trip";
         List<Trip> trips = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(sql)){
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
-                Trip trip = mapTrip(resultSet);
+                Trip trip = mapTrip(resultSet,connection);
                 trips.add(trip);
             }
         }
         return trips;
     }
 
-    public Trip getTripById(int id) throws SQLException {
+    public Trip getTripById(int id,Connection connection) throws SQLException {
         String sql = "SELECT * FROM Trip WHERE TripID = ?";
         Trip trip = null;
 
@@ -81,7 +81,7 @@ public class TripRepository {
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    trip = mapTrip(resultSet);
+                    trip = mapTrip(resultSet,connection);
                 }
             }
         }
@@ -90,7 +90,7 @@ public class TripRepository {
     }
 
     // return list of trips that satisfied specific criteria
-    public List<Trip> getAllTripsInSpecificCriteria(Time stratTime, java.util.Date date, String destinationCityName, String sourceCityName, int capacityOfTrain) throws SQLException {
+    public List<Trip> getAllTripsInSpecificCriteria(Time stratTime, java.util.Date date, String destinationCityName, String sourceCityName, int capacityOfTrain,Connection connection) throws SQLException {
         String sql = "select * from Trip Where 1 = 1";
 
         if (stratTime != null) {
@@ -139,7 +139,7 @@ public class TripRepository {
             List<Trip> trips = new ArrayList<>();
 
             while (resultSet.next()) {
-                Trip trip = mapTrip(resultSet);
+                Trip trip = mapTrip(resultSet,connection);
                 trips.add(trip);
             }
 
@@ -147,7 +147,7 @@ public class TripRepository {
         }
     }
 
-    public List<Trip> getAllTripsGoToCityByCityName(String cityName){
+    public List<Trip> getAllTripsGoToCityByCityName(String cityName,Connection connection){
         String sql = "Select * From Trip where TripID In " +
                 "(Select tripID from Visit where cityID in (Select CityID from City where city_name LIKE ?))";
 
@@ -159,7 +159,7 @@ public class TripRepository {
 
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()){
-                Trip trip = mapTrip(resultSet);
+                Trip trip = mapTrip(resultSet,connection);
                 trips.add(trip);
             }
         } catch (SQLException e) {
@@ -170,7 +170,12 @@ public class TripRepository {
     }
 
     // send it result of database set and extract from it Trip and return it
+<<<<<<< HEAD
     private Trip mapTrip(ResultSet resultSet) throws SQLException {
+=======
+    private Trip mapTrip(ResultSet resultSet,Connection connection) throws SQLException {
+
+>>>>>>> 30cfc4802cf164b637d7012d69625d2a7d9e227d
         Trip trip = null;
 
         int id = resultSet.getInt("TripID");
