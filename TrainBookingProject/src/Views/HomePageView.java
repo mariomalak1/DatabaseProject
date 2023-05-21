@@ -1,17 +1,21 @@
 package Views;
 
+import Repositories.MainRepository;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 public class HomePageView implements ActionListener {
     JButton logInBTN;
     JButton signUpBTN;
     JPanel btnPanel;
-
+    Connection connection;
     MainFrame f = new MainFrame();
-    public HomePageView(){
+    public HomePageView(Connection conn){
+        connection = conn;
         logInBTN = new JButton();
         logInBTN.setText("Log In");
         logInBTN.setFont(new Font("Arail",Font.BOLD,30));
@@ -50,12 +54,12 @@ public class HomePageView implements ActionListener {
         if(e.getSource()==logInBTN)
         {
             f.dispose();
-            logInPage l = new logInPage();
+            logInPage l = new logInPage(connection);
         }
         else if(e.getSource()==signUpBTN)
         {
             f.dispose();
-            signUpPage s = new signUpPage();
+            signUpPage s = new signUpPage(connection);
         }
 
     }

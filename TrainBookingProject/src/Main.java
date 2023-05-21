@@ -1,7 +1,11 @@
+import Repositories.MainRepository;
 import Views.HomePageView;
+
+import java.sql.Connection;
 
 public class Main {
     public static void main(String[] args) {
-        HomePageView f = new HomePageView();
+        Connection connection = MainRepository.getConnection();
+        HomePageView f = new HomePageView(connection);
     }
 }

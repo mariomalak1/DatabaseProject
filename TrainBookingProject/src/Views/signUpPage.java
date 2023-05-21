@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 
 public class signUpPage extends MainFrame implements ActionListener {
-    Connection connection = MainRepository.getConnection();
+    Connection connection;
     JLabel fnameL = new JLabel();
     JLabel lnameL = new JLabel();
     JLabel emailL = new JLabel();
@@ -27,7 +27,8 @@ public class signUpPage extends MainFrame implements ActionListener {
     JButton signUpBTN = new JButton();
     MainFrame f = new MainFrame();
     //ImageIcon backIcon = new ImageIcon("src\\back.png");
-    signUpPage(){
+    signUpPage(Connection conn){
+        connection = conn;
         backBTN.addActionListener(this);
         upper.add(backBTN);
         upper.setBackground(new Color(0x212A3E));
@@ -110,14 +111,14 @@ public class signUpPage extends MainFrame implements ActionListener {
                 if(user != null){
                     JOptionPane.showMessageDialog(null,"User Created Successfully, Your Id to login with is:"+user.getID(),"Sign Up",JOptionPane.INFORMATION_MESSAGE);
                     f.dispose();
-                    HomePageView newHome = new HomePageView();
+                    HomePageView newHome = new HomePageView(connection);
                 }
             }
         }
         else if(e.getSource() == backBTN)
         {
             f.dispose();
-            HomePageView h = new HomePageView();
+            HomePageView h = new HomePageView(connection);
         }
     }
 }
