@@ -1,6 +1,5 @@
 package Repositories;
 
-import Models.Train;
 import Models.Trip;
 import Models.City;
 import Models.Visit;
@@ -172,7 +171,6 @@ public class TripRepository {
 
     // send it result of database set and extract from it Trip and return it
     private Trip mapTrip(ResultSet resultSet) throws SQLException {
-
         Trip trip = null;
 
         int id = resultSet.getInt("TripID");
@@ -180,25 +178,28 @@ public class TripRepository {
         int destenationID = resultSet.getInt("DestenationID");
         Date dateOftrip = resultSet.getDate("DateOftrip");
         Time startTime = resultSet.getTime("StartTime");
-        Time endTime = resultSet.getTime("EndTime");
 
+        LocalDateTime arrivingTime = LocalDateTime.of(dateOftrip.toLocalDate(), startTime.toLocalTime());
+        trip = new Trip(id, arrivingTime);
         // to get the city object
         City sourceCity = new CityRepository().getCityByID(sourceID);
         City destenationCity = new CityRepository().getCityByID(destenationID);
 
         if (sourceCity != null && destenationCity != null) {
-            Visit sourceVisit = new Visit(sourceCity);
-            Visit destinationVisit = new Visit(destenationCity);
 
-            trip = new Trip(id, destinationVisit, sourceVisit);
-            trip.setStartDateTime(LocalDateTime.of(dateOftrip.toLocalDate(), startTime.toLocalTime()));
-            destinationVisit.setTrip(trip);
-            sourceVisit.setTrip(trip);
-            LocalDateTime arrivingTime = LocalDateTime.of(dateOftrip.toLocalDate(), startTime.toLocalTime());
-            sourceVisit.setArrivingTime(arrivingTime);
+            Visit sourceVisit = new VisitRepository().getVisitByCityIDAndTripID(id , sourceCity.getID());
+            Visit destinationVisit = new VisitRepository().getVisitByCityIDAndTripID(id , destenationCity.getID());
+
+            trip.setSource(sourceVisit);
+            trip.setDestination(destinationVisit);
 
             return trip;
         }
-        return null;
+
+        trip.setVisits(new VisitRepository().getAllVisitsByTrip(trip.getID()));
+
+        return trip;
     }
 }
+
+

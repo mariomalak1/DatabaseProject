@@ -68,6 +68,24 @@ public class VisitRepository {
         return visits;
     }
 
+    public Visit getVisitByCityIDAndTripID(int tripId, int cityId){
+        String sql = "SELECT * FROM Visit WHERE tripID = ? And cityID = ?";
+        Visit visit = null;
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, tripId);
+            statement.setInt(2, cityId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    visit = mapVisit(resultSet);
+                }
+                return visit;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private Visit mapVisit(ResultSet resultSet) throws SQLException {
         Visit visit = null;
         int tripID = resultSet.getInt("tripID");
@@ -75,15 +93,11 @@ public class VisitRepository {
         Date date = resultSet.getDate("visit_Date");
         Time time = resultSet.getTime("visit_Time");
 
-        //        Date ArrivingTime = resultSet.getDate("ArrivingTime");
-
-        Trip trip = new TripRepository().getTripById(tripID);
         City city = new CityRepository().getCityByID(cityId);
 
-        if (city != null && trip != null){
+        if (city != null){
             LocalDateTime arrivingTime = LocalDateTime.of(date.toLocalDate(), time.toLocalTime());
-            visit = new Visit(trip, city, arrivingTime);
-            visit.setTrip(trip);
+            visit = new Visit(city, arrivingTime);
             return visit;
         }
         return null;
