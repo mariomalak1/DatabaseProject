@@ -6,17 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="4756c6d6-3656-44f9-87a6-fcea77f0ff4a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/TripController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/TripController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Booking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Train.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Train.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Visit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Visit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repositories/MainRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/MainRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repositories/TrainRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TrainRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repositories/TripRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TripRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repositories/VisitRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/VisitRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/UserBookedTripsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/UserBookedTripsView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/editProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/editProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Views/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/UserView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

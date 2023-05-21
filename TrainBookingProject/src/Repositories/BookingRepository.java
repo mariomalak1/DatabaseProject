@@ -1,8 +1,6 @@
 package Repositories;
-import Models.Booking;
-import Models.Train;
-import Models.Trip;
-import Models.User;
+import Models.*;
+
 import java.util.List;
 
 import java.sql.PreparedStatement;

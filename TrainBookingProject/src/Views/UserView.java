@@ -72,8 +72,9 @@ public class UserView extends MainFrame implements ActionListener {
         }
         else if(e.getSource()==showBooked)
         {
-            f.dispose();
+
             UserBookedTripsView n = new UserBookedTripsView(newUser);
+            f.dispose();
         }
     }
 }
