@@ -4,8 +4,11 @@ import Models.City;
 import Models.Trip;
 import Models.Visit;
 import Repositories.CityRepository;
+import Repositories.TrainRepository;
 import Repositories.TripRepository;
+import Repositories.VisitRepository;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -14,10 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//            LocalDateTime arrivingTime = LocalDateTime.of(dateOftrip.toLocalDate(), startTime.toLocalTime());
-//                    sourceVisit.setArrivingTime(arrivingTime);
-//
-//                    List<Train> trainsInTrip = new TrainRepository().getAllTrainsInTrip(trip.getID());
+//        List<Train> trainsInTrip = new TrainRepository().getAllTrainsInTrip(trip.getID());
 //        trip.setTrains(trainsInTrip);
 //
 //        List<Visit> VisitsInTrain = new VisitRepository().getAllVisitsByTrip(trip.getID());
@@ -25,11 +25,11 @@ import java.util.List;
 
 
 public class TripController {
-    public static List<Trip> getAllTrips(){
+    public static List<Trip> getAllTrips(Connection connection){
         try {
             List<Trip> trips = new ArrayList<>();
             TripRepository tripRepository = new TripRepository();
-            trips = tripRepository.getAllTrips();
+            trips = tripRepository.getAllTrips(connection);
             return trips;
         }
         catch (Exception e){
@@ -38,12 +38,12 @@ public class TripController {
         return null;
     }
 
-    public static List<Trip> getAllTripsForSpecificCriteria(Time stratTime, java.util.Date date, String destinationCityName, String sourceCityName, int capacityOfTrain) {
+    public static List<Trip> getAllTripsForSpecificCriteria(Time stratTime, java.util.Date date, String destinationCityName, String sourceCityName, int capacityOfTrain,Connection connection) {
         try {
             List<Trip> trips = new ArrayList<>();
             TripRepository tripRepository = new TripRepository();
             trips = tripRepository.getAllTripsInSpecificCriteria(
-                    stratTime, date, destinationCityName, sourceCityName, capacityOfTrain);
+                    stratTime, date, destinationCityName, sourceCityName, capacityOfTrain,connection);
             return trips;
         }
         catch (Exception e){
@@ -52,7 +52,7 @@ public class TripController {
         return null;
     }
 
-    public static Trip createTrip(String Source, String Destination, Time StartTime, Date StartDate) throws SQLException {
+    public static Trip createTrip(String Source, String Destination, Time StartTime, Date StartDate,Connection connection) throws SQLException {
         try {
             Trip trip = null;
             CityRepository cityRepository = new CityRepository();
@@ -75,7 +75,7 @@ public class TripController {
 
             TripRepository tripRepository = new TripRepository();
 
-            trip = tripRepository.createTrip(trip);
+            trip = tripRepository.createTrip(trip,connection);
 
             return trip;
         }
@@ -85,13 +85,24 @@ public class TripController {
         return null;
     }
 
-    public static List<Trip> getAllTripsGoToCityByCityName(String cityName){
+    public static List<Trip> getAllTripsGoToCityByCityName(String cityName,Connection connection){
         try {
-            return new TripRepository().getAllTripsGoToCityByCityName(cityName);
+            return new TripRepository().getAllTripsGoToCityByCityName(cityName,connection);
         }
         catch (Exception e){
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static Trip getTripByID(int tripID,Connection connection){
+        try {
+            Trip trip = new TripRepository().getTripById(tripID,connection);
+            trip.setTrains(new TrainRepository().getAllTrainsInTrip(trip.getID(),connection));
+            trip.setVisits(new VisitRepository().getAllVisitsByTrip(trip.getID()));
+            return trip;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

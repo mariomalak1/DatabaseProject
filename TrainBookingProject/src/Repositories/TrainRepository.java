@@ -11,13 +11,13 @@ import Models.Train;
 import Models.Trip;
 
 public class TrainRepository {
-    private final Connection connection;
+//    private final Connection connection;
+//
+//    public TrainRepository() {
+//        this.connection = MainRepository.getConnection();
+//    }
 
-    public TrainRepository() {
-        this.connection = MainRepository.getConnection();
-    }
-
-    public Train createTrain(Train train) throws SQLException {
+    public Train createTrain(Train train,Connection connection) throws SQLException {
         String sql = "INSERT INTO Train (Capacity, tripID, PricePerSeat) " +
                 "VALUES (?, ?, ?)";
 
@@ -44,7 +44,7 @@ public class TrainRepository {
         }
     }
 
-    public void UpdateTrain(Train train) throws SQLException {
+    public void UpdateTrain(Train train,Connection connection) throws SQLException {
         String sql = "UPDATE Train SET capacity = ?, tripID = ? , PricePerSeat = ? where TrainID = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -56,7 +56,7 @@ public class TrainRepository {
         }
     }
 
-    public Train getTrainById(int id) throws SQLException {
+    public Train getTrainById(int id,Connection connection) throws SQLException {
         String sql = "SELECT * FROM Train WHERE TrainID = ?";
         Train train = null;
 
@@ -65,7 +65,7 @@ public class TrainRepository {
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    train = mapTrain(resultSet);
+                    train = mapTrain(resultSet,connection);
                 }
             }
         }
@@ -73,7 +73,7 @@ public class TrainRepository {
         return train;
     }
 
-    public List<Train> getAllTrainsInTrip(int tripId) throws SQLException {
+    public List<Train> getAllTrainsInTrip(int tripId,Connection connection) throws SQLException {
         String sql = "SELECT * FROM Train WHERE tripID = ?";
         List<Train> trains = new ArrayList<>();
 
@@ -81,7 +81,7 @@ public class TrainRepository {
             statement.setInt(1, tripId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    trains.add(mapTrain(resultSet));
+                    trains.add(mapTrain(resultSet,connection));
                 }
             }
         }
@@ -89,7 +89,7 @@ public class TrainRepository {
         return trains;
     }
 
-    private Train mapTrain(ResultSet resultSet) throws SQLException {
+    private Train mapTrain(ResultSet resultSet,Connection connection) throws SQLException {
         Train train;
         int ID = resultSet.getInt("TrainID");
         int capacity = resultSet.getInt("capacity");
@@ -98,7 +98,7 @@ public class TrainRepository {
 
         train = new Train(ID, capacity, pricePerSeat);
 
-        Trip trip  = new TripRepository().getTripById(tripId);
+        Trip trip  = new TripRepository().getTripById(tripId,connection);
 
         train.setTrip(trip);
 

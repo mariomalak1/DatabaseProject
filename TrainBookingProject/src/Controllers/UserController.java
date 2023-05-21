@@ -1,18 +1,21 @@
 package Controllers;
 
 import Models.User;
+import Repositories.MainRepository;
 import Repositories.UserRepository;
 
 import javax.swing.*;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class UserController {
+    //private static Connection connection = MainRepository.getConnection();
 
-    public static User addUser(String fname,String lname,String pass,String Email,String role){
+    public static User addUser(String fname,String lname,String pass,String Email,String role,Connection connection){
         try {
             UserRepository userRepo = new UserRepository();
             User user = new User(fname,lname,pass,role,Email);
-            userRepo.insertUser(user);
+            userRepo.insertUser(user,connection);
             return user;
         }catch ( SQLException e)
         {
@@ -22,10 +25,10 @@ public class UserController {
         return null;
     }
 
-    public static Boolean deleteUser(int userId){
+    public static Boolean deleteUser(int userId,Connection connection){
         try {
             UserRepository userRepo = new UserRepository();
-            userRepo.deleteUser(userId);
+            userRepo.deleteUser(userId,connection);
             return true;
         } catch (SQLException e) {
             System.out.println("Failed to Delete User");
@@ -33,10 +36,10 @@ public class UserController {
         return false;
     }
 
-    public static User updateUser(int userId,String fname,String lname,String pass,String Email,String role){
+    public static User updateUser(int userId,String fname,String lname,String pass,String Email,String role,Connection connection){
         try {
             UserRepository userRepo = new UserRepository();
-            User user = userRepo.getUserById(userId);
+            User user = userRepo.getUserById(userId,connection);
             if (user != null)
             {
                 user.setFirstName(fname);
@@ -44,7 +47,7 @@ public class UserController {
                 user.setPassword(pass);
                 user.setEmail(Email);
                 user.setRole(role);
-                userRepo.updateUser(user);
+                userRepo.updateUser(user,connection);
                 return user;
             }else
             {
@@ -56,10 +59,10 @@ public class UserController {
         return null;
     }
 
-    public static User getUserById(int userId) {
+    public static User getUserById(int userId,Connection connection) {
         try {
             UserRepository userRepo = new UserRepository();
-            return userRepo.getUserById(userId);
+            return userRepo.getUserById(userId,connection);
         } catch (SQLException e) {
             System.out.println("User Not Found");
         }

@@ -3,11 +3,11 @@ import Models.User;
 import java.sql.*;
 
 public class UserRepository {
-    private final Connection connection;
-    public UserRepository() {
-        this.connection = MainRepository.getConnection();
-    }
-    public User insertUser(User user) throws SQLException {
+    //private final Connection connection;
+//    public UserRepository() {
+//        this.connection = MainRepository.getConnection();
+//    }
+    public User insertUser(User user,Connection connection) throws SQLException {
         String sql = "INSERT INTO [User](FirstName,LastName,UserPassword,Email,Role)"+
                 "VALUES(?,?,?,?,?)";
         try(PreparedStatement statement =connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
@@ -37,7 +37,7 @@ public class UserRepository {
         }
         return user;
     }
-    public void updateUser(User user) throws SQLException{
+    public void updateUser(User user,Connection connection)throws SQLException{
         String sql = "UPDATE [User] SET FirstName = ?, LastName = ?, UserPassword = ?, Email = ?, Role = ? WHERE UserID = ?";
         try (PreparedStatement statement =connection.prepareStatement(sql)){
             statement.setString(1,user.getFirstName());
@@ -49,14 +49,14 @@ public class UserRepository {
             statement.executeUpdate();
         }
     }
-    public void deleteUser(int userId) throws SQLException{
+    public void deleteUser(int userId,Connection connection) throws SQLException{
         String sql = "DELETE From [User] WHERE UserID = ?";
         try(PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setInt(1,userId);
             statement.executeUpdate();
         }
     }
-    public User getUserById(int userId) throws SQLException{
+    public User getUserById(int userId,Connection connection) throws SQLException{
         String sql = "SELECT * FROM [User] WHERE UserID = ?";
         User user = null;
         try (PreparedStatement statement = connection.prepareStatement(sql)){
@@ -64,13 +64,13 @@ public class UserRepository {
             try (ResultSet resultSet = statement.executeQuery()){
                 if(resultSet.next())
                 {
-                    user = extractUserFromResultSet(resultSet);
+                    user = extractUserFromResultSet(resultSet,connection);
                 }
             }
         }
         return user;
     }
-    private User extractUserFromResultSet(ResultSet r) throws SQLException{
+    private User extractUserFromResultSet(ResultSet r,Connection connection) throws SQLException{
         int userId = r.getInt("UserID");
         String fname = r.getString("FirstName");
         String lname = r.getString("LastName");

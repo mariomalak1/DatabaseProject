@@ -2,11 +2,13 @@ package Views;
 
 import Controllers.UserController;
 import Models.User;
+import Repositories.MainRepository;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 public class editProfile implements ActionListener {
     backBtn backBTN = new backBtn();
@@ -25,7 +27,9 @@ public class editProfile implements ActionListener {
     JButton editBTN = new JButton();
     MainFrame f = new MainFrame();
     User newUser = null;
-    public editProfile(User user){
+    Connection connection ;
+    public editProfile(User user,Connection conn){
+        connection = conn;
         newUser = user;
         backBTN.setText("Log Out");
         backBTN.addActionListener(this);
@@ -113,7 +117,7 @@ public class editProfile implements ActionListener {
                 JOptionPane.showMessageDialog(null,"Password Don't Match ","Sign Up Failed",JOptionPane.ERROR_MESSAGE);
             }else {
                 User n = null;
-                n = UserController.updateUser(newUser.getID(), fname, lname, pass, email, "User");
+                n = UserController.updateUser(newUser.getID(), fname, lname, pass, email, "User",connection);
                 if (newUser != null) {
                     JOptionPane.showMessageDialog(null, "User Edited Successfully", "Sign Up", JOptionPane.INFORMATION_MESSAGE);
                     f.dispose();

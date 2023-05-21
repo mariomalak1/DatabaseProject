@@ -1,14 +1,17 @@
 package Views;
 
 import Controllers.UserController;
+import Repositories.MainRepository;
 import com.sun.tools.javac.Main;
 import Models.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 public class signUpPage extends MainFrame implements ActionListener {
+    Connection connection = MainRepository.getConnection();
     JLabel fnameL = new JLabel();
     JLabel lnameL = new JLabel();
     JLabel emailL = new JLabel();
@@ -103,7 +106,7 @@ public class signUpPage extends MainFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null,"Password Don't Match ","Sign Up Failed",JOptionPane.ERROR_MESSAGE);
             }else {
                 User user = null;
-                user = UserController.addUser(fname,lname,pass,email,"User");
+                user = UserController.addUser(fname,lname,pass,email,"User",connection);
                 if(user != null){
                     JOptionPane.showMessageDialog(null,"User Created Successfully, Your Id to login with is:"+user.getID(),"Sign Up",JOptionPane.INFORMATION_MESSAGE);
                     f.dispose();

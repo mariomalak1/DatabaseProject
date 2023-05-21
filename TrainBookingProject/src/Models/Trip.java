@@ -18,8 +18,8 @@ public class Trip {
         this.Source = source;
     }
 
-    public String EndTime(){
-        return String.valueOf(Duration.between(StartDateTime, Destination.getArrivingDateTime()));
+    public LocalDateTime EndTime(){
+        return  Destination.getArrivingDateTime();
     }
 
     public int getID() {

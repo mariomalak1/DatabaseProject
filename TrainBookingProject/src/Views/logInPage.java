@@ -2,12 +2,14 @@ package Views;
 
 import Controllers.UserController;
 import Models.User;
+import Repositories.MainRepository;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 public class logInPage extends MainFrame implements ActionListener {
     JLabel userL = new JLabel();
@@ -18,6 +20,7 @@ public class logInPage extends MainFrame implements ActionListener {
     JTextField userIdIN;
     JTextField userPassIN;
     MainFrame LoginFrame = new MainFrame();
+    Connection connection = MainRepository.getConnection();
     //ImageIcon backIcon = new ImageIcon("src\\back.png");
     public logInPage(){
         backBTN.addActionListener(this);
@@ -58,7 +61,7 @@ public class logInPage extends MainFrame implements ActionListener {
         {
             int userid = Integer.parseInt(userIdIN.getText());
             String pass = userPassIN.getText();
-            User user = UserController.getUserById(userid);
+            User user = UserController.getUserById(userid,connection);
             if(user == null)
             {
                 JOptionPane.showMessageDialog(null,"Login Failed, UserId or Password is is wrong","Login Failed",JOptionPane.ERROR_MESSAGE);

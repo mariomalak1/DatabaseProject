@@ -70,4 +70,18 @@ public class CityRepository {
         String name = resultSet.getString("city_name");
         return new City(id, name);
     }
+    public List<String> getAllCities(){
+        List<String> cities = new ArrayList<>();
+        String sql = "Select city_name from City";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    cities.add(resultSet.getString("city_name"));
+                }
+                return cities;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

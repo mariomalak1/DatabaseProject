@@ -77,7 +77,7 @@ public class VisitRepository {
 
         //        Date ArrivingTime = resultSet.getDate("ArrivingTime");
 
-        Trip trip = new TripRepository().getTripById(tripID);
+        Trip trip = new TripRepository().getTripById(tripID,connection);
         City city = new CityRepository().getCityByID(cityId);
 
         if (city != null && trip != null){

@@ -1,12 +1,14 @@
 package Views;
 
 import Models.User;
+import Repositories.MainRepository;
 import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 
 public class UserView extends MainFrame implements ActionListener {
     backBtn backBTN = new backBtn();
@@ -17,6 +19,7 @@ public class UserView extends MainFrame implements ActionListener {
     JButton editProfile = new JButton();
     MainFrame f = new MainFrame();
     User newUser = null;
+    Connection connection = MainRepository.getConnection();
     public UserView(User user){
         newUser = user;
         backBTN.setText("Log Out");
@@ -62,18 +65,24 @@ public class UserView extends MainFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backBTN)
         {
-            f.dispose();
             logInPage l = new logInPage();
+            f.dispose();
         }
         else if(e.getSource()== editProfile)
         {
+
+            editProfile n = new editProfile(newUser,connection);
             f.dispose();
-            editProfile n = new editProfile(newUser);
         }
         else if(e.getSource()==showBooked)
         {
 
-            UserBookedTripsView n = new UserBookedTripsView(newUser);
+            UserBookedTripsView n = new UserBookedTripsView(newUser,connection);
+            f.dispose();
+        }
+        else if(e.getSource() == search)
+        {
+            SearchForTripView s = new SearchForTripView(newUser,connection);
             f.dispose();
         }
     }

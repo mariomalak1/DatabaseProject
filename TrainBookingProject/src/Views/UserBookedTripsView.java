@@ -3,6 +3,7 @@ package Views;
 import Controllers.BookingController;
 import Models.Booking;
 import Models.User;
+import Repositories.MainRepository;
 
 import javax.swing.*;
 import javax.swing.BorderFactory;
@@ -11,6 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.print.Book;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 public class UserBookedTripsView implements ActionListener {
@@ -20,9 +22,11 @@ public class UserBookedTripsView implements ActionListener {
     MainFrame f = new MainFrame();
     User newUser = null;
     ArrayList<Booking> BookingList ;
-    public UserBookedTripsView(User user){
+    Connection connection ;
+    public UserBookedTripsView(User user,Connection conn){
+        connection = conn;
         BookingList = new ArrayList<>();
-        BookingList = BookingController.getAllBookingForUser(user.getID());
+        BookingList = BookingController.getAllBookingForUser(user.getID(),connection);
         //System.out.println(BookingList.get(0).getID());
         newUser = user;
         backBTN.setText("Go Back");
