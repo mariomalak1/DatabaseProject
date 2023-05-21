@@ -4,7 +4,9 @@ import Models.City;
 import Models.Trip;
 import Models.Visit;
 import Repositories.CityRepository;
+import Repositories.TrainRepository;
 import Repositories.TripRepository;
+import Repositories.VisitRepository;
 
 import java.sql.SQLException;
 import java.sql.Time;
@@ -14,10 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//            LocalDateTime arrivingTime = LocalDateTime.of(dateOftrip.toLocalDate(), startTime.toLocalTime());
-//                    sourceVisit.setArrivingTime(arrivingTime);
-//
-//                    List<Train> trainsInTrip = new TrainRepository().getAllTrainsInTrip(trip.getID());
+//        List<Train> trainsInTrip = new TrainRepository().getAllTrainsInTrip(trip.getID());
 //        trip.setTrains(trainsInTrip);
 //
 //        List<Visit> VisitsInTrain = new VisitRepository().getAllVisitsByTrip(trip.getID());
@@ -93,5 +92,16 @@ public class TripController {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static Trip getTripByID(int tripID){
+        try {
+            Trip trip = new TripRepository().getTripById(tripID);
+            trip.setTrains(new TrainRepository().getAllTrainsInTrip(trip.getID()));
+            trip.setVisits(new VisitRepository().getAllVisitsByTrip(trip.getID()));
+            return trip;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

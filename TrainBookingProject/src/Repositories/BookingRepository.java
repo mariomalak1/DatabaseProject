@@ -89,5 +89,3 @@ public class BookingRepository {
         return new Booking(bookingId, user, train, numberOfSeats);
     }
 }
-
-
