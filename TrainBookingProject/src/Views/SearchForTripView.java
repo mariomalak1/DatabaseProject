@@ -1,13 +1,13 @@
 package Views;
 
+import Controllers.CityController;
 import Controllers.TripController;
+import Models.City;
 import Models.User;
 import Models.Trip;
 import Repositories.CityRepository;
-import Repositories.TripRepository;
-import com.raven.swing.TimePicker;
-import com.raven.swing.TimePickerMenu;
-import com.toedter.calendar.JCalendar;
+//import com.raven.swing.TimePicker;
+//import com.raven.swing.TimePickerMenu;
 import com.toedter.calendar.JDateChooser;
 import java.sql.Time;
 import java.sql.Date;
@@ -15,12 +15,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.sql.*;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-
-import java.util.Calendar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -204,7 +199,9 @@ public class SearchForTripView implements ActionListener {
                 System.out.println(capacity);
             }
 
-            List<Trip> n = TripController.getAllTripsForSpecificCriteria(time,date,dname,sname,capacity,connection);
+            City destinationCity = CityController.getCityLikeName(dname, connection);
+            City sourceCity = CityController.getCityLikeName(sname, connection);
+            List<Trip> n = TripController.getAllTripsForSpecificCriteria(time, date, destinationCity, sourceCity, capacity, connection);
             SearchForTripView newS = new SearchForTripView(newUser,connection,n);
             f.dispose();
 

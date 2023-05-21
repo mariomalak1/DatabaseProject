@@ -84,50 +84,49 @@ public class TripRepository {
     }
 
     // return list of trips that satisfied specific criteria
-    public List<Trip> getAllTripsInSpecificCriteria(Time stratTime, java.util.Date date, String destinationCityName, String sourceCityName, int capacityOfTrain,Connection connection) throws SQLException {
+    public List<Trip> getAllTripsInSpecificCriteria(Time stratTime, java.util.Date date, City destinationCity, City sourceCity, int capacityOfTrain,Connection connection) throws SQLException {
         String sql = "select * from Trip Where 1 = 1";
 
         if (stratTime != null) {
-            sql += "And StartTime = ?";
+            sql += " And StartTime = ?";
         }
 
         if (date != null) {
-            sql += "And DateOftrip = ?";
+            sql += " And DateOftrip = ?";
+        }
+
+        if (sourceCity != null) {
+            sql += " And SourceID = ?";
+        }
+
+        if (destinationCity != null) {
+            sql += " And DestenationID = ?";
         }
 
         if (capacityOfTrain != 0) {
-            sql += "And TripID In (select tripID from Train where capacity = ?)";
-        }
-
-        if (sourceCityName != null) {
-            sql += "And TripID In (select tripID from Visit where cityID In(select CityID from City where city_name = ?))";
-        }
-
-        if (destinationCityName != null) {
-            sql += "And TripID In (select tripID from Visit where cityID In(select CityID from City where city_name = ?))";
+            sql += " And TripID In (select tripID from Train where capacity >= ?)";
         }
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-
             // Set parameter values based on the provided parameters
-            int parameterIndex = 1;
+            int parameterIndex = 0;
+
             if (stratTime != null) {
-                statement.setTime(parameterIndex++, stratTime);
+                statement.setTime(++parameterIndex, stratTime);
             }
 
             if (date != null) {
-                statement.setDate(parameterIndex++, (Date) date);
+                statement.setDate(++parameterIndex, (Date) date);
             }
-            if (sourceCityName != null) {
-                statement.setString(parameterIndex++, "%" + sourceCityName + "%");
+            if (sourceCity != null) {
+                statement.setInt(++parameterIndex, sourceCity.getID());
             }
-            if (destinationCityName != null) {
-                statement.setString(parameterIndex++, "%" + destinationCityName + "%");
+            if (destinationCity != null) {
+                statement.setInt(++parameterIndex, destinationCity.getID());
             }
             if (capacityOfTrain != 0) {
-                statement.setInt(parameterIndex, capacityOfTrain);
+                statement.setInt(++parameterIndex, capacityOfTrain);
             }
-
             // Execute the query and retrieve the result set
             ResultSet resultSet = statement.executeQuery();
             List<Trip> trips = new ArrayList<>();

@@ -31,12 +31,12 @@ public class TripController {
         return null;
     }
 
-    public static List<Trip> getAllTripsForSpecificCriteria(Time stratTime, java.util.Date date, String destinationCityName, String sourceCityName, int capacityOfTrain,Connection connection) {
+    public static List<Trip> getAllTripsForSpecificCriteria(Time stratTime, java.util.Date date, City destinationCity, City sourceCity, int capacityOfTrain,Connection connection) {
         try {
             List<Trip> trips = new ArrayList<>();
             TripRepository tripRepository = new TripRepository();
             trips = tripRepository.getAllTripsInSpecificCriteria(
-                    stratTime, date, destinationCityName, sourceCityName, capacityOfTrain,connection);
+                    stratTime, date, destinationCity, sourceCity, capacityOfTrain,connection);
             return trips;
         }
         catch (Exception e){

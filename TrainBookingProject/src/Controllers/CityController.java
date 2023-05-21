@@ -4,7 +4,6 @@ import Models.City;
 import Repositories.CityRepository;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 public class CityController {
@@ -23,6 +22,16 @@ public class CityController {
         try {
             CityRepository cityRepository = new CityRepository();
             return cityRepository.GetAllCitiesLikeName(cityName, connection);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static City getCityLikeName(String cityName, Connection connection) {
+        try {
+            CityRepository cityRepository = new CityRepository();
+            return cityRepository.getFirstCityLikeName(cityName, connection);
         }catch (Exception e){
             e.printStackTrace();
         }
