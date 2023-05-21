@@ -5,22 +5,21 @@ import Models.User;
 import Models.Trip;
 import Repositories.CityRepository;
 import Repositories.TripRepository;
-import cambodia.raven.Time;
 import com.raven.swing.TimePicker;
 import com.raven.swing.TimePickerMenu;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
-
-
+import java.sql.Time;
+import java.sql.Date;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.sql.Connection;
+import java.sql.*;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Date;
+
 import java.util.Calendar;
 
 import java.awt.event.ActionEvent;
@@ -35,16 +34,15 @@ public class SearchForTripView implements ActionListener {
     MainFrame f = new MainFrame();
     User newUser = null;
     Connection connection;
-    List<Trip> l;
     JComboBox minC;
     JDateChooser cal;
     JButton searchBTN;
     JTextField cap ;
     JComboBox hoursC;
-    JComboBox listOfTrips;
-    public SearchForTripView(User user,Connection conn){
+    JComboBox listOfTripsS;
+    JComboBox listOfTripsD;
+    public SearchForTripView(User user,Connection conn,List<Trip> l ){
         connection = conn;
-        l = TripController.getAllTrips(connection);
         newUser = user ;
         backBTN.setText("Go Back");
         backBTN.addActionListener(this);
@@ -56,8 +54,40 @@ public class SearchForTripView implements ActionListener {
         label.setFont(new Font("Consolas",Font.PLAIN,30));
         label.setForeground(Color.BLACK);
         label.setBounds(500,50,300,80);
-        loadAllCities("SourceCity:",400,110,260,100);
-        loadAllCities("Destination:",800,110,650,100);
+        List<String> nS = new ArrayList<>();
+        CityRepository trepo = new CityRepository();
+        nS = trepo.getAllCities();
+        String[] loadedS = new String[nS.size()];
+
+        for( int i = 0 ; i < nS.size() ; i++)
+        {
+            loadedS[i]=(nS.get(i));
+        }
+        listOfTripsS = new JComboBox(loadedS);
+        listOfTripsS.setBounds(400,110,150,50);
+        listOfTripsS.insertItemAt(" ",0);
+        listOfTripsS.setSelectedIndex(0);
+        JLabel labelS = new JLabel("SourceCity:");
+        labelS.setFont(new Font("Consolas",Font.PLAIN,20));
+        labelS.setForeground(Color.BLACK);
+        labelS.setBounds(260,100,200,80);
+
+        f.add(listOfTripsS);
+        f.add(labelS);
+        //---------------------------
+        listOfTripsD = new JComboBox(loadedS);
+        listOfTripsD.setBounds(800,110,150,50);
+        listOfTripsD.insertItemAt(" ",0);
+        listOfTripsD.setSelectedIndex(0);
+        JLabel labelD = new JLabel("DestinationCity:");
+        labelD.setFont(new Font("Consolas",Font.PLAIN,20));
+        labelD.setForeground(Color.BLACK);
+        labelD.setBounds(650,100,200,80);
+
+        f.add(listOfTripsD);
+        f.add(labelS);
+//        loadAllCities("SourceCity:",400,110,260,100);
+//        loadAllCities("Destination:",800,110,650,100);
         cal =new JDateChooser();
         cal.setForeground(Color.BLACK);
         cal.setBounds(400,200,150,30);
@@ -71,7 +101,7 @@ public class SearchForTripView implements ActionListener {
             hours[i-1] = String.valueOf(i);
         }
         hoursC = new JComboBox(hours);
-        hoursC.insertItemAt("",0);
+        hoursC.insertItemAt(" ",0);
         hoursC.setBounds(800,200,50,30);
         hoursC.setSelectedIndex(0);
         String[] min = new String[59];
@@ -80,7 +110,7 @@ public class SearchForTripView implements ActionListener {
             min[i-1] = String.valueOf(i);
         }
         minC = new JComboBox(min);
-        minC.insertItemAt("",0);
+        minC.insertItemAt(" ",0);
         minC.setBounds(860,200,50,30);
         minC.setSelectedIndex(0);
         JLabel timeL = new JLabel("Time (h-m):");
@@ -130,57 +160,111 @@ public class SearchForTripView implements ActionListener {
         }
         else if(e.getSource() == searchBTN)
         {
-//            String sname = listOfTrips.getSelectedItem().toString();
-//            String dname = listOfTrips.getSelectedItem().toString();
-//            String hours = hoursC.getSelectedItem().toString();
-//            String mins = minC.getSelectedItem().toString();
-//            LocalDateTime time = LocalDateTime.parse(hours+mins);
-//            LocalDate date = LocalDate.parse(cal.getDate().toString());
-//            int capacity = Integer.parseInt(cap.getText());
-//            l = TripController.getAllTripsForSpecificCriteria(time.toLocalTime(),date,dname,sname,capacity,connection);
+            String sname = null;
+            String dname = null;
+            if(listOfTripsS.getSelectedItem().toString() != " " && listOfTripsS.getSelectedItem().toString() != null)
+            {
+
+                sname = listOfTripsS.getSelectedItem().toString();
+                System.out.println(sname);
+            }
+            if(listOfTripsD.getSelectedItem().toString() != " "&& listOfTripsD.getSelectedItem().toString() != null)
+            {
+                
+                dname = listOfTripsD.getSelectedItem().toString();
+                System.out.println(dname);
+            }
+            String hours = hoursC.getSelectedItem().toString();
+            String mins = minC.getSelectedItem().toString();
+            String sdate = " ";
+            Time time = null;
+            Date date = null;
+            int capacity = 0;
+            if(cal.getDate() != null)
+            {
+                sdate = cal.getDate().toString();
+                System.out.println(sdate);
+            }
+
+
+            if(hours != " " && mins != " ")
+            {
+                time = Time.valueOf(hours+":"+mins+":0");
+                System.out.println(time);
+            }
+            System.out.println(hours + " "+ mins);
+            if(sdate != " ")
+            {
+                date = Date.valueOf(sdate);
+                System.out.println(date);
+            }
+            if(!cap.getText().isEmpty())
+            {
+                capacity = Integer.parseInt(cap.getText());
+                System.out.println(capacity);
+            }
+
+            List<Trip> n = TripController.getAllTripsForSpecificCriteria(time,date,dname,sname,capacity,connection);
+            SearchForTripView newS = new SearchForTripView(newUser,connection,n);
+            f.dispose();
+
         }
 
     }
     //private void loadAllSources()
 
-    private void loadAllCities(String t,int x,int y,int xl,int yl){
-        List<String> l = new ArrayList<>();
-        CityRepository trepo = new CityRepository();
-        l = trepo.getAllCities();
-        String[] loaded = new String[l.size()];
-
-        for( int i = 0 ; i < l.size() ; i++)
-        {
-            loaded[i]=(l.get(i));
-        }
-        listOfTrips = new JComboBox(loaded);
-        listOfTrips.setBounds(x,y,150,50);
-        listOfTrips.insertItemAt("",0);
-        listOfTrips.setSelectedIndex(0);
-        JLabel label = new JLabel(t);
-        label.setFont(new Font("Consolas",Font.PLAIN,20));
-        label.setForeground(Color.BLACK);
-        label.setBounds(xl,yl,200,80);
-
-        f.add(listOfTrips);
-        f.add(label);
-    }
+//    private void loadAllCities(String t,int x,int y,int xl,int yl){
+//        List<String> l = new ArrayList<>();
+//        CityRepository trepo = new CityRepository();
+//        l = trepo.getAllCities();
+//        String[] loaded = new String[l.size()];
+//
+//        for( int i = 0 ; i < l.size() ; i++)
+//        {
+//            loaded[i]=(l.get(i));
+//        }
+//        listOfTrips = new JComboBox(loaded);
+//        listOfTrips.setBounds(x,y,150,50);
+//        listOfTrips.insertItemAt("",0);
+//        listOfTrips.setSelectedIndex(0);
+//        JLabel label = new JLabel(t);
+//        label.setFont(new Font("Consolas",Font.PLAIN,20));
+//        label.setForeground(Color.BLACK);
+//        label.setBounds(xl,yl,200,80);
+//
+//        f.add(listOfTrips);
+//        f.add(label);
+//    }
     Border blackline = BorderFactory.createLineBorder(Color.black,2);
     private void loadAllTrips(List<Trip> l){
-        int y = 320;
-        for (int i = 0 ; i < l.size() ; i++)
+        if(l == null)
         {
-
-            JLabel label = new JLabel();
-            label.setText("TripID: "+l.get(i).getID()+" -- SourceCity: "+l.get(1).getSource().getCity().getName()+
-                    " -- DestinationCity: "+l.get(1).getDestination().getCity().getName()+
-                    " -- Date: ");
-            label.setBorder(blackline);
-            label.setFont(new Font("Consolas",Font.PLAIN,15));
-            label.setBounds(100,y,900,50);
-            f.add(label);
-            y+=60;
+            l = TripController.getAllTrips(connection);
         }
+        if(l.isEmpty()){
+            JLabel label = new JLabel();
+            label.setText("No Result Found");
+            label.setBorder(blackline);
+            label.setFont(new Font("Consolas",Font.PLAIN,25));
+            label.setBounds(100,320,900,50);
+            f.add(label);
+        }else {
+            int y = 320;
+            for (int i = 0 ; i < l.size() ; i++)
+            {
+
+                JLabel label = new JLabel();
+                label.setText("TripID: "+l.get(i).getID()+" -- SourceCity: "+l.get(1).getSource().getCity().getName()+
+                        " -- DestinationCity: "+l.get(1).getDestination().getCity().getName()+
+                        " -- Date: ");
+                label.setBorder(blackline);
+                label.setFont(new Font("Consolas",Font.PLAIN,15));
+                label.setBounds(100,y,900,50);
+                f.add(label);
+                y+=60;
+            }
+        }
+
     }
 
 }

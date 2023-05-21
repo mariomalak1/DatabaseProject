@@ -5,30 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4756c6d6-3656-44f9-87a6-fcea77f0ff4a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Views/SearchForTripView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TrainBookingProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/TrainBookingProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/BookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/BookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/TrainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/TrainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/TripController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/TripController.java" afterDir="false" />
-
-      <change beforePath="$PROJECT_DIR$/src/Controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Trip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Trip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/CityRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/CityRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/MainRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/MainRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/TrainRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TrainRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/TripRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TripRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/VisitRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/VisitRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/UserBookedTripsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/UserBookedTripsView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Views/SearchForTripView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/SearchForTripView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Views/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/UserView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/editProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/editProfile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/logInPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/logInPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/signUpPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/signUpPage.java" afterDir="false" />
-=======
->>>>>>> fcfb40c7d6361468f30325f29acd370f67703ee5
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +40,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "E:/GitHub/DatabaseProject/TrainBookingProject/src/Time Chooser.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

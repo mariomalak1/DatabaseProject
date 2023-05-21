@@ -1,5 +1,6 @@
 package Views;
 
+import Models.Trip;
 import Models.User;
 import Repositories.MainRepository;
 import com.sun.tools.javac.Main;
@@ -9,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.util.List;
 
 public class UserView extends MainFrame implements ActionListener {
     backBtn backBTN = new backBtn();
@@ -82,7 +84,8 @@ public class UserView extends MainFrame implements ActionListener {
         }
         else if(e.getSource() == search)
         {
-            SearchForTripView s = new SearchForTripView(newUser,connection);
+            List<Trip> l= null;
+            SearchForTripView s = new SearchForTripView(newUser,connection,l);
             f.dispose();
         }
     }
