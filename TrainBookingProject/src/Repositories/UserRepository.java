@@ -3,10 +3,6 @@ import Models.User;
 import java.sql.*;
 
 public class UserRepository {
-    //private final Connection connection;
-//    public UserRepository() {
-//        this.connection = MainRepository.getConnection();
-//    }
     public User insertUser(User user,Connection connection) throws SQLException {
         String sql = "INSERT INTO [User](FirstName,LastName,UserPassword,Email,Role)"+
                 "VALUES(?,?,?,?,?)";

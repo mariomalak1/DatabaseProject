@@ -10,13 +10,7 @@ import Models.Trip;
 import Models.Visit;
 
 public class VisitRepository {
-    private final Connection connection;
-
-    public VisitRepository() {
-        this.connection = MainRepository.getConnection();
-    }
-
-    public Visit AddCityToVisit(Visit visit) throws SQLException {
+    public Visit AddCityToVisit(Visit visit, Connection connection) throws SQLException {
         String sql = "INSERT INTO Visit (tripID, cityID, visit_Time, visit_Date) " +
                 "VALUES (?, ?, ?, ?)";
 
@@ -34,7 +28,7 @@ public class VisitRepository {
         return visit;
     }
 
-    public List<Visit> getAllVisitsByTrip(int tripId) throws SQLException {
+    public List<Visit> getAllVisitsByTrip(int tripId, Connection connection) throws SQLException {
         String sql = "SELECT * FROM Visit WHERE tripID = ?";
         List<Visit> visits = new ArrayList<>();
 
@@ -42,7 +36,7 @@ public class VisitRepository {
             statement.setInt(1, tripId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    visits.add(mapVisit(resultSet));
+                    visits.add(mapVisit(resultSet, connection));
                 }
             }
         }
@@ -50,7 +44,7 @@ public class VisitRepository {
         return visits;
     }
 
-    public List<Visit> getAllVisitsByCityName(String cityName) throws SQLException{
+    public List<Visit> getAllVisitsByCityName(String cityName, Connection connection) throws SQLException{
         String sql = "SELECT * From Visit Where cityID in" +
                 " (select CityID from City where city_name Like ?)";
 
@@ -60,7 +54,7 @@ public class VisitRepository {
             statement.setString(1, "%" + cityName + "%");
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    visits.add(mapVisit(resultSet));
+                    visits.add(mapVisit(resultSet, connection));
                 }
             }
         }
@@ -68,7 +62,7 @@ public class VisitRepository {
         return visits;
     }
 
-    public Visit getVisitByCityIDAndTripID(int tripId, int cityId){
+    public Visit getVisitByCityIDAndTripID(int tripId, int cityId, Connection connection){
         String sql = "SELECT * FROM Visit WHERE tripID = ? And cityID = ?";
         Visit visit = null;
 
@@ -77,7 +71,7 @@ public class VisitRepository {
             statement.setInt(2, cityId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    visit = mapVisit(resultSet);
+                    visit = mapVisit(resultSet, connection);
                 }
                 return visit;
             }
@@ -86,20 +80,16 @@ public class VisitRepository {
         }
     }
 
-    private Visit mapVisit(ResultSet resultSet) throws SQLException {
+    private Visit mapVisit(ResultSet resultSet, Connection connection) throws SQLException {
         Visit visit = null;
         int tripID = resultSet.getInt("tripID");
         int cityId = resultSet.getInt("cityID");
         Date date = resultSet.getDate("visit_Date");
         Time time = resultSet.getTime("visit_Time");
 
-<<<<<<< HEAD
-=======
         //        Date ArrivingTime = resultSet.getDate("ArrivingTime");
 
-        Trip trip = new TripRepository().getTripById(tripID,connection);
->>>>>>> 30cfc4802cf164b637d7012d69625d2a7d9e227d
-        City city = new CityRepository().getCityByID(cityId);
+        City city = new CityRepository().getCityByID(cityId, connection);
 
         if (city != null){
             LocalDateTime arrivingTime = LocalDateTime.of(date.toLocalDate(), time.toLocalTime());

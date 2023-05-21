@@ -11,11 +11,6 @@ import Models.Train;
 import Models.Trip;
 
 public class TrainRepository {
-//    private final Connection connection;
-//
-//    public TrainRepository() {
-//        this.connection = MainRepository.getConnection();
-//    }
 
     public Train createTrain(Train train,Connection connection) throws SQLException {
         String sql = "INSERT INTO Train (Capacity, tripID, PricePerSeat) " +

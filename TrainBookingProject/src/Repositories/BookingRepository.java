@@ -9,12 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 public class BookingRepository {
-    //private final Connection connection;
-
-    //public BookingRepository(Connection conn) {
-//        connection = conn;
-//    }
-
+    
     public Booking createBooking(Booking booking,Connection connection) throws SQLException {
         String sqlquery = "INSERT INTO Booking (trainID, userID) " +
                 "VALUES (?, ?)";

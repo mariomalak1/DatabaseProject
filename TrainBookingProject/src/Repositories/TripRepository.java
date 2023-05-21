@@ -10,12 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TripRepository {
-//    private final Connection connection;
-//
-//    public TripRepository(){
-//        connection = MainRepository.getConnection();
-//    }
-
     public Trip createTrip(Trip trip,Connection connection) throws SQLException {
         String sql = "INSERT INTO Trip (SourceID, DestenationID, DateOftrip, StartTime) " +
                 "VALUES (?, ?, ?, ?)";
@@ -65,7 +59,7 @@ public class TripRepository {
         try (PreparedStatement statement = connection.prepareStatement(sql)){
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
-                Trip trip = mapTrip(resultSet,connection);
+                Trip trip = mapTrip(resultSet, connection);
                 trips.add(trip);
             }
         }
@@ -81,7 +75,7 @@ public class TripRepository {
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    trip = mapTrip(resultSet,connection);
+                    trip = mapTrip(resultSet, connection);
                 }
             }
         }
@@ -170,12 +164,7 @@ public class TripRepository {
     }
 
     // send it result of database set and extract from it Trip and return it
-<<<<<<< HEAD
-    private Trip mapTrip(ResultSet resultSet) throws SQLException {
-=======
     private Trip mapTrip(ResultSet resultSet,Connection connection) throws SQLException {
-
->>>>>>> 30cfc4802cf164b637d7012d69625d2a7d9e227d
         Trip trip = null;
 
         int id = resultSet.getInt("TripID");
@@ -187,13 +176,13 @@ public class TripRepository {
         LocalDateTime arrivingTime = LocalDateTime.of(dateOftrip.toLocalDate(), startTime.toLocalTime());
         trip = new Trip(id, arrivingTime);
         // to get the city object
-        City sourceCity = new CityRepository().getCityByID(sourceID);
-        City destenationCity = new CityRepository().getCityByID(destenationID);
+        City sourceCity = new CityRepository().getCityByID(sourceID, connection);
+        City destenationCity = new CityRepository().getCityByID(destenationID, connection);
 
         if (sourceCity != null && destenationCity != null) {
 
-            Visit sourceVisit = new VisitRepository().getVisitByCityIDAndTripID(id , sourceCity.getID());
-            Visit destinationVisit = new VisitRepository().getVisitByCityIDAndTripID(id , destenationCity.getID());
+            Visit sourceVisit = new VisitRepository().getVisitByCityIDAndTripID(id , sourceCity.getID(), connection);
+            Visit destinationVisit = new VisitRepository().getVisitByCityIDAndTripID(id , destenationCity.getID(), connection);
 
             trip.setSource(sourceVisit);
             trip.setDestination(destinationVisit);
@@ -201,7 +190,7 @@ public class TripRepository {
             return trip;
         }
 
-        trip.setVisits(new VisitRepository().getAllVisitsByTrip(trip.getID()));
+        trip.setVisits(new VisitRepository().getAllVisitsByTrip(trip.getID(), connection));
 
         return trip;
     }

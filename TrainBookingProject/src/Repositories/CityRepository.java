@@ -10,13 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CityRepository {
-    private final Connection connection;
 
-    public CityRepository() {
-        connection = MainRepository.getConnection();
-    }
-
-    public City getCityByID(int id) throws SQLException {
+    public City getCityByID(int id, Connection connection) throws SQLException {
         String sql = "Select * from City where CityID = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
@@ -30,7 +25,7 @@ public class CityRepository {
         return null;
     }
 
-    public City addCity(String cityName) throws SQLException {
+    public City addCity(String cityName, Connection connection) throws SQLException {
         String sql = "Insert Into City (city_name) values(?)";
         try(PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, cityName);
@@ -51,7 +46,7 @@ public class CityRepository {
         }
     }
 
-    public List<City> GetAllCitiesLikeName(String cityName) throws SQLException {
+    public List<City> GetAllCitiesLikeName(String cityName, Connection connection) throws SQLException {
         List<City> cities = new ArrayList<>();
         String sql = "Select * from City where city_name LIKE ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -70,7 +65,7 @@ public class CityRepository {
         String name = resultSet.getString("city_name");
         return new City(id, name);
     }
-    public List<String> getAllCities(){
+    public List<String> getAllCities(Connection connection){
         List<String> cities = new ArrayList<>();
         String sql = "Select city_name from City";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {

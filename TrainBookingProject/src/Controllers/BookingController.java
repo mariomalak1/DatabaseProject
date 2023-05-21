@@ -4,12 +4,9 @@ import Models.Booking;
 import Models.Train;
 import Models.User;
 import Repositories.BookingRepository;
-import Repositories.MainRepository;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 public class BookingController {
 
     public static Booking creatBooking(User user, Train train, int NumberOfSeats,Connection conn) {
