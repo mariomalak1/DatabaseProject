@@ -191,9 +191,9 @@ public class TripRepository {
             Visit destinationVisit = new Visit(destenationCity);
 
             trip = new Trip(id, destinationVisit, sourceVisit);
+            trip.setStartDateTime(LocalDateTime.of(dateOftrip.toLocalDate(), startTime.toLocalTime()));
             destinationVisit.setTrip(trip);
             sourceVisit.setTrip(trip);
-
             LocalDateTime arrivingTime = LocalDateTime.of(dateOftrip.toLocalDate(), startTime.toLocalTime());
             sourceVisit.setArrivingTime(arrivingTime);
 

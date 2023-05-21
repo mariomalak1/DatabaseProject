@@ -1,4 +1,6 @@
 import Controllers.BookingController;
+import Controllers.TrainController;
+import Controllers.TripController;
 import Controllers.UserController;
 import Models.*;
 import Repositories.*;
@@ -12,20 +14,21 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        User user = UserController.getUserById(6);
-        List<Booking> bookings = BookingController.getAllBookingForUser(user);
-        if (bookings != null) {
-            for (Booking booking : bookings) {
-                System.out.println("-------------------------------------");
-                System.out.println(booking.getUser().getID());
-                System.out.println(booking.getTrip().getID());
-                System.out.println(booking.getTrain().getID());
-                System.out.println(booking.getNumberOfSeats());
-                System.out.println("-------------------------------------");
-            }
-        }else{
-            System.out.println("no thing");
+        Trip trip = TripController.getTripByID(1);
+        if (trip != null) {
+            System.out.println("-------------------------------------");
+            System.out.println(trip.getID());
+            System.out.println(trip.getTrains().size());
+            System.out.println(trip.getCities().size());
+            System.out.println(trip.getStartDateTime());
+            System.out.println(trip.getSource().getCity().getName());
+            System.out.println(trip.getDestination().getCity().getName());
+            System.out.println(trip.EndTime());
+            System.out.println("-------------------------------------");
+            //        HomePageView f = new HomePageView();
         }
-//        HomePageView f = new HomePageView();
+        else {
+            System.out.println("null");
+        }
     }
 }

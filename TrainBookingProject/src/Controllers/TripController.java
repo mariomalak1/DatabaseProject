@@ -98,6 +98,9 @@ public class TripController {
         try {
             Trip trip = new TripRepository().getTripById(tripID);
             trip.setTrains(new TrainRepository().getAllTrainsInTrip(trip.getID()));
+
+            System.out.println("mareioio");
+
             trip.setVisits(new VisitRepository().getAllVisitsByTrip(trip.getID()));
             return trip;
         } catch (Exception e) {
