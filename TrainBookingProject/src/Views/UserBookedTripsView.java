@@ -47,8 +47,9 @@ public class UserBookedTripsView implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backBTN)
         {
+            UserView u = new UserView(newUser,connection);
             f.dispose();
-            UserView l = new UserView(newUser);
+
         }
     }
     private void loadBooking(){

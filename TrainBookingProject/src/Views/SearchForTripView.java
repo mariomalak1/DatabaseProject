@@ -155,7 +155,7 @@ public class SearchForTripView implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backBTN)
         {
-            logInPage l = new logInPage();
+            UserView u = new UserView(newUser,connection);
             f.dispose();
         }
         else if(e.getSource() == searchBTN)

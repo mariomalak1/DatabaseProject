@@ -21,12 +21,13 @@ public class UserView extends MainFrame implements ActionListener {
     JButton editProfile = new JButton();
     MainFrame f = new MainFrame();
     User newUser = null;
-    Connection connection = MainRepository.getConnection();
-    public UserView(User user){
+    Connection connection;
+    public UserView(User user,Connection conn){
         newUser = user;
+        connection = conn;
         backBTN.setText("Log Out");
         backBTN.addActionListener(this);
-        welcome.setText("Welcome: "+user.getFullName());
+        welcome.setText("Welcome, "+user.getFullName());
         welcome.setForeground(Color.WHITE);
         welcome.setFont(new Font("Consolas",Font.PLAIN,30));
         welcome.setBounds(450,5,400,50);
@@ -67,7 +68,7 @@ public class UserView extends MainFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backBTN)
         {
-            logInPage l = new logInPage();
+            logInPage l = new logInPage(connection);
             f.dispose();
         }
         else if(e.getSource()== editProfile)

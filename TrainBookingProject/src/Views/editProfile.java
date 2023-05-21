@@ -98,8 +98,9 @@ public class editProfile implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backBTN)
         {
+
+            UserView l = new UserView(newUser,connection);
             f.dispose();
-            logInPage l = new logInPage();
         }
         else if(e.getSource()==editBTN)
         {
@@ -120,8 +121,8 @@ public class editProfile implements ActionListener {
                 n = UserController.updateUser(newUser.getID(), fname, lname, pass, email, "User",connection);
                 if (newUser != null) {
                     JOptionPane.showMessageDialog(null, "User Edited Successfully", "Sign Up", JOptionPane.INFORMATION_MESSAGE);
+                    UserView u = new UserView(newUser,connection);
                     f.dispose();
-                    UserView u = new UserView(newUser);
                 }
             }
         }

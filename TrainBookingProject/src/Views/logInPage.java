@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.util.Objects;
 
 public class logInPage extends MainFrame implements ActionListener {
     JLabel userL = new JLabel();
@@ -20,9 +21,10 @@ public class logInPage extends MainFrame implements ActionListener {
     JTextField userIdIN;
     JTextField userPassIN;
     MainFrame LoginFrame = new MainFrame();
-    Connection connection = MainRepository.getConnection();
+    Connection connection;
     //ImageIcon backIcon = new ImageIcon("src\\back.png");
-    public logInPage(){
+    public logInPage(Connection conn){
+        connection = conn;
         backBTN.addActionListener(this);
         upper.add(backBTN);
         userL.setText("User ID");
@@ -66,16 +68,21 @@ public class logInPage extends MainFrame implements ActionListener {
             {
                 JOptionPane.showMessageDialog(null,"Login Failed, UserId or Password is is wrong","Login Failed",JOptionPane.ERROR_MESSAGE);
 
+            }else if(Objects.equals(user.getRole(), "Admin"))
+            {
+                AdminView a= new AdminView(user,connection);
+                LoginFrame.dispose();
             }
             else {
+                UserView u = new UserView(user,connection);
                 LoginFrame.dispose();
-                UserView u = new UserView(user);
             }
         }
         else if(e.getSource() == backBTN)
         {
+
+            HomePageView h = new HomePageView(connection);
             LoginFrame.dispose();
-            HomePageView h = new HomePageView();
         }
     }
 }
