@@ -53,6 +53,10 @@ public class AdminView implements ActionListener {
         {
             logInPage l = new logInPage(connection);
             LoginFrame.dispose();
+        }else if(e.getSource() == showAllTrains){
+            showAllToAdmin a = new showAllToAdmin(newUser,connection);
+            a.showAllTrains();
+            LoginFrame.dispose();
         }
     }
     private static class Button extends JButton{
@@ -67,5 +71,6 @@ public class AdminView implements ActionListener {
 
         }
     }
+
 }
 

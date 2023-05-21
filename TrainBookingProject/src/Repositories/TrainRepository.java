@@ -83,7 +83,20 @@ public class TrainRepository {
 
         return trains;
     }
+    public List<Train> getAllTrains(Connection connection) throws SQLException{
+        String sql = "SELECT * FROM Train ";
+        List<Train> trains = new ArrayList<>();
 
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    trains.add(mapTrain(resultSet,connection));
+                }
+            }
+        }
+
+        return trains;
+    }
     private Train mapTrain(ResultSet resultSet,Connection connection) throws SQLException {
         Train train;
         int ID = resultSet.getInt("TrainID");

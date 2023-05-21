@@ -40,7 +40,7 @@ public class HomePageView implements ActionListener {
         label.setForeground(new Color(45,66,99));
         label.setPreferredSize(new Dimension(200,200));
         label.setHorizontalAlignment(JLabel.CENTER);
-        label.setBounds(410,50,430,200);
+        label.setBounds(380,50,500,200);
 
         f.setLayout(null);
         f.add(label);
