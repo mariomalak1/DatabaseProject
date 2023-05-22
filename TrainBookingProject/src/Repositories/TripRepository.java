@@ -20,6 +20,7 @@ public class TripRepository {
             statement.setDate(3, Date.valueOf(trip.getStartDateTime().toLocalDate()));
             statement.setTime(4, Time.valueOf(trip.getStartDateTime().toLocalTime()));
 
+
             int rowsAffected = statement.executeUpdate();
 
             if (rowsAffected == 0) {
