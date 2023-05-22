@@ -18,7 +18,6 @@ create table Trip(
 	DestenationID int not null,
 	DateOftrip date,
 	StartTime time,
-	EndTime time,
 	
 	foreign key (SourceID) References City(CityID),
 	foreign key (DestenationID) References City(CityID),
