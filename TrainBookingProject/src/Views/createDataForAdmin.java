@@ -1,9 +1,6 @@
 package Views;
 
-import Controllers.CityController;
-import Controllers.TrainController;
-import Controllers.TripController;
-import Controllers.UserController;
+import Controllers.*;
 import Models.City;
 import Models.Train;
 import Models.Trip;
@@ -133,6 +130,7 @@ public class createDataForAdmin implements ActionListener {
             java.util.Date date = null;
             LocalDate local;
             Date sqlDate = null;
+            LocalDateTime stime = null;
             if(cal.getDate() != null)
             {
                 //date = cal.getDate();
@@ -142,13 +140,15 @@ public class createDataForAdmin implements ActionListener {
                 if(!hours.equals(" ") && !mins.equals(" "))
                 {
                     time = Time.valueOf(hours+":"+mins+":0");
+                    stime = LocalDateTime.of(local,time.toLocalTime());
 
                 }
 
-
+                City city = CityController.getCityLikeName(dname,connection);
                 Trip n = null;
                 try {
                     n = TripController.createTrip(sname,dname,time,sqlDate,connection);
+                    VisitController.createVisit(stime,city,n,connection);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }

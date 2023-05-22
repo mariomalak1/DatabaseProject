@@ -164,7 +164,7 @@ public class editDataForAdmin implements ActionListener {
         //trainIdL.
     }
     public void editTrip(){
-        
+
     }
     private List<Integer> getAllTrainIDs(){
         List<Train> l;
