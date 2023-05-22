@@ -163,6 +163,9 @@ public class editDataForAdmin implements ActionListener {
         f.setVisible(true);
         //trainIdL.
     }
+    public void editTrip(){
+        
+    }
     private List<Integer> getAllTrainIDs(){
         List<Train> l;
         TrainRepository trepo = new TrainRepository();
