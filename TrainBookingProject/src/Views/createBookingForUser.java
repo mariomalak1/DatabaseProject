@@ -1,8 +1,13 @@
 package Views;
 
+import Controllers.BookingController;
+import Controllers.TrainController;
+import Controllers.UserController;
+import Models.Booking;
 import Models.Train;
 import Models.User;
 import Repositories.TrainRepository;
+import Repositories.UserRepository;
 
 import javax.swing.*;
 import java.awt.*;
@@ -83,12 +88,40 @@ public class createBookingForUser implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == backBTN)
         {
-            AdminView a = new AdminView(newUser,connection);
+            SearchForTripView v  = new SearchForTripView(newUser,connection,null);
             f.dispose();
-        }else if(e.getSource() == createBookingBTN)
-        {
+        }else if(e.getSource() == createBookingBTN) {
             Integer trainId= Integer.parseInt(trainid.getSelectedItem().toString());
+            Integer userId ;
+            Integer numberofseats;
+            User user;
+            Train train = TrainController.getTrainById(trainId,connection);
+            if(Number.isNumeric(userIdT.getText()) && Number.isNumeric(numberOfseats.getText()))
+            {
+                userId = Integer.parseInt(userIdT.getText());
+                numberofseats = Integer.parseInt(numberOfseats.getText());
+                user = UserController.getUserById(userId,connection);
+                if(user != null)
+                {
+                    System.out.println(numberofseats);
+                    Booking book = BookingController.creatBooking(user,train,numberofseats,connection);
+                    if(book != null)
+                    {
+                        JOptionPane.showMessageDialog(null, "Booking Created Successfully, BookingID: "+book.getID(), "CreateBooking", JOptionPane.INFORMATION_MESSAGE);
+                        UserView u = new UserView(newUser,connection);
+                        f.dispose();
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Error While Creating Booking", "CreateBooking", JOptionPane.ERROR_MESSAGE);
 
+                    }
+                }else {
+                    JOptionPane.showMessageDialog(null, "User ID in not valid, No User With that id", "CreateBooking", JOptionPane.ERROR_MESSAGE);
+
+                }
+            }else {
+                JOptionPane.showMessageDialog(null, "Please Enter Only Number", "CreateBooking", JOptionPane.ERROR_MESSAGE);
+
+            }
         }
     }
     private java.util.List<Integer> getAllTrainIDs(){
