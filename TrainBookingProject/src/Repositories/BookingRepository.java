@@ -11,13 +11,13 @@ import java.util.ArrayList;
 public class BookingRepository {
     
     public Booking createBooking(Booking booking,Connection connection) throws SQLException {
-        String sqlquery = "INSERT INTO Booking (trainID, userID) " +
-                "VALUES (?, ?)";
+        String sqlquery = "INSERT INTO Booking (trainID, userID,NumberOfSeats) " +
+                "VALUES (?, ?, ?)";
 
         try (PreparedStatement statement = connection.prepareStatement(sqlquery, PreparedStatement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, booking.getTrain().getID());
             statement.setInt(2, booking.getUser().getID());
-
+            statement.setInt(3, booking.getNumberOfSeats());
             int rowsAffected = statement.executeUpdate();
             if (rowsAffected == 0) {
                 throw new SQLException("Adding Booking failed");

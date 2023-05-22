@@ -14,7 +14,7 @@ public class TripRepository {
         String sql = "INSERT INTO Trip (SourceID, DestenationID, DateOftrip, StartTime) " +
                 "VALUES (?, ?, ?, ?)";
 
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (PreparedStatement statement = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, trip.getSource().getCity().getID());
             statement.setInt(2, trip.getDestination().getCity().getID());
             statement.setDate(3, Date.valueOf(trip.getStartDateTime().toLocalDate()));

@@ -15,6 +15,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 import java.awt.event.ActionEvent;
@@ -36,6 +38,7 @@ public class SearchForTripView implements ActionListener {
     JComboBox hoursC;
     JComboBox listOfTripsS;
     JComboBox listOfTripsD;
+    JButton createBookingBTN ;
     public SearchForTripView(User user,Connection conn,List<Trip> l ){
         connection = conn;
         newUser = user ;
@@ -49,7 +52,7 @@ public class SearchForTripView implements ActionListener {
         label.setFont(new Font("Consolas",Font.PLAIN,30));
         label.setForeground(Color.BLACK);
         label.setBounds(500,50,300,80);
-        List<String> nS = new ArrayList<>();
+        List<String> nS;
         CityRepository trepo = new CityRepository();
         nS = trepo.getAllCities(connection);
         String[] loadedS = new String[nS.size()];
@@ -130,6 +133,13 @@ public class SearchForTripView implements ActionListener {
         capL.setForeground(Color.BLACK);
         capL.setBounds(250,240,300,80);
         loadAllTrips(l);
+        createBookingBTN = new JButton("CreateBooking");
+        createBookingBTN.setFocusable(false);
+        createBookingBTN.setFont(new Font("Consolas",Font.PLAIN,30));
+        createBookingBTN.setBounds(900,600,300,50);
+        createBookingBTN.setBackground(new Color(0x212A3E));
+        createBookingBTN.addActionListener(this);
+        createBookingBTN.setForeground(Color.WHITE);
         upper.add(welcome);
         upper.add(backBTN);
         f.add(upper);
@@ -143,6 +153,7 @@ public class SearchForTripView implements ActionListener {
         f.add(divider);
         f.add(cap);
         f.add(capL);
+        f.add(createBookingBTN);
         f.setVisible(true);
     }
 
@@ -161,50 +172,58 @@ public class SearchForTripView implements ActionListener {
             {
 
                 sname = listOfTripsS.getSelectedItem().toString();
-                System.out.println(sname);
+
             }
             if(listOfTripsD.getSelectedItem().toString() != " "&& listOfTripsD.getSelectedItem().toString() != null)
             {
 
                 dname = listOfTripsD.getSelectedItem().toString();
-                System.out.println(dname);
+
             }
             String hours = hoursC.getSelectedItem().toString();
             String mins = minC.getSelectedItem().toString();
             String sdate = " ";
             Time time = null;
-            Date date = null;
+            java.util.Date date = null;
+            LocalDate local;
+            Date sqlDate = null;
             int capacity = 0;
             if(cal.getDate() != null)
             {
-                sdate = cal.getDate().toString();
-                System.out.println(sdate);
+                date =cal.getDate();
+                local = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                sqlDate = Date.valueOf(local);
             }
 
 
             if(hours != " " && mins != " ")
             {
                 time = Time.valueOf(hours+":"+mins+":0");
-                System.out.println(time);
+
             }
-            System.out.println(hours + " "+ mins);
-            if(sdate != " ")
-            {
-                date = Date.valueOf(sdate);
-                System.out.println(date);
-            }
+            //System.out.println(hours + " "+ mins);
+//            if(sdate != " ")
+//            {
+//                date = Date.valueOf(sdate);
+//
+//            }
             if(!cap.getText().isEmpty())
             {
                 capacity = Integer.parseInt(cap.getText());
-                System.out.println(capacity);
+
             }
 
             City destinationCity = CityController.getCityLikeName(dname, connection);
             City sourceCity = CityController.getCityLikeName(sname, connection);
-            List<Trip> n = TripController.getAllTripsForSpecificCriteria(time, date, destinationCity, sourceCity, capacity, connection);
+            List<Trip> n = TripController.getAllTripsForSpecificCriteria(time, sqlDate, destinationCity, sourceCity, capacity, connection);
             SearchForTripView newS = new SearchForTripView(newUser,connection,n);
             f.dispose();
 
+        }
+        else if(e.getSource() == createBookingBTN)
+        {
+            createBookingForUser createB = new createBookingForUser(newUser, connection);
+            f.dispose();
         }
 
     }
@@ -250,10 +269,9 @@ public class SearchForTripView implements ActionListener {
             int y = 320;
             for (int i = 0 ; i < l.size() ; i++)
             {
-                System.out.println(l.get(i).getSource().getCity().getName());
                 JLabel label = new JLabel();
                 label.setText("TripID: "+l.get(i).getID()+" -- SourceCity: "+l.get(i).getSource().getCity().getName()+
-                        " -- DestinationCity: "+l.get(1).getDestination().getCity().getName()+
+                        " -- DestinationCity: "+l.get(i).getDestination().getCity().getName()+
                         " -- Date: ");
                 label.setBorder(blackline);
                 label.setFont(new Font("Consolas",Font.PLAIN,15));
