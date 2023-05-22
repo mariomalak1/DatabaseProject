@@ -24,6 +24,7 @@ public class showAllToAdmin implements ActionListener {
     JLabel welcome = new JLabel();
     User newUser;
     JButton editTrain;
+    JButton editTrip;
     Border blackline = BorderFactory.createLineBorder(Color.black,2);
     public showAllToAdmin(User user,Connection conn){
         connection = conn;
@@ -48,6 +49,10 @@ public class showAllToAdmin implements ActionListener {
         }else if(e.getSource() == editTrain){
             editDataForAdmin edit  = new editDataForAdmin(newUser , connection);
             edit.editTrain();
+            f.dispose();
+        }else if(e.getSource() == editTrip) {
+            editDataForAdmin edit  = new editDataForAdmin(newUser , connection);
+            edit.editTrip();
             f.dispose();
         }
     }
@@ -105,14 +110,14 @@ public class showAllToAdmin implements ActionListener {
             f.add(label);
             y+=60;
         }
-        editTrain = new JButton("Edit Trip");
-        editTrain.setBackground(new Color(0x212A3E));
-        editTrain.setFont(new Font("Consolas", Font.PLAIN,20));
-        editTrain.setForeground(Color.WHITE);
-        editTrain.setBounds(1000,600,200,50);
-        editTrain.setFocusable(false);
-        editTrain.addActionListener(this);
-        f.add(editTrain);
+        editTrip = new JButton("Edit Trip");
+        editTrip.setBackground(new Color(0x212A3E));
+        editTrip.setFont(new Font("Consolas", Font.PLAIN,20));
+        editTrip.setForeground(Color.WHITE);
+        editTrip.setBounds(1000,600,200,50);
+        editTrip.setFocusable(false);
+        editTrip.addActionListener(this);
+        f.add(editTrip);
         f.setVisible(true);
     }
 }

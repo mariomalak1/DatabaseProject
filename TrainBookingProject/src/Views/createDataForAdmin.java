@@ -145,10 +145,12 @@ public class createDataForAdmin implements ActionListener {
                 }
 
                 City city = CityController.getCityLikeName(dname,connection);
+                City city2 = CityController.getCityLikeName(sname,connection);
                 Trip n = null;
                 try {
                     n = TripController.createTrip(sname,dname,time,sqlDate,connection);
                     VisitController.createVisit(stime,city,n,connection);
+                    VisitController.createVisit(stime,city2,n,connection);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }

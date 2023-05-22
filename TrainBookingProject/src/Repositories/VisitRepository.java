@@ -63,7 +63,6 @@ public class VisitRepository {
 
         return visits;
     }
-
     public Visit getVisitByCityIDAndTripID(int tripId, int cityId, Connection connection){
         String sql = "SELECT * FROM Visit WHERE tripID = ? And cityID = ?";
         Visit visit = null;
