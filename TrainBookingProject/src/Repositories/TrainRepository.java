@@ -110,5 +110,13 @@ public class TrainRepository {
 
         return train;
     }
+    public void deleteTrain(int trainId,Connection connection) throws SQLException{
+        String sql = "DELETE From Train WHERE TrainID = ?";
+        try(PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, trainId);
+            statement.executeUpdate();
+        }
+
+    }
 
 }

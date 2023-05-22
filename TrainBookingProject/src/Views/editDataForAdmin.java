@@ -28,6 +28,7 @@ public class editDataForAdmin implements ActionListener {
     JTextField tripIdT;
     JTextField pricePerSeatT;
     JButton editTrainBTN ;
+    JButton deleteTrainBTN;
     public editDataForAdmin(User user,Connection conn){
         connection = conn;
         newUser = user;
@@ -88,6 +89,19 @@ public class editDataForAdmin implements ActionListener {
 
 
         }
+        else if(e.getSource() == deleteTrainBTN) {
+            Integer trainID = Integer.parseInt(trainIdC.getSelectedItem().toString());
+            TrainRepository trepo = new TrainRepository();
+            try {
+                trepo.deleteTrain(trainID,connection);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+            JOptionPane.showMessageDialog(null,"Train Deleted Successfully","Train Delete",JOptionPane.INFORMATION_MESSAGE);
+            AdminView a =new AdminView(newUser , connection);
+            f.dispose();
+
+        }
     }
     public void editTrain(){
         JLabel trainIdL = new JLabel("Train ID:");
@@ -126,10 +140,16 @@ public class editDataForAdmin implements ActionListener {
         editTrainBTN = new JButton("Edit");
         editTrainBTN.setFocusable(false);
         editTrainBTN.setFont(new Font("Consolas",Font.PLAIN,30));
-        editTrainBTN.setBounds(540,450,200,50);
+        editTrainBTN.setBounds(670,450,200,50);
         editTrainBTN.setBackground(new Color(0x212A3E));
         editTrainBTN.addActionListener(this);
         editTrainBTN.setForeground(Color.WHITE);
+        deleteTrainBTN = new JButton("Delete");
+        deleteTrainBTN.setFont(new Font("Consolas",Font.PLAIN,30));
+        deleteTrainBTN.setBounds(420,450,200,50);
+        deleteTrainBTN.setBackground(new Color(0x212A3E));
+        deleteTrainBTN.addActionListener(this);
+        deleteTrainBTN.setForeground(Color.WHITE);
         f.add(capacity);
         f.add(capacityT);
         f.add(trainIdL);
@@ -139,6 +159,7 @@ public class editDataForAdmin implements ActionListener {
         f.add(priceL);
         f.add(pricePerSeatT);
         f.add(editTrainBTN);
+        f.add(deleteTrainBTN);
         f.setVisible(true);
         //trainIdL.
     }
