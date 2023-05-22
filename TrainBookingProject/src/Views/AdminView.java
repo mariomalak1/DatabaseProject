@@ -68,6 +68,11 @@ public class AdminView implements ActionListener {
             createDataForAdmin create = new createDataForAdmin(newUser,connection);
             create.createTrain();
             LoginFrame.dispose();
+        }else if(e.getSource() == createAdminBTN)
+        {
+            createDataForAdmin create = new createDataForAdmin(newUser,connection);
+            create.createAdmin();
+            LoginFrame.dispose();
         }
     }
     private static class Button extends JButton{

@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4756c6d6-3656-44f9-87a6-fcea77f0ff4a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Views/createBookingForUser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/TrainRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TrainRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/editDataForAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/editDataForAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Views/AdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/AdminView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Views/SearchForTripView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/SearchForTripView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Views/createDataForAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/createDataForAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Views/logInPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/logInPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +89,7 @@
       <workItem from="1684585873339" duration="20045000" />
       <workItem from="1684699568633" duration="134000" />
       <workItem from="1684699760874" duration="9534000" />
-      <workItem from="1684758516103" duration="1802000" />
+      <workItem from="1684758516103" duration="5354000" />
     </task>
     <servers />
   </component>

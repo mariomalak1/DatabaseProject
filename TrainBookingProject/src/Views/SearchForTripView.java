@@ -36,6 +36,7 @@ public class SearchForTripView implements ActionListener {
     JComboBox hoursC;
     JComboBox listOfTripsS;
     JComboBox listOfTripsD;
+    JButton createBookingBTN ;
     public SearchForTripView(User user,Connection conn,List<Trip> l ){
         connection = conn;
         newUser = user ;
@@ -130,6 +131,13 @@ public class SearchForTripView implements ActionListener {
         capL.setForeground(Color.BLACK);
         capL.setBounds(250,240,300,80);
         loadAllTrips(l);
+        createBookingBTN = new JButton("CreateBooking");
+        createBookingBTN.setFocusable(false);
+        createBookingBTN.setFont(new Font("Consolas",Font.PLAIN,30));
+        createBookingBTN.setBounds(900,600,300,50);
+        createBookingBTN.setBackground(new Color(0x212A3E));
+        createBookingBTN.addActionListener(this);
+        createBookingBTN.setForeground(Color.WHITE);
         upper.add(welcome);
         upper.add(backBTN);
         f.add(upper);
@@ -143,6 +151,7 @@ public class SearchForTripView implements ActionListener {
         f.add(divider);
         f.add(cap);
         f.add(capL);
+        f.add(createBookingBTN);
         f.setVisible(true);
     }
 
@@ -161,13 +170,13 @@ public class SearchForTripView implements ActionListener {
             {
 
                 sname = listOfTripsS.getSelectedItem().toString();
-                System.out.println(sname);
+
             }
             if(listOfTripsD.getSelectedItem().toString() != " "&& listOfTripsD.getSelectedItem().toString() != null)
             {
 
                 dname = listOfTripsD.getSelectedItem().toString();
-                System.out.println(dname);
+
             }
             String hours = hoursC.getSelectedItem().toString();
             String mins = minC.getSelectedItem().toString();
@@ -178,25 +187,25 @@ public class SearchForTripView implements ActionListener {
             if(cal.getDate() != null)
             {
                 sdate = cal.getDate().toString();
-                System.out.println(sdate);
+
             }
 
 
             if(hours != " " && mins != " ")
             {
                 time = Time.valueOf(hours+":"+mins+":0");
-                System.out.println(time);
+
             }
             System.out.println(hours + " "+ mins);
             if(sdate != " ")
             {
                 date = Date.valueOf(sdate);
-                System.out.println(date);
+
             }
             if(!cap.getText().isEmpty())
             {
                 capacity = Integer.parseInt(cap.getText());
-                System.out.println(capacity);
+
             }
 
             City destinationCity = CityController.getCityLikeName(dname, connection);
@@ -205,6 +214,11 @@ public class SearchForTripView implements ActionListener {
             SearchForTripView newS = new SearchForTripView(newUser,connection,n);
             f.dispose();
 
+        }
+        else if(e.getSource() == createBookingBTN)
+        {
+            createBookingForUser createB = new createBookingForUser(newUser, connection);
+            f.dispose();
         }
 
     }
@@ -250,7 +264,6 @@ public class SearchForTripView implements ActionListener {
             int y = 320;
             for (int i = 0 ; i < l.size() ; i++)
             {
-                System.out.println(l.get(i).getSource().getCity().getName());
                 JLabel label = new JLabel();
                 label.setText("TripID: "+l.get(i).getID()+" -- SourceCity: "+l.get(i).getSource().getCity().getName()+
                         " -- DestinationCity: "+l.get(1).getDestination().getCity().getName()+
