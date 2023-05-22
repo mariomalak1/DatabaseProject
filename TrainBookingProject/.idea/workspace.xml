@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4756c6d6-3656-44f9-87a6-fcea77f0ff4a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/createBookingForUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/createBookingForUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Views/logInPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/logInPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repositories/TripRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TripRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Views/AdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/AdminView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Views/SearchForTripView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/SearchForTripView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Views/createDataForAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/createDataForAdmin.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +45,7 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "E:/GitHub/DatabaseProject/TrainBookingProject/src/Time Chooser.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",

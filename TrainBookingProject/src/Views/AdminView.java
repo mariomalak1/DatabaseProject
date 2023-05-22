@@ -74,6 +74,12 @@ public class AdminView implements ActionListener {
             create.createAdmin();
             LoginFrame.dispose();
         }
+        else if(e.getSource() == createTripBTN)
+        {
+            createDataForAdmin create = new createDataForAdmin(newUser,connection);
+            create.createTrip();
+            LoginFrame.dispose();
+        }
     }
     private static class Button extends JButton{
         public Button(String text,int x,int y,int w){
