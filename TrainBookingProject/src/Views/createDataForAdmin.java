@@ -48,6 +48,8 @@ public class createDataForAdmin implements ActionListener {
     JComboBox minC;
     JDateChooser cal;
     JComboBox hoursC;
+    JComboBox hoursCS;
+    JComboBox minCS;
     JButton createTripBTN;
     public createDataForAdmin(User user,Connection conn){
         newUser = user;
@@ -127,10 +129,14 @@ public class createDataForAdmin implements ActionListener {
             String mins = minC.getSelectedItem().toString();
             String sdate = " ";
             Time time = null;
+            Time Dtime = null;
             java.util.Date date = null;
             LocalDate local;
             Date sqlDate = null;
             LocalDateTime stime = null;
+            LocalDateTime dtime = null;
+            String hoursD = hoursCS.getSelectedItem().toString();
+            String minsD = minCS.getSelectedItem().toString();
             if(cal.getDate() != null)
             {
                 //date = cal.getDate();
@@ -139,8 +145,14 @@ public class createDataForAdmin implements ActionListener {
                 sqlDate = Date.valueOf(local);
                 if(!hours.equals(" ") && !mins.equals(" "))
                 {
-                    time = Time.valueOf(hours+":"+mins+":0");
+                    time = Time.valueOf(hoursD+":"+minsD+":0");
                     stime = LocalDateTime.of(local,time.toLocalTime());
+
+                }
+                if(!hoursD.equals(" ") && !minsD.equals(" "))
+                {
+                    Dtime = Time.valueOf(hours+":"+mins+":0");
+                    dtime = LocalDateTime.of(local,Dtime.toLocalTime());
 
                 }
 
@@ -149,7 +161,7 @@ public class createDataForAdmin implements ActionListener {
                 Trip n = null;
                 try {
                     n = TripController.createTrip(sname,dname,time,sqlDate,connection);
-                    VisitController.createVisit(stime,city,n,connection);
+                    VisitController.createVisit(dtime,city,n,connection);
                     VisitController.createVisit(stime,city2,n,connection);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
@@ -301,18 +313,18 @@ public class createDataForAdmin implements ActionListener {
         calenderL.setFont(new Font("Consolas",Font.PLAIN,20));
         calenderL.setForeground(Color.BLACK);
         calenderL.setBounds(325,177,300,80);
-        String[] hours = new String[24];
-        for(int i = 1 ; i <= 24;i++)
+        String[] hours = new String[25];
+        for(int i = 0 ; i <= 24;i++)
         {
-            hours[i-1] = String.valueOf(i);
+            hours[i] = String.valueOf(i);
         }
         hoursC = new JComboBox(hours);
         hoursC.setBounds(800,200,50,30);
         hoursC.setSelectedIndex(0);
-        String[] min = new String[59];
-        for(int i = 1 ; i <= 59;i++)
+        String[] min = new String[60];
+        for(int i = 0 ; i <= 59;i++)
         {
-            min[i-1] = String.valueOf(i);
+            min[i] = String.valueOf(i);
         }
         minC = new JComboBox(min);
         minC.setBounds(860,200,50,30);
@@ -321,6 +333,17 @@ public class createDataForAdmin implements ActionListener {
         timeL.setFont(new Font("Consolas",Font.PLAIN,20));
         timeL.setForeground(Color.BLACK);
         timeL.setBounds(620,177,300,80);
+        //-----------------------
+        hoursCS = new JComboBox(hours);
+        hoursCS.setBounds(800,250,50,30);
+        hoursCS.setSelectedIndex(0);
+        minCS = new JComboBox(min);
+        minCS.setBounds(860,250,50,30);
+        minCS.setSelectedIndex(0);
+        JLabel timeLS = new JLabel("EndTime (h-m):");
+        timeLS.setFont(new Font("Consolas",Font.PLAIN,20));
+        timeLS.setForeground(Color.BLACK);
+        timeLS.setBounds(620,227,300,80);
         createTripBTN = new JButton("Create");
         createTripBTN.setFont(new Font("Consolas",Font.PLAIN,20));
         createTripBTN.setForeground(Color.WHITE);
@@ -333,6 +356,9 @@ public class createDataForAdmin implements ActionListener {
         f.add(minC);
         f.add(timeL);
         f.add(createTripBTN);
+        f.add(hoursCS);
+        f.add(minCS);
+        f.add(timeLS);
         f.setVisible(true);
     }
 }

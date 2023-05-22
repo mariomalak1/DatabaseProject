@@ -120,6 +120,8 @@ public class editDataForAdmin implements ActionListener {
             VisitRepository visitRepo = new VisitRepository();
 
         }
+
+
     }
     public void editTrain(){
         JLabel trainIdL = new JLabel("Train ID:");
