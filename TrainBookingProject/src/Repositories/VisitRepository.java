@@ -80,6 +80,17 @@ public class VisitRepository {
         }
     }
 
+    public void deleteVisit(Visit visit, Connection connection) throws SQLException {
+        String sql = "DELETE From Visit WHERE tripID = ? And cityID = ? And visit_Date = ? And visit_Time = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, visit.getTrip().getID());
+            statement.setInt(2, visit.getCity().getID());
+            statement.setDate(3, Date.valueOf(visit.getArrivingDateTime().toLocalDate()));
+            statement.setTime(4, Time.valueOf(visit.getArrivingDateTime().toLocalTime()));
+            statement.executeUpdate();
+        }
+    }
+
     private Visit mapVisit(ResultSet resultSet, Connection connection) throws SQLException {
         Visit visit = null;
         int tripID = resultSet.getInt("tripID");
@@ -99,4 +110,3 @@ public class VisitRepository {
         return null;
     }
 }
-
