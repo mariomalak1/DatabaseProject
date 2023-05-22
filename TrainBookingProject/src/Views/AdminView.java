@@ -57,6 +57,11 @@ public class AdminView implements ActionListener {
             showAllToAdmin a = new showAllToAdmin(newUser,connection);
             a.showAllTrains();
             LoginFrame.dispose();
+        }else if(e.getSource() == showAllTrips)
+        {
+            showAllToAdmin a = new showAllToAdmin(newUser,connection);
+            a.showAllTrips();
+            LoginFrame.dispose();
         }
     }
     private static class Button extends JButton{

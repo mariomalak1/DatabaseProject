@@ -46,6 +46,7 @@ public class editDataForAdmin implements ActionListener {
         if (e.getSource()==backBTN)
         {
             showAllToAdmin s = new showAllToAdmin(newUser ,connection);
+            s.showAllTrains();
             f.dispose();
         }else if(e.getSource() == editTrainBTN)
         {

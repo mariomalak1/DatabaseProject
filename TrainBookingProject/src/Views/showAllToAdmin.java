@@ -2,8 +2,10 @@ package Views;
 
 import Controllers.TrainController;
 import Models.Train;
+import Models.Trip;
 import Models.User;
 import Repositories.TrainRepository;
+import Repositories.TripRepository;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -71,6 +73,39 @@ public class showAllToAdmin implements ActionListener {
             y+=60;
         }
         editTrain = new JButton("Edit Train");
+        editTrain.setBackground(new Color(0x212A3E));
+        editTrain.setFont(new Font("Consolas", Font.PLAIN,20));
+        editTrain.setForeground(Color.WHITE);
+        editTrain.setBounds(1000,600,200,50);
+        editTrain.setFocusable(false);
+        editTrain.addActionListener(this);
+        f.add(editTrain);
+        f.setVisible(true);
+    }
+    public void showAllTrips(){
+        TripRepository trepo = new TripRepository();
+        List<Trip> tripList;
+        try {
+            tripList = trepo.getAllTrips(connection);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        int y = 100;
+        for (int i = 0 ; i < tripList.size();i++){
+            JLabel label = new JLabel();
+            label.setText("TripID: "+tripList.get(i).getID()+
+                    " -- SourceCity: "+ tripList.get(i).getSource().getCity().getName()+
+                    " -- DestinationCity: "+tripList.get(i).getDestination().getCity().getName()+
+                    " -- StartTime: "+tripList.get(i).getStartDateTime().toString()+
+                    " -- EndTime: "+tripList.get(i).EndTime().toString());
+            label.setFont(new Font("Consolas",Font.PLAIN,15));
+            label.setForeground(Color.BLACK);
+            label.setBorder(blackline);
+            label.setBounds(180,y,1000,50);
+            f.add(label);
+            y+=60;
+        }
+        editTrain = new JButton("Edit Trip");
         editTrain.setBackground(new Color(0x212A3E));
         editTrain.setFont(new Font("Consolas", Font.PLAIN,20));
         editTrain.setForeground(Color.WHITE);
