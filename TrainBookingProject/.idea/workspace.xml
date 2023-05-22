@@ -8,6 +8,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repositories/TripRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TripRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repositories/VisitRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/VisitRepository.java" afterDir="false" />
+<<<<<<< HEAD
+=======
+      <change beforePath="$PROJECT_DIR$/src/Views/createDataForAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/createDataForAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Views/editDataForAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/editDataForAdmin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Views/showAllToAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Views/showAllToAdmin.java" afterDir="false" />
+>>>>>>> 825af1c4087340475f62b3fa1c24e9e57d9fba19
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +93,7 @@
       <workItem from="1684699568633" duration="134000" />
       <workItem from="1684699760874" duration="9534000" />
       <workItem from="1684758516103" duration="5354000" />
+      <workItem from="1684787317606" duration="3848000" />
     </task>
     <servers />
   </component>
