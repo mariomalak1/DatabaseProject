@@ -1,9 +1,6 @@
 package Repositories;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +13,7 @@ public class TrainRepository {
         String sql = "INSERT INTO Train (Capacity, tripID, PricePerSeat) " +
                 "VALUES (?, ?, ?)";
 
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, train.getCapacity());
             statement.setInt(2, train.getTrip().getID());
             statement.setDouble(3, train.getPrice());
