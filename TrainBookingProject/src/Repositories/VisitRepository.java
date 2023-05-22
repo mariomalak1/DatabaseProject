@@ -17,8 +17,8 @@ public class VisitRepository {
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, visit.getTrip().getID());
             statement.setInt(2, visit.getCity().getID());
-            statement.setDate(3, Date.valueOf(String.valueOf((visit.getArrivingDateTime().toLocalDate()))));
             statement.setTime(4, Time.valueOf(String.valueOf((visit.getArrivingDateTime().toLocalTime()))));
+            statement.setDate(3, Date.valueOf(String.valueOf((visit.getArrivingDateTime().toLocalDate()))));
             statement.executeUpdate();
         }
         catch (SQLException e){
