@@ -6,6 +6,7 @@ import Models.Train;
 import Models.Trip;
 import Models.User;
 import Repositories.CityRepository;
+import Repositories.TripRepository;
 import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
@@ -73,19 +74,27 @@ public class createDataForAdmin implements ActionListener {
             f.dispose();
         }
         else if(e.getSource() == insertTrainBTN) {
+            TripRepository trepo = new TripRepository();
             Integer cap = Integer.parseInt(capacityT.getText());
             Integer tripId = Integer.parseInt(tripIdT.getText());
             double price = Double.parseDouble(pricePerSeatT.getText());
             Trip trip = TripController.getTripByID(tripId,connection);
-            Train train = TrainController.createTrain(cap,trip,price,connection);
-            if (train != null){
-                JOptionPane.showMessageDialog(null,"Train Created Successfully","Train Creation",JOptionPane.INFORMATION_MESSAGE);
-                AdminView a =new AdminView(newUser , connection);
-                f.dispose();
+            if(trip != null)
+            {
+                Train train = TrainController.createTrain(cap,trip,price,connection);
+                if (train != null){
+                    JOptionPane.showMessageDialog(null,"Train Created Successfully","Train Creation",JOptionPane.INFORMATION_MESSAGE);
+                    AdminView a =new AdminView(newUser , connection);
+                    f.dispose();
+                }else {
+                    JOptionPane.showMessageDialog(null,"Train Creation Failed ","Train Creation",JOptionPane.ERROR_MESSAGE);
+
+                }
             }else {
-                JOptionPane.showMessageDialog(null,"Train Creation Failed ","Train Creation",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Train Creation Failed, Trip Not Found","Train Creation",JOptionPane.ERROR_MESSAGE);
 
             }
+
         }else if(e.getSource() == createAdminBTN)
         {
             String fname = fnameT.getText();

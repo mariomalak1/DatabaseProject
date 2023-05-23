@@ -4,10 +4,7 @@ import Controllers.CityController;
 import Controllers.TrainController;
 import Controllers.TripController;
 import Controllers.VisitController;
-import Models.City;
-import Models.Train;
-import Models.Trip;
-import Models.User;
+import Models.*;
 import Repositories.CityRepository;
 import Repositories.TrainRepository;
 import Repositories.TripRepository;
@@ -161,6 +158,64 @@ public class editDataForAdmin implements ActionListener {
                 dname = listOfTripsD.getSelectedItem().toString();
                 dCity = CityController.getCityLikeName(dname,connection);
             }
+            String hours = hoursC.getSelectedItem().toString();
+            String mins = minC.getSelectedItem().toString();
+            String sdate = " ";
+            Time time = null;
+            Time Dtime = null;
+            java.util.Date date = null;
+            LocalDate local = null;
+            Date sqlDate = Date.valueOf(oldTrip.getStartDateTime().toLocalDate());
+            LocalDateTime stime = oldTrip.getStartDateTime();
+            LocalDateTime dtime = oldTrip.EndTime();
+            String hoursD = hoursCS.getSelectedItem().toString();
+            String minsD = minCS.getSelectedItem().toString();
+            if(cal.getDate() != null)
+            {
+                date =cal.getDate();
+                local = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                sqlDate = Date.valueOf(local);
+            }
+            if(!hours.equals("") && !mins.equals(""))
+            {
+                time = Time.valueOf(hoursD+":"+minsD+":0");
+                stime = LocalDateTime.of(local,time.toLocalTime());
+
+            }
+            if(!hoursD.equals("") && !minsD.equals(""))
+            {
+                Dtime = Time.valueOf(hours+":"+mins+":0");
+                dtime = LocalDateTime.of(local,Dtime.toLocalTime());
+
+            }
+            City city = CityController.getCityLikeName(dname,connection);
+            City city2 = CityController.getCityLikeName(sname,connection);
+            Visit sVisit = new Visit(oldTrip,city2,stime);
+            Visit dVisit = new Visit(oldTrip,city,dtime);
+            Trip n = oldTrip;
+            n.setID(oldTrip.getID());
+            n.setSource(sVisit);
+            n.setDestination(dVisit);
+            n.setStartDateTime(stime);
+
+            try {
+                n = tripRepo.updateTrip(n , connection);
+                VisitController.createVisit(dtime,city,n,connection);
+                VisitController.createVisit(stime,city2,n,connection);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+            if(n != null)
+            {
+                JOptionPane.showMessageDialog(null,"Trip Created Successfully", "Creating Trip",JOptionPane.INFORMATION_MESSAGE);
+                AdminView a = new AdminView(newUser,connection);
+                f.dispose();
+            }
+            else {
+                JOptionPane.showMessageDialog(null,"Trip Creation Failed", "Creating Trip",JOptionPane.ERROR_MESSAGE);
+
+            }
+
         }
 
 
@@ -282,6 +337,7 @@ public class editDataForAdmin implements ActionListener {
         }
         hoursC = new JComboBox(hours);
         hoursC.setBounds(800,250,50,30);
+        hoursC.insertItemAt("",0);
         hoursC.setSelectedIndex(0);
         String[] min = new String[60];
         for(int i = 0 ; i <= 59;i++)
@@ -290,21 +346,24 @@ public class editDataForAdmin implements ActionListener {
         }
         minC = new JComboBox(min);
         minC.setBounds(860,250,50,30);
+        minC.insertItemAt("",0);
         minC.setSelectedIndex(0);
         JLabel timeL = new JLabel("StartTime (h-m):");
         timeL.setFont(new Font("Consolas",Font.PLAIN,20));
         timeL.setForeground(Color.BLACK);
         timeL.setBounds(620,227,300,80);
         hoursCS = new JComboBox(hours);
-        hoursCS.setBounds(800,250,50,30);
+        hoursCS.setBounds(800,300,50,30);
+        hoursCS.insertItemAt("",0);
         hoursCS.setSelectedIndex(0);
         minCS = new JComboBox(min);
-        minCS.setBounds(860,250,50,30);
+        minCS.setBounds(860,300,50,30);
+        minCS.insertItemAt("",0);
         minCS.setSelectedIndex(0);
         JLabel timeLS = new JLabel("EndTime (h-m):");
         timeLS.setFont(new Font("Consolas",Font.PLAIN,20));
         timeLS.setForeground(Color.BLACK);
-        timeLS.setBounds(620,227,300,80);
+        timeLS.setBounds(620,277,300,80);
         editTripBTN = new JButton("Edit");
         editTripBTN.setFocusable(false);
         editTripBTN.setFont(new Font("Consolas",Font.PLAIN,30));
@@ -327,6 +386,9 @@ public class editDataForAdmin implements ActionListener {
         f.add(hoursC);
         f.add(timeL);
         f.add(minC);
+        f.add(hoursCS);
+        f.add(minCS);
+        f.add(timeLS);
         f.setVisible(true);
     }
     private List<Integer> getAllTrainIDs(){

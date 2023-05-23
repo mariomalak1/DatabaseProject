@@ -95,7 +95,8 @@ public class TripController {
             trip.setVisits(new VisitRepository().getAllVisitsByTrip(trip.getID(), connection));
             return trip;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            return null;
+            //throw new RuntimeException(e);
         }
     }
 }
