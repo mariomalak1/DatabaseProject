@@ -1,0 +1,17 @@
+EXEC sp_MSset_oledb_prop N'Microsoft.Jet.OLEDB.4.0', N'AllowInProcess', 1
+GO
+EXEC sp_MSset_oledb_prop N'Microsoft.Jet.OLEDB.4.0', N'DynamicParameters', 1
+GO
+----
+sp_configure 'show advanced options', 1;
+RECONFIGURE;
+GO
+sp_configure 'Ad Hoc Distributed Queries', 1;
+RECONFIGURE;
+GO
+
+******************************************
+
+INSERT INTO Booking (trainID, userID, NumberOfSeats)
+SELECT trainID, userID, NumberOfSeats
+FROM OPENROWSET('Microsoft.ACE.OLEDB.12.0', 'Excel 12.0;Database="C:\Users\lap top eur\Desktop\Booking.xlsx";HDR=YES', 'SELECT * FROM [sheet1$]')
