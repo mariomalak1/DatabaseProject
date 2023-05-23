@@ -117,7 +117,16 @@ public class editDataForAdmin implements ActionListener {
         {
             Integer tripId = Integer.parseInt(tripIdC.getSelectedItem().toString());
             TripRepository tripRepo = new TripRepository();
-            VisitRepository visitRepo = new VisitRepository();
+            try {
+                Trip trip = tripRepo.getTripById(tripId,connection);
+//                System.out.println(trip.getSource().getTrip().getID());
+//                System.out.println(trip.getDestination().getTrip().getID());
+                tripRepo.deleteTrip(trip,connection);
+                JOptionPane.showMessageDialog(null,"Trip Deleted Successfully","Trip Delete",JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
 
         }
 

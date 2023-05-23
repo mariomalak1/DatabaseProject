@@ -154,6 +154,7 @@ public class SearchForTripView implements ActionListener {
         f.add(cap);
         f.add(capL);
         f.add(createBookingBTN);
+
         f.setVisible(true);
     }
 

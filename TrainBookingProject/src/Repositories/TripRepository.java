@@ -39,7 +39,7 @@ public class TripRepository {
         return trip;
     }
 
-    public Trip updateTrip(Trip trip,Connection connection) throws SQLException{
+    public Trip updateTrip(Trip trip,Connection connection) throws SQLException {
         String sql = "update Trip set SourceID = ?, DestenationID = ?, DateOftrip = ?, StartTime = ?, EndTime = ?" +
                 "where TripID = ?";
         try(PreparedStatement statement = connection.prepareStatement(sql)){
@@ -54,7 +54,7 @@ public class TripRepository {
         return trip;
     }
 
-    public List<Trip> getAllTrips(Connection connection) throws SQLException{
+    public List<Trip> getAllTrips(Connection connection) throws SQLException {
         String sql = "Select * From Trip";
         List<Trip> trips = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(sql)){
@@ -141,7 +141,7 @@ public class TripRepository {
         }
     }
 
-    public List<Trip> getAllTripsGoToCityByCityName(String cityName,Connection connection){
+    public List<Trip> getAllTripsGoToCityByCityName(String cityName,Connection connection) {
         String sql = "Select * From Trip where TripID In " +
                 "(Select tripID from Visit where cityID in (Select CityID from City where city_name LIKE ?))";
 
@@ -161,6 +161,19 @@ public class TripRepository {
             throw new RuntimeException(e);
         }
         return trips;
+    }
+
+    public void deleteTrip(Trip trip, Connection connection) throws SQLException {
+        // to delete visits associated with the trip
+        new VisitRepository().deleteVisit(trip.getSource(), connection);
+
+        new VisitRepository().deleteVisit(trip.getDestination(), connection);
+
+        String sql = "DELETE From Trip WHERE TripID = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, trip.getID());
+            statement.executeUpdate();
+        }
     }
 
     // send it result of database set and extract from it Trip and return it
