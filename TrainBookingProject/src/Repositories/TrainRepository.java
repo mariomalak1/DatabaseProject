@@ -80,6 +80,7 @@ public class TrainRepository {
 
         return trains;
     }
+
     public List<Train> getAllTrains(Connection connection) throws SQLException{
         String sql = "SELECT * FROM Train ";
         List<Train> trains = new ArrayList<>();
@@ -94,6 +95,25 @@ public class TrainRepository {
 
         return trains;
     }
+
+    public void deleteTrain(int trainId,Connection connection) throws SQLException{
+        String sql = "DELETE From Train WHERE TrainID = ?";
+        try(PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, trainId);
+            statement.executeUpdate();
+        }
+
+    }
+
+    public void deleteAllTrainsForTrip(Trip trip, Connection connection) throws SQLException {
+        String sql = "DELETE From Train WHERE tripID = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, trip.getID());
+            statement.executeUpdate();
+        }
+    }
+
     private Train mapTrain(ResultSet resultSet,Connection connection) throws SQLException {
         Train train;
         int ID = resultSet.getInt("TrainID");
@@ -109,14 +129,6 @@ public class TrainRepository {
 
 
         return train;
-    }
-    public void deleteTrain(int trainId,Connection connection) throws SQLException{
-        String sql = "DELETE From Train WHERE TrainID = ?";
-        try(PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, trainId);
-            statement.executeUpdate();
-        }
-
     }
 
 }

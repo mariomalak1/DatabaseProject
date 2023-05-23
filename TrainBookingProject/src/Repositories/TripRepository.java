@@ -165,9 +165,13 @@ public class TripRepository {
 
     public void deleteTrip(Trip trip, Connection connection) throws SQLException {
         // to delete visits associated with the trip
-        new VisitRepository().deleteVisit(trip.getSource(), connection);
+        new VisitRepository().deleteAllVisitsForTrip(trip, connection);
 
-        new VisitRepository().deleteVisit(trip.getDestination(), connection);
+        // delete all bookings that related to trip
+        new BookingRepository().deleteAllBookingForTrip(trip, connection);
+
+        // to delete all trains for this trip
+        new TrainRepository().deleteAllTrainsForTrip(trip, connection);
 
         String sql = "DELETE From Trip WHERE TripID = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
