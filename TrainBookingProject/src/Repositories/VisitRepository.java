@@ -47,8 +47,9 @@ public class VisitRepository {
     }
 
     public List<Visit> getAllVisitsByCityName(String cityName, Connection connection) throws SQLException{
-        String sql = "SELECT * From Visit Where cityID in" +
-                " (select CityID from City where city_name Like ?)";
+        String sql = "SELECT * FROM Visit" +
+                "JOIN City ON Visit.cityID = City.CityID " +
+                "WHERE City.city_name LIKE ?";
 
         List<Visit> visits = new ArrayList<>();
 
