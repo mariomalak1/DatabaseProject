@@ -1,6 +1,5 @@
 package Models;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -25,6 +24,9 @@ public class Trip {
         this.ID = id;
         this.Destination = destination;
         this.Source = source;
+
+        this.Destination.setTrip(this);
+        this.Source.setTrip(this);
     }
 
     public LocalDateTime EndTime(){
@@ -45,6 +47,7 @@ public class Trip {
 
     public void setDestination(Visit destination) {
         Destination = destination;
+        this.Destination.setTrip(this);
     }
 
     public Visit getSource() {
@@ -53,6 +56,7 @@ public class Trip {
 
     public void setSource(Visit source) {
         Source = source;
+        this.Source.setTrip(this);
     }
 
     public LocalDateTime getStartDateTime() {
