@@ -1,7 +1,10 @@
 package Views;
 
+import Controllers.CityController;
 import Controllers.TrainController;
 import Controllers.TripController;
+import Controllers.VisitController;
+import Models.City;
 import Models.Train;
 import Models.Trip;
 import Models.User;
@@ -16,9 +19,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class editDataForAdmin implements ActionListener {
     Connection connection ;
@@ -41,6 +50,8 @@ public class editDataForAdmin implements ActionListener {
     JComboBox minC;
     JDateChooser cal;
     JComboBox hoursC;
+    JComboBox hoursCS;
+    JComboBox minCS;
     public editDataForAdmin(User user,Connection conn){
         connection = conn;
         newUser = user;
@@ -113,8 +124,7 @@ public class editDataForAdmin implements ActionListener {
             AdminView a =new AdminView(newUser , connection);
             f.dispose();
 
-        }else if(e.getSource() == deleteTripBTN)
-        {
+        }else if(e.getSource() == deleteTripBTN) {
             Integer tripId = Integer.parseInt(tripIdC.getSelectedItem().toString());
             TripRepository tripRepo = new TripRepository();
             try {
@@ -128,6 +138,29 @@ public class editDataForAdmin implements ActionListener {
                 throw new RuntimeException(ex);
             }
 
+        }else if (e.getSource() == editTripBTN) {
+            Integer tripId = Integer.parseInt(tripIdC.getSelectedItem().toString());
+            TripRepository tripRepo = new TripRepository();
+            Trip oldTrip = null;
+            City sCity = null;
+            City dCity = null;
+            try {
+                oldTrip = tripRepo.getTripById(tripId,connection);
+            } catch (SQLException ex) {
+               JOptionPane.showMessageDialog(null,"Error While Getting the Old Trip Data By Id.","Edit Trip",JOptionPane.ERROR_MESSAGE);
+            }
+            String sname = oldTrip.getSource().getCity().getName();
+            if(!listOfTripsS.getSelectedItem().toString().equals(""))
+            {
+                sname = listOfTripsS.getSelectedItem().toString();
+                sCity = CityController.getCityLikeName(sname,connection);
+            }
+            String dname = oldTrip.getDestination().getCity().getName();
+            if(!listOfTripsD.getSelectedItem().toString().equals(""))
+            {
+                dname = listOfTripsD.getSelectedItem().toString();
+                dCity = CityController.getCityLikeName(dname,connection);
+            }
         }
 
 
@@ -215,6 +248,7 @@ public class editDataForAdmin implements ActionListener {
         }
         listOfTripsS = new JComboBox(loadedS);
         listOfTripsS.setBounds(600,110,200,50);
+        listOfTripsS.insertItemAt("",0);
         listOfTripsS.setSelectedIndex(0);
         JLabel labelS = new JLabel("SourceCity:");
         labelS.setFont(new Font("Consolas",Font.PLAIN,20));
@@ -226,6 +260,7 @@ public class editDataForAdmin implements ActionListener {
         //---------------------------
         listOfTripsD = new JComboBox(loadedS);
         listOfTripsD.setBounds(850,110,200,50);
+        listOfTripsD.insertItemAt("",0);
         listOfTripsD.setSelectedIndex(0);
         JLabel labelD = new JLabel("DestinationCity:");
         labelD.setFont(new Font("Consolas",Font.PLAIN,20));
@@ -260,6 +295,16 @@ public class editDataForAdmin implements ActionListener {
         timeL.setFont(new Font("Consolas",Font.PLAIN,20));
         timeL.setForeground(Color.BLACK);
         timeL.setBounds(620,227,300,80);
+        hoursCS = new JComboBox(hours);
+        hoursCS.setBounds(800,250,50,30);
+        hoursCS.setSelectedIndex(0);
+        minCS = new JComboBox(min);
+        minCS.setBounds(860,250,50,30);
+        minCS.setSelectedIndex(0);
+        JLabel timeLS = new JLabel("EndTime (h-m):");
+        timeLS.setFont(new Font("Consolas",Font.PLAIN,20));
+        timeLS.setForeground(Color.BLACK);
+        timeLS.setBounds(620,227,300,80);
         editTripBTN = new JButton("Edit");
         editTripBTN.setFocusable(false);
         editTripBTN.setFont(new Font("Consolas",Font.PLAIN,30));

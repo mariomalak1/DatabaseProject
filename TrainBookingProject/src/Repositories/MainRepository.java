@@ -12,7 +12,7 @@ public class MainRepository {
     public static Connection getConnection(){
         try {
 
-            return DriverManager.getConnection(conn);
+            return DriverManager.getConnection(url,username,pass);
 
         }
         catch(SQLException e){

@@ -288,7 +288,7 @@ public class createDataForAdmin implements ActionListener {
         }
         listOfTripsS = new JComboBox(loadedS);
         listOfTripsS.setBounds(400,110,150,50);
-        listOfTripsS.setSelectedIndex(0);
+        //listOfTripsS.setSelectedIndex(0);
         JLabel labelS = new JLabel("SourceCity:");
         labelS.setFont(new Font("Consolas",Font.PLAIN,20));
         labelS.setForeground(Color.BLACK);
@@ -299,7 +299,7 @@ public class createDataForAdmin implements ActionListener {
         //---------------------------
         listOfTripsD = new JComboBox(loadedS);
         listOfTripsD.setBounds(800,110,150,50);
-        listOfTripsD.setSelectedIndex(0);
+        //listOfTripsD.setSelectedIndex(0);
         JLabel labelD = new JLabel("DestinationCity:");
         labelD.setFont(new Font("Consolas",Font.PLAIN,20));
         labelD.setForeground(Color.BLACK);
