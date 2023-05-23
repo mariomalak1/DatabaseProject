@@ -60,3 +60,16 @@ select Train.TrainID As 'Train ID', COUNT(Booking.BookingID) As 'Booking Number'
 Join Booking on Booking.trainID = Train.TrainID
 Group BY Train.TrainID
 Order By('Booking Number') DESC;
+
+
+/* Get Al Trips Revenue And Booking Number */
+SELECT Trip.TripID AS 'Trip ID', SourceCity.city_name AS 'Source City',
+    DestCity.city_name AS 'Destination City',
+    Count(Booking.BookingID) AS 'Number Of Bookings',
+    SUM(Booking.NumberOfSeats * Train.PricePerSeat) AS 'Revenue' FROM Train
+JOIN Booking ON Booking.trainID = Train.TrainID
+JOIN Trip ON Trip.TripID = Train.tripID
+JOIN City AS SourceCity ON SourceCity.CityID = Trip.SourceID
+JOIN City AS DestCity ON DestCity.CityID = Trip.DestenationID
+GROUP BY Trip.TripID, SourceCity.city_name, DestCity.city_name
+ORDER BY 'Number Of Bookings' DESC;

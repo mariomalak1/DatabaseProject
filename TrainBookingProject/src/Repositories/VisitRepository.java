@@ -82,13 +82,11 @@ public class VisitRepository {
         }
     }
 
-    public void deleteVisit(Visit visit, Connection connection) throws SQLException {
-        String sql = "DELETE From Visit WHERE tripID = ? And cityID = ? And visit_Date = ? And visit_Time = ?";
+    public void deleteAllVisitsForTrip(Trip trip, Connection connection) throws SQLException {
+        String sql = "DELETE From Visit WHERE tripID = ?";
+
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, visit.getTrip().getID());
-            statement.setInt(2, visit.getCity().getID());
-            statement.setDate(3, Date.valueOf(visit.getArrivingDateTime().toLocalDate()));
-            statement.setTime(4, Time.valueOf(visit.getArrivingDateTime().toLocalTime()));
+            statement.setInt(1, trip.getID());
             statement.executeUpdate();
         }
     }
