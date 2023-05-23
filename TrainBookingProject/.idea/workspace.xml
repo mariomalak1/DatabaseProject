@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83158aae-e523-4141-a75e-ee32c976ed7f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Statistics.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Statistics.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/MainRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/MainRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/BookingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repositories/TrainRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TrainRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repositories/TripRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/TripRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repositories/VisitRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repositories/VisitRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -72,6 +72,15 @@ public class BookingRepository {
         return bookings;
     }
 
+    public void deleteAllBookingForTrip(Trip trip, Connection connection) throws SQLException {
+        String sql = "DELETE From Booking WHERE trainID = (select TrainID from Train Where tripID = ?)";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, trip.getID());
+            statement.executeUpdate();
+        }
+    }
+
     private Booking extractBookingFromResultSet(ResultSet resultSet,Connection connection) throws SQLException {
         int bookingId = resultSet.getInt("BookingID");
         int trainId = resultSet.getInt("trainID");
