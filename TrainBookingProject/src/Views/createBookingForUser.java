@@ -74,8 +74,8 @@ public class createBookingForUser implements ActionListener {
         createBookingBTN.setBackground(new Color(0x212A3E));
         createBookingBTN.addActionListener(this);
         createBookingBTN.setForeground(Color.WHITE);
-        f.add(userIdL);
-        f.add(userIdT);
+//        f.add(userIdL);
+//        f.add(userIdT);
         f.add(trainid);
         f.add(trainidL);
         f.add(upper);
@@ -96,7 +96,7 @@ public class createBookingForUser implements ActionListener {
             Integer numberofseats;
             User user;
             Train train = TrainController.getTrainById(trainId,connection);
-            if(Number.isNumeric(userIdT.getText()) && Number.isNumeric(numberOfseats.getText()))
+            if( Number.isNumeric(numberOfseats.getText()))
             {
                 userId = Integer.parseInt(userIdT.getText());
                 numberofseats = Integer.parseInt(numberOfseats.getText());
@@ -104,7 +104,7 @@ public class createBookingForUser implements ActionListener {
                 if(user != null)
                 {
                     System.out.println(numberofseats);
-                    Booking book = BookingController.creatBooking(user,train,numberofseats,connection);
+                    Booking book = BookingController.creatBooking(newUser,train,numberofseats,connection);
                     if(book != null)
                     {
                         JOptionPane.showMessageDialog(null, "Booking Created Successfully, BookingID: "+book.getID(), "CreateBooking", JOptionPane.INFORMATION_MESSAGE);

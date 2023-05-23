@@ -50,7 +50,8 @@ public class showAllToAdmin implements ActionListener {
             editDataForAdmin edit  = new editDataForAdmin(newUser , connection);
             edit.editTrain();
             f.dispose();
-        }else if(e.getSource() == editTrip) {
+        }
+        else if(e.getSource() == editTrip) {
             editDataForAdmin edit  = new editDataForAdmin(newUser , connection);
             edit.editTrip();
             f.dispose();
