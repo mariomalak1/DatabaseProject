@@ -50,10 +50,10 @@ create table Booking(
 	foreign key(userID) references [User](UserID), 
 	foreign key(trainID) references Train(TrainID),
 );
-*/
-/*
-alter table Visit
-add visit_Time TIME not NULL
-alter table Visit
-add visit_Date DATE not NULL
+
+create table Seat(
+	trainID int,
+	number int,
+	Primary Key(trainID, number)
+);
 */
