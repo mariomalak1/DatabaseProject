@@ -80,10 +80,10 @@ public class SearchForTripView implements ActionListener {
         JLabel labelD = new JLabel("DestinationCity:");
         labelD.setFont(new Font("Consolas",Font.PLAIN,20));
         labelD.setForeground(Color.BLACK);
-        labelD.setBounds(650,100,200,80);
+        labelD.setBounds(620,100,200,80);
 
         f.add(listOfTripsD);
-        f.add(labelS);
+        f.add(labelD);
 //        loadAllCities("SourceCity:",400,110,260,100);
 //        loadAllCities("Destination:",800,110,650,100);
         cal =new JDateChooser();

@@ -96,7 +96,7 @@ public class createBookingForUser implements ActionListener {
             Integer numberofseats;
             User user;
             Train train = TrainController.getTrainById(trainId,connection);
-            if(Number.isNumeric(userIdT.getText()) && Number.isNumeric(numberOfseats.getText()))
+            if( Number.isNumeric(numberOfseats.getText()))
             {
                 userId = Integer.parseInt(userIdT.getText());
                 numberofseats = Integer.parseInt(numberOfseats.getText());
