@@ -48,3 +48,15 @@ Join City As SoruceCity on SoruceCity.CityID = Trip.SourceID
 Join City As DestinationCity on SoruceCity.CityID = Trip.SourceID
 Group BY Train.TrainID, SoruceCity.city_name ,DestinationCity.city_name
 Order By(Revenu) DESC;
+
+/* Show Booking For Every Train And It's Revenue */
+select Train.TrainID As 'Train ID', COUNT(Booking.BookingID) As 'Booking Number', SUM(Booking.NumberOfSeats * Train.PricePerSeat) As 'Revenu' from Train
+Join Booking on Booking.trainID = Train.TrainID
+Group BY Train.TrainID
+Order By('Booking Number') DESC;
+
+/* Show Trains And It's Booking Revenue */
+select Train.TrainID As 'Train ID', COUNT(Booking.BookingID) As 'Booking Number', SUM(Booking.NumberOfSeats * Train.PricePerSeat) As 'Revenu' from Train
+Join Booking on Booking.trainID = Train.TrainID
+Group BY Train.TrainID
+Order By('Booking Number') DESC;
